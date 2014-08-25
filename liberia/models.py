@@ -39,3 +39,46 @@ class DateStats(models.Model):
 
     def __unicode__(self):
         return str(self.date)
+
+class SitRep(models.Model):
+    date_span = models.CharField(max_length=100, blank=True)
+
+    class Meta:
+        ordering = ['date_span']
+
+    def __unicode__(self):
+        return self.date_span
+
+class Location(models.Model):
+    name = models.CharField(max_length=100, blank=True)
+
+    class Meta:
+        ordering = ['name']
+
+    def __unicode__(self):
+        return self.name
+
+class LocationSitRep(models.Model):
+    sit_rep = models.ForeignKey('SitRep', null=True, blank=True)
+    location = models.ForeignKey('Location', null=True, blank=True)
+    num = models.IntegerField(max_length=50, blank=True, null=True)
+    date_span = models.CharField(max_length=100, blank=True)
+    total_probable_deaths = models.IntegerField(max_length=50, blank=True, null=True)
+    cases_cum_suspected = models.IntegerField(max_length=50, blank=True, null=True)
+    cases_cum_probable = models.IntegerField(max_length=50, blank=True, null=True)
+    cases_cum_confirmed = models.IntegerField(max_length=50, blank=True, null=True)
+    cases_cum = models.IntegerField(max_length=50, blank=True, null=True)
+    total_deaths_suspected = models.IntegerField(max_length=50, blank=True, null=True)
+    total_deaths_confirmed = models.IntegerField(max_length=50, blank=True, null=True)
+    total_deaths_all = models.IntegerField(max_length=50, blank=True, null=True)
+    deaths = models.IntegerField(max_length=50, blank=True, null=True)
+    hc_workers = models.IntegerField(max_length=50, blank=True, null=True)
+    hcw_cases_cum = models.IntegerField(max_length=50, blank=True, null=True)
+    hcw_deaths_suspected = models.IntegerField(max_length=50, blank=True, null=True)
+    CFR = models.CharField(max_length=100, blank=True)
+
+    class Meta:
+        ordering = ['location']
+
+    def __unicode__(self):
+        return self.location+', '+self.date_span
