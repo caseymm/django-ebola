@@ -46,10 +46,10 @@ class SitRep(models.Model):
     date_span = models.CharField(max_length=100, blank=True)
 
     class Meta:
-        ordering = ['date_span']
+        ordering = ['num']
 
     def __unicode__(self):
-        return self.date_span
+        return self.num
 
 class Location(models.Model):
     name = models.CharField(max_length=100, blank=True)

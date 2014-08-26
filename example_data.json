@@ -1,0 +1,963 @@
+{
+    "total": 702,
+    "data": [
+        {
+            "remoteID": "503229981712220160",
+            "license": "twitter",
+            "language": {
+                "code": "en"
+            },
+            "author": {
+                "username": "AlertNet",
+                "remoteID": "15762575",
+                "image": "http://pbs.twimg.com/profile_images/492572880966647808/vkfuoXEt_normal.jpeg",
+                "name": "AlertNet"
+            },
+            "tags": [],
+            "publishedAt": "2014-08-23T17:19:11+00:00",
+            "summary": "Sierra Leone makes harbouring #Ebola victims a crime http://t.co/wLqAlXqqC4 #SierraLeone",
+            "content": "Sierra Leone makes harbouring #Ebola victims a crime http://t.co/wLqAlXqqC4 #SierraLeone",
+            "source": "twitter",
+            "lifespan": "temporary",
+            "updatedAt": "2014-08-23T18:16:51.763649",
+            "entities": [
+                "General-conflict"
+            ],
+            "geo": {
+                "locationIdentifiers": {
+                    "authorTimeZone": "London",
+                    "authorLocationName": "Global"
+                },
+                "addressComponents": {
+                    "adminArea1": "General-conflict",
+                    "formattedAddress": "General-conflict"
+                }
+            },
+            "id": "jr6VvFarTH-zxtZGrMMSXg",
+            "createdAt": "2014-08-23T18:14:05.243388"
+        },
+        {
+            "remoteID": "503151342870077440",
+            "license": "twitter",
+            "language": {
+                "code": "en"
+            },
+            "author": {
+                "username": "AlertNet",
+                "remoteID": "15762575",
+                "image": "http://pbs.twimg.com/profile_images/492572880966647808/vkfuoXEt_normal.jpeg",
+                "name": "AlertNet"
+            },
+            "tags": [],
+            "publishedAt": "2014-08-23T12:06:42+00:00",
+            "summary": "Ivory Coast closes western borders over #Ebola threat http://t.co/VWvRtkOjNS #IvoryCoast",
+            "content": "Ivory Coast closes western borders over #Ebola threat http://t.co/VWvRtkOjNS #IvoryCoast",
+            "source": "twitter",
+            "lifespan": "temporary",
+            "updatedAt": "2014-08-23T12:13:59.022663",
+            "entities": [
+                "General-conflict"
+            ],
+            "geo": {
+                "locationIdentifiers": {
+                    "authorTimeZone": "London",
+                    "authorLocationName": "Global"
+                },
+                "addressComponents": {
+                    "adminArea1": "General-conflict",
+                    "formattedAddress": "General-conflict"
+                }
+            },
+            "id": "FmLL-J0FTMuA5ggTVjf-fg",
+            "createdAt": "2014-08-23T12:13:45.369030"
+        },
+        {
+            "remoteID": "503113179913011200",
+            "license": "twitter",
+            "language": {
+                "code": "en"
+            },
+            "author": {
+                "username": "AlertNet",
+                "remoteID": "15762575",
+                "image": "http://pbs.twimg.com/profile_images/492572880966647808/vkfuoXEt_normal.jpeg",
+                "name": "AlertNet"
+            },
+            "tags": [
+                {
+                    "confidence": 1,
+                    "name": "peacekeepers"
+                }
+            ],
+            "publishedAt": "2014-08-23T09:35:04+00:00",
+            "summary": "Philippines recalls peacekeepers from #Liberia over #Ebola threat http://t.co/P7IBZoutYX #EbolaOu...",
+            "content": "Philippines recalls peacekeepers from #Liberia over #Ebola threat http://t.co/P7IBZoutYX #EbolaOutbreak #Philippines",
+            "source": "twitter",
+            "lifespan": "temporary",
+            "updatedAt": "2014-08-23T10:14:19.808856",
+            "entities": [
+                "General-conflict"
+            ],
+            "geo": {
+                "locationIdentifiers": {
+                    "authorTimeZone": "London",
+                    "authorLocationName": "Global"
+                },
+                "addressComponents": {
+                    "adminArea1": "General-conflict",
+                    "formattedAddress": "General-conflict"
+                }
+            },
+            "id": "QOSNXg-VQNOfswIMVPHMFw",
+            "createdAt": "2014-08-23T10:13:39.056178"
+        },
+        {
+            "remoteID": "502908934777470977",
+            "license": "twitter",
+            "language": {
+                "code": "en"
+            },
+            "author": {
+                "username": "AlertNet",
+                "remoteID": "15762575",
+                "image": "http://pbs.twimg.com/profile_images/492572880966647808/vkfuoXEt_normal.jpeg",
+                "name": "AlertNet"
+            },
+            "tags": [
+                {
+                    "confidence": 1,
+                    "name": "epidemic"
+                },
+                {
+                    "confidence": 1,
+                    "name": "disaster"
+                },
+                {
+                    "confidence": 0.7796873948248713,
+                    "name": "donation"
+                }
+            ],
+            "publishedAt": "2014-08-22T20:03:28+00:00",
+            "summary": "Death toll in West Africa #Ebola epidemic rises to 1,427 - #WHO\nhttp://t.co/zaetY5T8T7",
+            "content": "Death toll in West Africa #Ebola epidemic rises to 1,427 - #WHO\nhttp://t.co/zaetY5T8T7",
+            "source": "twitter",
+            "lifespan": "temporary",
+            "updatedAt": "2014-08-22T20:15:16.084795",
+            "entities": [
+                "General-conflict"
+            ],
+            "geo": {
+                "locationIdentifiers": {
+                    "authorTimeZone": "London",
+                    "authorLocationName": "Global"
+                },
+                "addressComponents": {
+                    "adminArea1": "General-conflict",
+                    "formattedAddress": "General-conflict"
+                }
+            },
+            "id": "GXdxudxnSpKwRslpWQDcvg",
+            "createdAt": "2014-08-22T20:12:52.692339"
+        },
+        {
+            "remoteID": "-9.55192565918_7.03479417652_eboladiseasedisaster",
+            "tags": [
+                {
+                    "confidence": 1,
+                    "name": "ebola"
+                },
+                {
+                    "confidence": 1,
+                    "name": "disease"
+                },
+                {
+                    "confidence": 1,
+                    "name": "disaster"
+                }
+            ],
+            "totalAffectedPersons": 1,
+            "publishedAt": "2014-08-22T19:27:15.503265",
+            "updatedAt": "2014-08-22T19:27:15.550031",
+            "geo": {
+                "coords": [
+                    -9.551925659179686,
+                    7.034794176519724
+                ]
+            },
+            "createdAt": "2014-08-22T19:27:15.550017",
+            "license": "odbl",
+            "fromURL": "http://reliefweb.int/sites/reliefweb.int/files/resources/24_april_Ebola%20Viral%20Disease-Sit%20Rep-%2016-%2024th%20%20April%202014.pdf",
+            "lifespan": "temporary",
+            "summary": "April 23\n\nhttp://reliefweb.int/sites/reliefweb.int/files/resources/24_april_Ebola%20Viral%20Disease-Sit%20Rep-%2016-%2024th%20%20April%202014.pdf \n\n16 of april 2014 \n\n4  patients at Phebe Hospital in Bong County and 1 new suspected case in Bong county.\n\nhttp://reliefweb.int/sites/reliefweb.int/files/resources/UNICEF%20Liberia%20SitRep16%20Ebola%20Viral%20Disease%2016Apr2014.pdf \n\nhttp://www.business-standard.com/article/news-ians/liberia-steps-up-measures-to-control-ebola-virus-114041600145_1.html \n\n2nd of april 2014 \n\n(under observation, may 2014  have Lassa fever, patients include one nine-year-old child)\n\nhttp://reliefweb.int/sites/reliefweb.int/files/resources/UNICEF%20Liberia%20SitRep%20%23%208%20Ebola%20Fever%20-%202%20April%202014.pdf \n",
+            "content": "April 23\n\nhttp://reliefweb.int/sites/reliefweb.int/files/resources/24_april_Ebola%20Viral%20Disease-Sit%20Rep-%2016-%2024th%20%20April%202014.pdf \n\n16 of april 2014 \n\n4  patients at Phebe Hospital in Bong County and 1 new suspected case in Bong county.\n\nhttp://reliefweb.int/sites/reliefweb.int/files/resources/UNICEF%20Liberia%20SitRep16%20Ebola%20Viral%20Disease%2016Apr2014.pdf \n\nhttp://www.business-standard.com/article/news-ians/liberia-steps-up-measures-to-control-ebola-virus-114041600145_1.html \n\n2nd of april 2014 \n\n(under observation, may 2014  have Lassa fever, patients include one nine-year-old child)\n\nhttp://reliefweb.int/sites/reliefweb.int/files/resources/UNICEF%20Liberia%20SitRep%20%23%208%20Ebola%20Fever%20-%202%20April%202014.pdf \n",
+            "source": "osm",
+            "id": "zWy4ITX0QEapc32xUfQbgw"
+        },
+        {
+            "remoteID": "-1.62331581116_6.6982804266_eboladiseasedisaster",
+            "tags": [
+                {
+                    "confidence": 1,
+                    "name": "ebola"
+                },
+                {
+                    "confidence": 1,
+                    "name": "disease"
+                },
+                {
+                    "confidence": 1,
+                    "name": "disaster"
+                }
+            ],
+            "totalAffectedPersons": 1,
+            "publishedAt": "2014-08-22T19:27:14.946152",
+            "updatedAt": "2014-08-22T19:27:15.107430",
+            "geo": {
+                "coords": [
+                    -1.6233158111572266,
+                    6.698280426597897
+                ]
+            },
+            "createdAt": "2014-08-22T19:27:15.107419",
+            "license": "odbl",
+            "fromURL": "http://af.reuters.com/article/sierraLeoneNews/idAFL6N0MZ3BA20140407",
+            "lifespan": "temporary",
+            "summary": " Apr 7, 2014 1:00pm GMT - Fatal virus in Ghana tests negative for Ebola - http://af.reuters.com/article/sierraLeoneNews/idAFL6N0MZ3BA20140407 \n\nApril 6, 2014: 12:21 - Ghana records first suspected case of ebola / Le Ghana enregistre son premier cas suspecté d'Ebola- http://edition.radioxyzonline.com/pages/news/04062014-1221/18998.stm  \n\n6th april 2014 , 2014 - KATH investigates suspected Ebola case - http://www.ghananewsagency.org/health/kath-investigates-suspected-ebola-case-73170 \n\nvia http://crofsblogs.typepad.com/h5n1/2014/04/ghana-records-first-suspected-case-of-ebola.html  ",
+            "content": " Apr 7, 2014 1:00pm GMT - Fatal virus in Ghana tests negative for Ebola - http://af.reuters.com/article/sierraLeoneNews/idAFL6N0MZ3BA20140407 \n\nApril 6, 2014: 12:21 - Ghana records first suspected case of ebola / Le Ghana enregistre son premier cas suspecté d'Ebola- http://edition.radioxyzonline.com/pages/news/04062014-1221/18998.stm  \n\n6th april 2014 , 2014 - KATH investigates suspected Ebola case - http://www.ghananewsagency.org/health/kath-investigates-suspected-ebola-case-73170 \n\nvia http://crofsblogs.typepad.com/h5n1/2014/04/ghana-records-first-suspected-case-of-ebola.html  ",
+            "source": "osm",
+            "id": "bfmwnGvwQ-yGxN7VS9lMVQ"
+        },
+        {
+            "remoteID": "-106.655273438_52.1469733406_eboladiseasedisaster",
+            "tags": [
+                {
+                    "confidence": 1,
+                    "name": "ebola"
+                },
+                {
+                    "confidence": 1,
+                    "name": "disease"
+                },
+                {
+                    "confidence": 1,
+                    "name": "disaster"
+                }
+            ],
+            "totalAffectedPersons": 1,
+            "publishedAt": "2014-08-22T19:27:14.944453",
+            "updatedAt": "2014-08-22T19:27:15.006104",
+            "geo": {
+                "coords": [
+                    -106.6552734375,
+                    52.14697334064471
+                ]
+            },
+            "createdAt": "2014-08-22T19:27:15.006089",
+            "license": "odbl",
+            "fromURL": "http://www.thestarphoenix.com/health/Ebola+Marburg+ruled/9662379/story.html",
+            "lifespan": "temporary",
+            "summary": "March 26, 2014\nhttp://www.thestarphoenix.com/health/Ebola+Marburg+ruled/9662379/story.html\n\nCanada - 25/3/14\n\nhttp://yhoo.it/1mvlz8t",
+            "content": "March 26, 2014\nhttp://www.thestarphoenix.com/health/Ebola+Marburg+ruled/9662379/story.html\n\nCanada - 25/3/14\n\nhttp://yhoo.it/1mvlz8t",
+            "source": "osm",
+            "id": "0cTdky9_T6u6DVi-oB9jsw"
+        },
+        {
+            "remoteID": "-13.2663345337_8.49236430465_eboladiseasedisaster",
+            "tags": [
+                {
+                    "confidence": 1,
+                    "name": "ebola"
+                },
+                {
+                    "confidence": 1,
+                    "name": "disease"
+                },
+                {
+                    "confidence": 1,
+                    "name": "disaster"
+                }
+            ],
+            "totalAffectedPersons": 1,
+            "publishedAt": "2014-08-22T19:27:14.776011",
+            "updatedAt": "2014-08-22T19:27:14.776386",
+            "geo": {
+                "coords": [
+                    -13.266334533691406,
+                    8.49236430464844
+                ]
+            },
+            "createdAt": "2014-08-22T19:27:14.776377",
+            "license": "odbl",
+            "fromURL": "http://www.sierraleonenewshunters.com/article/police-hunt-escaped-ebola-victim",
+            "lifespan": "temporary",
+            "summary": "July 14\n\nReports from Macauley Street Satellite Hospital in Freetown, say they recently confirmed that a suspected Ebola who was admitted at the facility has escaped.\n\nSources at the Macauley Street Satellite Hospital claim that a nurse known as Basiru from Daru arrived at the hospital claiming he had come to Freetown to sit to a public examination last week Saturday.\n\nHowever, by Monday this week, this person allegedly began showing symptoms of diarrhea and upon an authorized Dr. Kamara (the Lab Manager’s) visit to the facility, he detected that the victim had contracted Ebola and had in fact been at the Kailahun Government Hospital.\n\nImmediately, according to the sources, the patient was referred to a bigger health facility but there was no relative to look after him. The victim’s girlfriend who happened to be a nurse residing at New England Ville was also found to be Ebola positive according to the sources.\n\n“Both of them have since been transferred to the Kenema Ebola treatment center,” Tamba M. Abu, Assistant Physician at Macauley Street Satellite Hospital told this press.\nAccording to the Matron and Medical Superintendent at the hospital, they are mindful that people are at risk and that this is why they have not only chlorinated the room where the victim was admitted but have done the same to the entire facility. “The hospital is in close surveillance for signs and symptoms from patients coming to the hospital. We are conducting contact tracing on all those that were on observation at the facility. We have safely disposed all properties belonging to the victims by burning,” a health official said.\nIt should be recalled that a couple of weeks ago, a confirmed case of Ebola was detected at Sumaila Town but the victim was quickly taken away.\nHowever, there is a growing fear that with these Ebola escape cases becoming more frequent,\nthere is a growing risk of it spreading to unprotected persons and areas; little wonder that law enforcement agencies have been co-opted to help.\"\n\nhttp://www.sierraleonenewshunters.com/article/police-hunt-escaped-ebola-victim\n\n",
+            "content": "July 14\n\nReports from Macauley Street Satellite Hospital in Freetown, say they recently confirmed that a suspected Ebola who was admitted at the facility has escaped.\n\nSources at the Macauley Street Satellite Hospital claim that a nurse known as Basiru from Daru arrived at the hospital claiming he had come to Freetown to sit to a public examination last week Saturday.\n\nHowever, by Monday this week, this person allegedly began showing symptoms of diarrhea and upon an authorized Dr. Kamara (the Lab Manager’s) visit to the facility, he detected that the victim had contracted Ebola and had in fact been at the Kailahun Government Hospital.\n\nImmediately, according to the sources, the patient was referred to a bigger health facility but there was no relative to look after him. The victim’s girlfriend who happened to be a nurse residing at New England Ville was also found to be Ebola positive according to the sources.\n\n“Both of them have since been transferred to the Kenema Ebola treatment center,” Tamba M. Abu, Assistant Physician at Macauley Street Satellite Hospital told this press.\nAccording to the Matron and Medical Superintendent at the hospital, they are mindful that people are at risk and that this is why they have not only chlorinated the room where the victim was admitted but have done the same to the entire facility. “The hospital is in close surveillance for signs and symptoms from patients coming to the hospital. We are conducting contact tracing on all those that were on observation at the facility. We have safely disposed all properties belonging to the victims by burning,” a health official said.\nIt should be recalled that a couple of weeks ago, a confirmed case of Ebola was detected at Sumaila Town but the victim was quickly taken away.\nHowever, there is a growing fear that with these Ebola escape cases becoming more frequent,\nthere is a growing risk of it spreading to unprotected persons and areas; little wonder that law enforcement agencies have been co-opted to help.\"\n\nhttp://www.sierraleonenewshunters.com/article/police-hunt-escaped-ebola-victim\n\n",
+            "source": "osm",
+            "id": "Cq6Wwp0PRUuwqEP5z3G2Wg"
+        },
+        {
+            "remoteID": "-12.1786880493_7.60687212076_eboladiseasedisaster",
+            "tags": [
+                {
+                    "confidence": 1,
+                    "name": "ebola"
+                },
+                {
+                    "confidence": 1,
+                    "name": "disease"
+                },
+                {
+                    "confidence": 1,
+                    "name": "disaster"
+                }
+            ],
+            "totalAffectedPersons": 1,
+            "publishedAt": "2014-08-22T19:27:14.776300",
+            "updatedAt": "2014-08-22T19:27:14.807071",
+            "geo": {
+                "coords": [
+                    -12.178688049316406,
+                    7.606872120756535
+                ]
+            },
+            "createdAt": "2014-08-22T19:27:14.807057",
+            "license": "facebook",
+            "fromURL": "https://www.facebook.com/sylola/posts/748413415222091",
+            "lifespan": "temporary",
+            "summary": "July 20\n\nPlease, help us to verify .\n\n\"Another patient has escaped from an isolation unit in Sierra Leone. This time, the patient escaped from a health facility in Mattru Jong, Bonthe. The SAD news though is that unlike the escaped suspected patient from Freetown's PCMH, whose blood tests results later showed negative, this escaped patient's blood results have tested POSITIVE for Ebola. Reports however indicate that the escaped patient has been sighted vomiting blood at a certain junction locality between Mattru Jong and Bo. He has now been collected from that junction and moved to Kenema Ebola ward.\"\n\nhttps://www.facebook.com/sylola/posts/748413415222091\n\n\"When the Ebola patient escaped from Mattru Jong this weekend, the medical authorities in Bonthe immediately raised the alarm. They did not HIDE it. Neither did they DENY it or worst of all, INSULT those who spoke of the escape.\"\n\nhttps://www.facebook.com/groups/sl.issues/permalink/699795853389539/",
+            "content": "July 20\n\nPlease, help us to verify .\n\n\"Another patient has escaped from an isolation unit in Sierra Leone. This time, the patient escaped from a health facility in Mattru Jong, Bonthe. The SAD news though is that unlike the escaped suspected patient from Freetown's PCMH, whose blood tests results later showed negative, this escaped patient's blood results have tested POSITIVE for Ebola. Reports however indicate that the escaped patient has been sighted vomiting blood at a certain junction locality between Mattru Jong and Bo. He has now been collected from that junction and moved to Kenema Ebola ward.\"\n\nhttps://www.facebook.com/sylola/posts/748413415222091\n\n\"When the Ebola patient escaped from Mattru Jong this weekend, the medical authorities in Bonthe immediately raised the alarm. They did not HIDE it. Neither did they DENY it or worst of all, INSULT those who spoke of the escape.\"\n\nhttps://www.facebook.com/groups/sl.issues/permalink/699795853389539/",
+            "source": "facebook",
+            "id": "XGAr-Km5THyAPzVDAjnbvw"
+        },
+        {
+            "remoteID": "-10.3367614746_8.45607228593_eboladeathconfirmeddiseasedisaster",
+            "tags": [
+                {
+                    "confidence": 1,
+                    "name": "ebola"
+                },
+                {
+                    "confidence": 1,
+                    "name": "death"
+                },
+                {
+                    "confidence": 1,
+                    "name": "confirmed"
+                },
+                {
+                    "confidence": 1,
+                    "name": "disease"
+                },
+                {
+                    "confidence": 1,
+                    "name": "disaster"
+                }
+            ],
+            "totalAffectedPersons": 1,
+            "publishedAt": "2014-08-22T19:27:14.582836",
+            "updatedAt": "2014-08-22T19:27:14.601640",
+            "geo": {
+                "coords": [
+                    -10.336761474609375,
+                    8.456072285927258
+                ]
+            },
+            "createdAt": "2014-08-22T19:27:14.601617",
+            "license": "odbl",
+            "fromURL": "http://awoko.org/2014/06/19/sierra-leone-news-kenema-matron-calls-for-support-to-tackle-ebola/",
+            "lifespan": "temporary",
+            "summary": "Before the 19th of June:\n\"The first index case that came in to the country by passing through Sokoma village bordering with Guinea killed the MCHAID nurse that played with the first case at Koindu Kissy Teng chiefdom in Kailahun district.\"\n\nhttp://awoko.org/2014/06/19/sierra-leone-news-kenema-matron-calls-for-support-to-tackle-ebola/",
+            "content": "Before the 19th of June:\n\"The first index case that came in to the country by passing through Sokoma village bordering with Guinea killed the MCHAID nurse that played with the first case at Koindu Kissy Teng chiefdom in Kailahun district.\"\n\nhttp://awoko.org/2014/06/19/sierra-leone-news-kenema-matron-calls-for-support-to-tackle-ebola/",
+            "source": "osm",
+            "id": "GpFUAWHoQjKcAkCHk0822g"
+        },
+        {
+            "remoteID": "-8.53706359863_7.7756281722_eboladeathdiseasedisaster",
+            "tags": [
+                {
+                    "confidence": 1,
+                    "name": "ebola"
+                },
+                {
+                    "confidence": 1,
+                    "name": "death"
+                },
+                {
+                    "confidence": 1,
+                    "name": "disease"
+                },
+                {
+                    "confidence": 1,
+                    "name": "disaster"
+                }
+            ],
+            "totalAffectedPersons": 1,
+            "publishedAt": "2014-08-22T19:27:14.331095",
+            "updatedAt": "2014-08-22T19:27:14.506295",
+            "geo": {
+                "coords": [
+                    -8.537063598632812,
+                    7.775628172195805
+                ]
+            },
+            "createdAt": "2014-08-22T19:27:14.506281",
+            "license": "odbl",
+            "fromURL": "http://www.kaloumpresse.com/guinee-societe/71-societe/5387-ebola-un-cas-suspect-seme-la-panique-a-lola",
+            "lifespan": "temporary",
+            "summary": "La maladie de la victime a commencé mardi par une plainte, puis des vomissements et des saignements avant de rendre l'âme, expliquent des sources présentes à Lola.\n\n\nMais dans une communauté profondément ancrée dans la tradition et les interprétations  superstitieuses, certains auraient conseillé de garder le corps quelques heures voire quelques jours, \"le temps de chercher le sorcier auteur de la mort du jeune\", selon nos informations.\n\nhttp://www.kaloumpresse.com/guinee-societe/71-societe/5387-ebola-un-cas-suspect-seme-la-panique-a-lola ",
+            "content": "La maladie de la victime a commencé mardi par une plainte, puis des vomissements et des saignements avant de rendre l'âme, expliquent des sources présentes à Lola.\n\n\nMais dans une communauté profondément ancrée dans la tradition et les interprétations  superstitieuses, certains auraient conseillé de garder le corps quelques heures voire quelques jours, \"le temps de chercher le sorcier auteur de la mort du jeune\", selon nos informations.\n\nhttp://www.kaloumpresse.com/guinee-societe/71-societe/5387-ebola-un-cas-suspect-seme-la-panique-a-lola ",
+            "source": "osm",
+            "id": "5CAn48W_QlCzBBnJ1PkzGw"
+        },
+        {
+            "remoteID": "-12.9170036316_9.1259954141_eboladeathdiseasedisaster",
+            "tags": [
+                {
+                    "confidence": 1,
+                    "name": "ebola"
+                },
+                {
+                    "confidence": 1,
+                    "name": "death"
+                },
+                {
+                    "confidence": 1,
+                    "name": "disease"
+                },
+                {
+                    "confidence": 1,
+                    "name": "disaster"
+                }
+            ],
+            "totalAffectedPersons": 1,
+            "publishedAt": "2014-08-22T19:27:14.330019",
+            "updatedAt": "2014-08-22T19:27:14.397253",
+            "geo": {
+                "coords": [
+                    -12.917003631591795,
+                    9.12599541409702
+                ]
+            },
+            "createdAt": "2014-08-22T19:27:14.397242",
+            "license": "odbl",
+            "fromURL": "http://www.afro.who.int/en/clusters-a-programmes/dpc/epidemic-a-pandemic-alert-and-response/outbreak-news/4069-ebola-haemorrhagic-fever-guinea-27-march-2014.html",
+            "lifespan": "temporary",
+            "summary": "31th of march 2014  news \n(27th of march 2014  - Press conference).\n\nMinistry of health.\n\nNo suspected cases for Ministry of Health but :\n- No WHO confirmation\n- No Ebola test\n\nhttp://www.afro.who.int/en/clusters-a-programmes/dpc/epidemic-a-pandemic-alert-and-response/outbreak-news/4069-ebola-haemorrhagic-fever-guinea-27-march-2014.html \n\n\n26th of march 2014 .\n\nDeath of 4 personns suspected in a village in Kambia district\n\nHe also revealed that a team was in Kambia to investigate the death of four persons in a village in the Braimaya Chiefdom, Kambia District, suspected to be caused by the Ebola viru\n\nhttp://allafrica.com/stories/201403270931.html \n\n\" Kambia district is one of the districts in Sierra Leone that  has close  border  to Guinean. \"\n\nhttp://mysierraleoneonline.com/sl_portal/site/news/detail/2430",
+            "content": "31th of march 2014  news \n(27th of march 2014  - Press conference).\n\nMinistry of health.\n\nNo suspected cases for Ministry of Health but :\n- No WHO confirmation\n- No Ebola test\n\nhttp://www.afro.who.int/en/clusters-a-programmes/dpc/epidemic-a-pandemic-alert-and-response/outbreak-news/4069-ebola-haemorrhagic-fever-guinea-27-march-2014.html \n\n\n26th of march 2014 .\n\nDeath of 4 personns suspected in a village in Kambia district\n\nHe also revealed that a team was in Kambia to investigate the death of four persons in a village in the Braimaya Chiefdom, Kambia District, suspected to be caused by the Ebola viru\n\nhttp://allafrica.com/stories/201403270931.html \n\n\" Kambia district is one of the districts in Sierra Leone that  has close  border  to Guinean. \"\n\nhttp://mysierraleoneonline.com/sl_portal/site/news/detail/2430",
+            "source": "osm",
+            "id": "a845hOB5Tte3pQIQrQhe7w"
+        },
+        {
+            "remoteID": "-10.5935668945_8.48323856391_eboladeathdiseasedisaster",
+            "tags": [
+                {
+                    "confidence": 1,
+                    "name": "ebola"
+                },
+                {
+                    "confidence": 1,
+                    "name": "death"
+                },
+                {
+                    "confidence": 1,
+                    "name": "disease"
+                },
+                {
+                    "confidence": 1,
+                    "name": "disaster"
+                }
+            ],
+            "totalAffectedPersons": 1,
+            "publishedAt": "2014-08-22T19:27:14.330759",
+            "updatedAt": "2014-08-22T19:27:14.464651",
+            "geo": {
+                "coords": [
+                    -10.59356689453125,
+                    8.483238563913513
+                ]
+            },
+            "createdAt": "2014-08-22T19:27:14.464640",
+            "license": "odbl",
+            "fromURL": "http://www.salonepost.com/sp/news/articles/article191.asp",
+            "lifespan": "temporary",
+            "summary": "The investigation team documented the death of Sahr Laffalay (14-20 years), which occurred on 10th march 2014  2013(?) in the town of Fangamandu (Guékédou prefecture, Guinea). Prior to his death, Laffalay was in Guékédou town (Guékédou prefecture, Guinea) living in a compound where a cluster of Ebola-like deaths occurred including his grandfather, Fayiah Laffalay. The younger Laffalay transported his grandfather’s body to Boidu (Sowa chiefdom, Sierra Leone). During transport of the body and during his stay in Boidu, he developed fever and malaise. After approximately 5 days in Boidu, he moved to Fangamandu where he developed haemorrhagic signs including bleeding from the nose and mouth. On 10th march 2014 , after 2 days in Fangamandu, Laffalay died, was transported back to Boidu and buried. Fifteen close contacts of Sahr Laffalay were identified during the investigation and blood samples obtained for laboratory testing at KGH Lassa Fever Laboratory. None of the close contacts reported any current illness.  We are awaiting confirmation of laboratory tests.\n\nhttp://www.salonepost.com/sp/news/articles/article191.asp ",
+            "content": "The investigation team documented the death of Sahr Laffalay (14-20 years), which occurred on 10th march 2014  2013(?) in the town of Fangamandu (Guékédou prefecture, Guinea). Prior to his death, Laffalay was in Guékédou town (Guékédou prefecture, Guinea) living in a compound where a cluster of Ebola-like deaths occurred including his grandfather, Fayiah Laffalay. The younger Laffalay transported his grandfather’s body to Boidu (Sowa chiefdom, Sierra Leone). During transport of the body and during his stay in Boidu, he developed fever and malaise. After approximately 5 days in Boidu, he moved to Fangamandu where he developed haemorrhagic signs including bleeding from the nose and mouth. On 10th march 2014 , after 2 days in Fangamandu, Laffalay died, was transported back to Boidu and buried. Fifteen close contacts of Sahr Laffalay were identified during the investigation and blood samples obtained for laboratory testing at KGH Lassa Fever Laboratory. None of the close contacts reported any current illness.  We are awaiting confirmation of laboratory tests.\n\nhttp://www.salonepost.com/sp/news/articles/article191.asp ",
+            "source": "osm",
+            "id": "880hvAl1RVqXLW01_Qj1Jg"
+        },
+        {
+            "remoteID": "-10.6443786621_8.46659944624_eboladeathdiseasedisaster",
+            "tags": [
+                {
+                    "confidence": 1,
+                    "name": "ebola"
+                },
+                {
+                    "confidence": 1,
+                    "name": "death"
+                },
+                {
+                    "confidence": 1,
+                    "name": "disease"
+                },
+                {
+                    "confidence": 1,
+                    "name": "disaster"
+                }
+            ],
+            "totalAffectedPersons": 1,
+            "publishedAt": "2014-08-22T19:27:14.329413",
+            "updatedAt": "2014-08-22T19:27:14.331684",
+            "geo": {
+                "coords": [
+                    -10.644378662109373,
+                    8.466599446239183
+                ]
+            },
+            "createdAt": "2014-08-22T19:27:14.331674",
+            "license": "odbl",
+            "fromURL": "http://www.i-resilience.fr/dossiers/ebola-guinea/probable-ebola-cases-in-sierra-leone.pdf",
+            "lifespan": "temporary",
+            "summary": "More infos here\n\nhttp://www.i-resilience.fr/dossiers/ebola-guinea/probable-ebola-cases-in-sierra-leone.pdf \n\nSources :\n\nhttp://www.salonepost.com/sp/news/articles/article191.asp \n\nhttp://www.afro.who.int/en/clusters-a-programmes/dpc/epidemic-a-pandemic-alert-and-response/outbreak-news.html \n\nhttp://www.sierraexpressmedia.com/archives/66315 \n\nhttp://news.sl/drwebsite/publish/article_200525069.shtml \n\n15 suspected contacts with these probable cases have been tested negative :\n\nhttp://politicosl.com/2014/04/sample-tests-show-no-ebola-in-sierra-leone/ ",
+            "content": "More infos here\n\nhttp://www.i-resilience.fr/dossiers/ebola-guinea/probable-ebola-cases-in-sierra-leone.pdf \n\nSources :\n\nhttp://www.salonepost.com/sp/news/articles/article191.asp \n\nhttp://www.afro.who.int/en/clusters-a-programmes/dpc/epidemic-a-pandemic-alert-and-response/outbreak-news.html \n\nhttp://www.sierraexpressmedia.com/archives/66315 \n\nhttp://news.sl/drwebsite/publish/article_200525069.shtml \n\n15 suspected contacts with these probable cases have been tested negative :\n\nhttp://politicosl.com/2014/04/sample-tests-show-no-ebola-in-sierra-leone/ ",
+            "source": "osm",
+            "id": "jqWW_4uxQ7az38SdcvGFGA"
+        },
+        {
+            "remoteID": "502888321283284993",
+            "license": "twitter",
+            "language": {
+                "code": "en"
+            },
+            "author": {
+                "username": "AlertNet",
+                "remoteID": "15762575",
+                "image": "http://pbs.twimg.com/profile_images/492572880966647808/vkfuoXEt_normal.jpeg",
+                "name": "AlertNet"
+            },
+            "tags": [],
+            "publishedAt": "2014-08-22T18:41:33+00:00",
+            "summary": "Senegal blocks Liberia aid flight, imposes Ebola travel curbs http://t.co/wnS7jtiooO #Ebola #Sene...",
+            "content": "Senegal blocks Liberia aid flight, imposes Ebola travel curbs http://t.co/wnS7jtiooO #Ebola #Senegal #Liberia",
+            "source": "twitter",
+            "lifespan": "temporary",
+            "updatedAt": "2014-08-22T19:14:52.200716",
+            "entities": [
+                "General-conflict"
+            ],
+            "geo": {
+                "locationIdentifiers": {
+                    "authorTimeZone": "London",
+                    "authorLocationName": "Global"
+                },
+                "addressComponents": {
+                    "adminArea1": "General-conflict",
+                    "formattedAddress": "General-conflict"
+                }
+            },
+            "id": "caqCudHpRLyEX__J8tnL_g",
+            "createdAt": "2014-08-22T19:12:49.345252"
+        },
+        {
+            "remoteID": "502875940301840384",
+            "license": "twitter",
+            "language": {
+                "code": "en"
+            },
+            "author": {
+                "username": "AlertNet",
+                "remoteID": "15762575",
+                "image": "http://pbs.twimg.com/profile_images/492572880966647808/vkfuoXEt_normal.jpeg",
+                "name": "AlertNet"
+            },
+            "tags": [
+                {
+                    "confidence": 1,
+                    "name": "epidemic"
+                },
+                {
+                    "confidence": 1,
+                    "name": "disaster"
+                },
+                {
+                    "confidence": 0.7796873948248713,
+                    "name": "donation"
+                }
+            ],
+            "publishedAt": "2014-08-22T17:52:21+00:00",
+            "summary": "Death toll in West Africa #Ebola epidemic rises to 1,427 - WHO http://t.co/dSK0YUwwke",
+            "content": "Death toll in West Africa #Ebola epidemic rises to 1,427 - WHO http://t.co/dSK0YUwwke",
+            "source": "twitter",
+            "lifespan": "temporary",
+            "updatedAt": "2014-08-22T18:15:02.908997",
+            "entities": [
+                "General-conflict"
+            ],
+            "geo": {
+                "locationIdentifiers": {
+                    "authorTimeZone": "London",
+                    "authorLocationName": "Global"
+                },
+                "addressComponents": {
+                    "adminArea1": "General-conflict",
+                    "formattedAddress": "General-conflict"
+                }
+            },
+            "id": "4zQd1aHqQj-bhGz4Sj_Iew",
+            "createdAt": "2014-08-22T18:12:45.035625"
+        },
+        {
+            "remoteID": "22736-4266",
+            "language": {
+                "nativeName": "English",
+                "code": "en",
+                "name": "English"
+            },
+            "license": "unknown",
+            "tags": [
+                {
+                    "confidence": 1,
+                    "name": "Grateful!"
+                },
+                {
+                    "confidence": 1,
+                    "name": "Thank You!"
+                }
+            ],
+            "author": {
+                "remoteID": "22736",
+                "name": "World Gratitude Map"
+            },
+            "publishedAt": "2014-08-22T13:30:00",
+            "summary": "Chuck Dunn & Tru-D SmartUVC",
+            "content": "YAY for generosity and innovation.  Grateful to Chuck Dunn & Tru-D SmartUVC.\n\n\"Tru-D SmartUVC, of Memphis, Tenn. donated two of the $100,000-plus machines (Ebola-fighting robots for use in Libera) .\n\n\"We felt we could help,\" said Chuck Dunn, Tru-D SmartUVC president. \"",
+            "source": "ushahidi_v2",
+            "lifespan": "temporary",
+            "updatedAt": "2014-08-23T04:11:21.848593",
+            "entities": [
+                "Memphis",
+                "Shelby Co.",
+                "TN",
+                "United States"
+            ],
+            "geo": {
+                "coords": [
+                    -90.04924774169922,
+                    35.14976119995117
+                ],
+                "addressComponents": {
+                    "adminArea1": "United States",
+                    "streetAddress": "147 Poplar Ave",
+                    "adminArea3": "TN",
+                    "adminArea4": "Shelby Co.",
+                    "adminArea5": "Memphis",
+                    "postalCode": "38103",
+                    "formattedAddress": "147 Poplar Ave, Memphis, TN 38103"
+                }
+            },
+            "id": "aBXwcU1gR5Ca5bUr67ZQ2w",
+            "createdAt": "2014-08-23T04:12:19.892527"
+        },
+        {
+            "remoteID": "22736-4265",
+            "language": {
+                "nativeName": "English",
+                "code": "en",
+                "name": "English"
+            },
+            "license": "unknown",
+            "tags": [
+                {
+                    "confidence": 1,
+                    "name": "Grateful!"
+                },
+                {
+                    "confidence": 1,
+                    "name": "Thank You!"
+                },
+                {
+                    "confidence": 1,
+                    "name": "armed-conflict"
+                },
+                {
+                    "confidence": 1,
+                    "name": "conflict"
+                },
+                {
+                    "confidence": 1,
+                    "name": "death"
+                }
+            ],
+            "author": {
+                "remoteID": "22736",
+                "name": "World Gratitude Map"
+            },
+            "publishedAt": "2014-08-22T12:39:00",
+            "summary": "Dr Jeff Deal's Ebola Fighting Robots",
+            "content": "Dr. Jeff Deal takes his Ebola-fighting robot to Liberia.  Grateful for innovation, hope, and bravery.\n\n\"Deal a former surgeon, he turned to studying tropical diseases after retinal disease blinded him in one eye. He now works for Water Missions International in North Charleston, which builds water purifications devices for communities without sanitation.\"\n\n\"The five-foot-tall device kills virus cells by irradiating them, destroying the DNA. When recent U.S. Army tests showed the device easily could kill the Ebola virus, Deal, 60, didn't hesitate - despite the danger of the virus and the violence it has stirred.\"\n\nGratful to Bo Peterson, Charleston, South Carolina Post & Courier for reporting,and to Tru-D SmartUVC, Memphis, Tenn.who donated two of the $100,000-plus machines.",
+            "source": "ushahidi_v2",
+            "lifespan": "temporary",
+            "updatedAt": "2014-08-23T04:11:21.809106",
+            "entities": [
+                "Liberia"
+            ],
+            "geo": {
+                "coords": [
+                    -9.323492050170898,
+                    6.411512851715088
+                ],
+                "addressComponents": {
+                    "adminArea1": "Liberia",
+                    "formattedAddress": "Liberia"
+                }
+            },
+            "id": "YXMqs4iHT7WTgi13YZ3lLQ",
+            "createdAt": "2014-08-23T04:12:19.997332"
+        },
+        {
+            "remoteID": "502795910917931008",
+            "license": "twitter",
+            "language": {
+                "code": "en"
+            },
+            "author": {
+                "username": "AlertNet",
+                "remoteID": "15762575",
+                "image": "http://pbs.twimg.com/profile_images/492572880966647808/vkfuoXEt_normal.jpeg",
+                "name": "AlertNet"
+            },
+            "tags": [],
+            "publishedAt": "2014-08-22T12:34:21+00:00",
+            "summary": "Gaps remain in India's #Ebola preparedness, says WHO http://t.co/PwbdTHkn0m #India",
+            "content": "Gaps remain in India's #Ebola preparedness, says WHO http://t.co/PwbdTHkn0m #India",
+            "source": "twitter",
+            "lifespan": "temporary",
+            "updatedAt": "2014-08-22T13:14:01.979923",
+            "entities": [
+                "General-conflict"
+            ],
+            "geo": {
+                "locationIdentifiers": {
+                    "authorTimeZone": "London",
+                    "authorLocationName": "Global"
+                },
+                "addressComponents": {
+                    "adminArea1": "General-conflict",
+                    "formattedAddress": "General-conflict"
+                }
+            },
+            "id": "y1mKg7UETS2pJo3p4EzYIw",
+            "createdAt": "2014-08-22T13:12:28.859000"
+        },
+        {
+            "remoteID": "502791252077981696",
+            "license": "twitter",
+            "language": {
+                "code": "en"
+            },
+            "author": {
+                "username": "AlertNet",
+                "remoteID": "15762575",
+                "image": "http://pbs.twimg.com/profile_images/492572880966647808/vkfuoXEt_normal.jpeg",
+                "name": "AlertNet"
+            },
+            "tags": [],
+            "publishedAt": "2014-08-22T12:15:50+00:00",
+            "summary": "Nigeria confirms two new cases of Ebola, 14 in total http://t.co/whqz14Y752 #Nigeria #Ebola",
+            "content": "Nigeria confirms two new cases of Ebola, 14 in total http://t.co/whqz14Y752 #Nigeria #Ebola",
+            "source": "twitter",
+            "lifespan": "temporary",
+            "updatedAt": "2014-08-22T13:14:14.331057",
+            "entities": [
+                "General-conflict"
+            ],
+            "geo": {
+                "locationIdentifiers": {
+                    "authorTimeZone": "London",
+                    "authorLocationName": "Global"
+                },
+                "addressComponents": {
+                    "adminArea1": "General-conflict",
+                    "formattedAddress": "General-conflict"
+                }
+            },
+            "id": "aBvmbniBSO2X3OfgXjMusQ",
+            "createdAt": "2014-08-22T13:12:29.198727"
+        },
+        {
+            "remoteID": "502763874370990080",
+            "license": "twitter",
+            "language": {
+                "code": "en"
+            },
+            "author": {
+                "username": "AlertNet",
+                "remoteID": "15762575",
+                "image": "http://pbs.twimg.com/profile_images/492572880966647808/vkfuoXEt_normal.jpeg",
+                "name": "AlertNet"
+            },
+            "tags": [],
+            "publishedAt": "2014-08-22T10:27:03+00:00",
+            "summary": "WHO says drawing up 6-9 month strategy to combat Ebola http://t.co/TGIM2QPlUh #Ebola",
+            "content": "WHO says drawing up 6-9 month strategy to combat Ebola http://t.co/TGIM2QPlUh #Ebola",
+            "source": "twitter",
+            "lifespan": "temporary",
+            "updatedAt": "2014-08-22T11:15:53.945499",
+            "entities": [
+                "General-conflict"
+            ],
+            "geo": {
+                "locationIdentifiers": {
+                    "authorTimeZone": "London",
+                    "authorLocationName": "Global"
+                },
+                "addressComponents": {
+                    "adminArea1": "General-conflict",
+                    "formattedAddress": "General-conflict"
+                }
+            },
+            "id": "VOTfE-82TIuxbc0j93qGoQ",
+            "createdAt": "2014-08-22T11:12:23.095833"
+        },
+        {
+            "remoteID": "502736635155722240",
+            "license": "twitter",
+            "language": {
+                "code": "en"
+            },
+            "author": {
+                "username": "AlertNet",
+                "remoteID": "15762575",
+                "image": "http://pbs.twimg.com/profile_images/492572880966647808/vkfuoXEt_normal.jpeg",
+                "name": "AlertNet"
+            },
+            "tags": [],
+            "publishedAt": "2014-08-22T08:38:48+00:00",
+            "summary": "Nigerian who died in UAE tests negative for Ebola http://t.co/C7egSI6yC3 #Ebola",
+            "content": "Nigerian who died in UAE tests negative for Ebola http://t.co/C7egSI6yC3 #Ebola",
+            "source": "twitter",
+            "lifespan": "temporary",
+            "updatedAt": "2014-08-22T09:12:00.401966",
+            "entities": [
+                "General-conflict"
+            ],
+            "geo": {
+                "locationIdentifiers": {
+                    "authorTimeZone": "London",
+                    "authorLocationName": "Global"
+                },
+                "addressComponents": {
+                    "adminArea1": "General-conflict",
+                    "formattedAddress": "General-conflict"
+                }
+            },
+            "id": "Oi3TzHwrTamGPGJz_gfdOA",
+            "createdAt": "2014-08-22T09:12:16.913503"
+        },
+        {
+            "remoteID": "502684591962865665",
+            "license": "twitter",
+            "language": {
+                "code": "en"
+            },
+            "author": {
+                "username": "AlertNet",
+                "remoteID": "15762575",
+                "image": "http://pbs.twimg.com/profile_images/492572880966647808/vkfuoXEt_normal.jpeg",
+                "name": "AlertNet"
+            },
+            "tags": [],
+            "publishedAt": "2014-08-22T05:12:00+00:00",
+            "summary": "Did you miss our online debate with experts on the #EbolaOutbreak? Read the discussion here. http...",
+            "content": "Did you miss our online debate with experts on the #EbolaOutbreak? Read the discussion here. http://t.co/SgFBXpfNZa #Ebola",
+            "source": "twitter",
+            "lifespan": "temporary",
+            "updatedAt": "2014-08-22T05:32:31.939712",
+            "entities": [
+                "General-conflict"
+            ],
+            "geo": {
+                "locationIdentifiers": {
+                    "authorTimeZone": "London",
+                    "authorLocationName": "Global"
+                },
+                "addressComponents": {
+                    "adminArea1": "General-conflict",
+                    "formattedAddress": "General-conflict"
+                }
+            },
+            "id": "5JQDsftGSDqpAqItJnQ-GA",
+            "createdAt": "2014-08-22T05:31:16.586630"
+        },
+        {
+            "remoteID": "502675713346908160",
+            "license": "twitter",
+            "language": {
+                "code": "en"
+            },
+            "author": {
+                "username": "AlertNet",
+                "remoteID": "15762575",
+                "image": "http://pbs.twimg.com/profile_images/492572880966647808/vkfuoXEt_normal.jpeg",
+                "name": "AlertNet"
+            },
+            "tags": [],
+            "publishedAt": "2014-08-22T04:36:43+00:00",
+            "summary": "More medics needed to fight #Ebola but are reluctant to come forward, @Alexwhi reports from onlin...",
+            "content": "More medics needed to fight #Ebola but are reluctant to come forward, @Alexwhi reports from online debate w/experts http://t.co/npD70E6I6A",
+            "source": "twitter",
+            "lifespan": "temporary",
+            "updatedAt": "2014-08-22T05:32:36.791188",
+            "entities": [
+                "General-conflict"
+            ],
+            "geo": {
+                "locationIdentifiers": {
+                    "authorTimeZone": "London",
+                    "authorLocationName": "Global"
+                },
+                "addressComponents": {
+                    "adminArea1": "General-conflict",
+                    "formattedAddress": "General-conflict"
+                }
+            },
+            "id": "qwhVZ2NgTOCkKYOaytbqow",
+            "createdAt": "2014-08-22T05:31:16.776248"
+        },
+        {
+            "remoteID": "502569098816290817",
+            "license": "twitter",
+            "language": {
+                "code": "en"
+            },
+            "author": {
+                "username": "AlertNet",
+                "remoteID": "15762575",
+                "image": "http://pbs.twimg.com/profile_images/492572880966647808/vkfuoXEt_normal.jpeg",
+                "name": "AlertNet"
+            },
+            "tags": [],
+            "publishedAt": "2014-08-21T21:33:05+00:00",
+            "summary": "Africa tightens #Ebola travel curbs as affected countries face food shortages http://t.co/12JTgOJvX3",
+            "content": "Africa tightens #Ebola travel curbs as affected countries face food shortages http://t.co/12JTgOJvX3",
+            "source": "twitter",
+            "lifespan": "temporary",
+            "updatedAt": "2014-08-21T22:11:17.339728",
+            "entities": [
+                "General-conflict"
+            ],
+            "geo": {
+                "locationIdentifiers": {
+                    "authorTimeZone": "London",
+                    "authorLocationName": "Global"
+                },
+                "addressComponents": {
+                    "adminArea1": "General-conflict",
+                    "formattedAddress": "General-conflict"
+                }
+            },
+            "id": "bF1wXSrQRd-5NoZy8Yyk_w",
+            "createdAt": "2014-08-21T22:11:43.651105"
+        }
+    ]
+}
