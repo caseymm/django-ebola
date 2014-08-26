@@ -41,6 +41,8 @@ class DateStats(models.Model):
         return str(self.date)
 
 class SitRep(models.Model):
+    num = models.IntegerField(max_length=50, blank=True, null=True)
+    date = models.CharField(max_length=100, blank=True)
     date_span = models.CharField(max_length=100, blank=True)
 
     class Meta:
@@ -63,6 +65,7 @@ class LocationSitRep(models.Model):
     location = models.ForeignKey('Location', null=True, blank=True)
     num = models.IntegerField(max_length=50, blank=True, null=True)
     date_span = models.CharField(max_length=100, blank=True)
+    date = models.CharField(max_length=100, blank=True)
     total_probable_deaths = models.IntegerField(max_length=50, blank=True, null=True)
     cases_cum_suspected = models.IntegerField(max_length=50, blank=True, null=True)
     cases_cum_probable = models.IntegerField(max_length=50, blank=True, null=True)
@@ -74,11 +77,11 @@ class LocationSitRep(models.Model):
     deaths = models.IntegerField(max_length=50, blank=True, null=True)
     hc_workers = models.IntegerField(max_length=50, blank=True, null=True)
     hcw_cases_cum = models.IntegerField(max_length=50, blank=True, null=True)
-    hcw_deaths_suspected = models.IntegerField(max_length=50, blank=True, null=True)
-    CFR = models.CharField(max_length=100, blank=True)
+    hcw_deaths_cum = models.IntegerField(max_length=50, blank=True, null=True)
+    CFR = models.CharField(max_length=100, null=True, blank=True)
 
     class Meta:
         ordering = ['location']
 
     def __unicode__(self):
-        return self.location+', '+self.date_span
+        return str(self.location)+', '+self.date_span
