@@ -85,3 +85,28 @@ class LocationSitRep(models.Model):
 
     def __unicode__(self):
         return str(self.location)+', '+self.date_span
+
+class Tag(models.Model):
+    name = models.CharField(max_length=50, blank=True)
+
+    def __unicode__(self):
+        return self.name
+
+class Author(models.Model):
+    name = models.CharField(max_length=50, blank=True)
+    #maybe image
+
+    def __unicode__(self):
+        return self.name
+
+class CrisisNetEntry(models.Model):
+    tags = models.ManyToManyField(Tag, blank=True)
+    author = models.ForeignKey('Location', null=True, blank=True)
+    publishedAt = models.CharField(max_length=500, blank=True)
+    summary = models.CharField(max_length=500, blank=True)
+    content = models.CharField(max_length=500, blank=True)
+    source = models.CharField(max_length=500, blank=True)
+    lifespan = models.CharField(max_length=500, blank=True)
+    updatedAt = models.CharField(max_length=500, blank=True)
+    geo = models.TextField(blank=True)
+    createdAt = models.CharField(max_length=500, blank=True)

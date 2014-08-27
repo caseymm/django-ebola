@@ -26,57 +26,46 @@ class Command(BaseCommand):
         #gets dict for each item
         for item in data:
             #gets attributes in the item specific dictionary
-            for attr in item:
+            # for attr in item:
                 # attr_list.append(str(attr))
                 # entry.attr = item[attr]
                 # print attr, entry.attr
+            print item['entities']
+            print item['id']
+            print
 
                 # remoteID
-                # license
-                # language
-                # tags
-                # author
+                # tags --m (name)
+                # author --m (remoteID, image, name)
                 # publishedAt
                 # summary
                 # content
                 # source
                 # lifespan
                 # updatedAt
-                # entities
-                # geo
+                # geo --m (coords: list, address components, many(pull out and put into list?))
                 # id
                 # createdAt
 
-                # some utf stuff
-                # ea = attr.decode("utf8")
-                # print item[ea]
-                # value = str(item[ea])
-                # ev = value.encode("utf8")
-
-                try:
-                    attr_val = str(item[attr])
-                    # #checks to see if the attr value is a dict or an item
-                    val_list = re.search(r'\[', attr_val)
-                    val_dict = re.search(r'\{', attr_val)
-
-                    if val_list:
-                        print attr, item[attr]
-                        item_dict = item[attr]
-                        print
-                        for desc in item_dict:
-                            print desc, item_dict[desc]
-
-                    if val_dict:
-                        print attr, item[attr]
-                        item_dict = item[attr]
-                        print
-                        for desc in item_dict:
-                            print desc, item_dict[desc]
-                except:
-                    pass
 
                 # try:
-                #     if item[attr].find('['):
-                #         print item[attr]
+                #     attr_val = str(item[attr])
+                #     # #checks to see if the attr value is a dict or an item
+                #     val_list = re.search(r'\[', attr_val)
+                #     val_dict = re.search(r'\{', attr_val)
+                #
+                #     if val_list:
+                #         print attr, item[attr]
+                #         item_dict = item[attr]
+                #         print
+                #         for desc in item_dict:
+                #             print desc, item_dict[desc]
+                #
+                #     if val_dict:
+                #         print attr, item[attr]
+                #         item_dict = item[attr]
+                #         print
+                #         for desc in item_dict:
+                #             print desc, item_dict[desc]
                 # except:
                 #     pass
