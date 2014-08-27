@@ -43,7 +43,7 @@ class Command(BaseCommand):
         print
         print 'Please enter your list as a comma separated string (no brackets).'
         attr_list_str = raw_input ("enter list: ")
-        split_string = attr_list_str.split(',')
+        split_string = attr_list_str.replace("'", "").split(',')
         attr_list = []
         for attr in split_string:
             sa = attr.strip()

@@ -22,13 +22,14 @@ class Command(BaseCommand):
         j = json.loads(s)
         data = j['data']
 
+        # attr_list = []
         #gets dict for each item
         for item in data:
-
             #gets attributes in the item specific dictionary
             for attr in item:
-                item.attr = item[attr]
-                print attr, item.attr
+                # attr_list.append(str(attr))
+                # entry.attr = item[attr]
+                # print attr, entry.attr
 
                 # remoteID
                 # license
@@ -46,15 +47,33 @@ class Command(BaseCommand):
                 # id
                 # createdAt
 
-                #checks to see if the attr value is a dict or an item
-                # val_list = re.search(r'\[', str(item[attr]))
-                # val_dict = re.search(r'\{', str(item[attr]))
+                # some utf stuff
+                # ea = attr.decode("utf8")
+                # print item[ea]
+                # value = str(item[ea])
+                # ev = value.encode("utf8")
 
-                # if val_list:
-                #     print attr, item[attr]
-                #
-                # if val_dict:
-                #     print attr, item[attr]
+                try:
+                    attr_val = str(item[attr])
+                    # #checks to see if the attr value is a dict or an item
+                    val_list = re.search(r'\[', attr_val)
+                    val_dict = re.search(r'\{', attr_val)
+
+                    if val_list:
+                        print attr, item[attr]
+                        item_dict = item[attr]
+                        print
+                        for desc in item_dict:
+                            print desc, item_dict[desc]
+
+                    if val_dict:
+                        print attr, item[attr]
+                        item_dict = item[attr]
+                        print
+                        for desc in item_dict:
+                            print desc, item_dict[desc]
+                except:
+                    pass
 
                 # try:
                 #     if item[attr].find('['):
