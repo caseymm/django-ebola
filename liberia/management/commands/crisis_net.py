@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: utf:8 -*-
 #will need to download from csv from site (I think) becuase it looks like the api is maxing out on requests
 
 #pull out all necessary items
@@ -20,22 +22,39 @@ class Command(BaseCommand):
         j = json.loads(s)
         data = j['data']
 
-        for item in data[:2]:
-            #gets dict for each item
-            # print item
+        #gets dict for each item
+        for item in data:
+
+            #gets attributes in the item specific dictionary
             for attr in item:
-                #gets attributes in the item specific dictionary
-                # print attr, item[attr]
-                # if '[' in item[attr]:
-                #     print item[attr]
-                val_list = re.search(r'\[', str(item[attr]))
-                val_dict = re.search(r'\{', str(item[attr]))
+                item.attr = item[attr]
+                print attr, item.attr
 
-                if val_list:
-                    print attr, item[attr]
+                # remoteID
+                # license
+                # language
+                # tags
+                # author
+                # publishedAt
+                # summary
+                # content
+                # source
+                # lifespan
+                # updatedAt
+                # entities
+                # geo
+                # id
+                # createdAt
 
-                if val_dict:
-                    print attr, item[attr]
+                #checks to see if the attr value is a dict or an item
+                # val_list = re.search(r'\[', str(item[attr]))
+                # val_dict = re.search(r'\{', str(item[attr]))
+
+                # if val_list:
+                #     print attr, item[attr]
+                #
+                # if val_dict:
+                #     print attr, item[attr]
 
                 # try:
                 #     if item[attr].find('['):
