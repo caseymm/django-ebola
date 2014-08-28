@@ -21,7 +21,7 @@ class Command(BaseCommand):
 
         #gets dict for each item
         for item in data:
-            remoteID = item['remoteID']
+            remoteID = item['id']
 
             new_item, created = CrisisNetEntry.objects.get_or_create(remoteID=remoteID)
 
@@ -48,7 +48,7 @@ class Command(BaseCommand):
                     new_item.latitude = item['geo'][attr][1]
                     new_item.is_geocoded = True
                 elif attr == 'addressComponents':
-                    address = item['geo'][attr].get('formattedAddress')
+                    new_item.address = item['geo'][attr].get('formattedAddress')
 
             for tag in item['tags']:
                 tag = tag.get('name')

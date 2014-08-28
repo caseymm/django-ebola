@@ -116,6 +116,7 @@ class CrisisNetEntry(models.Model):
 
     class Meta:
         ordering = ['createdAt', 'is_geocoded', 'author', 'source']
+        verbose_name_plural=u'Crisis Net Entries'
 
     def __unicode__(self):
         return self.createdAt
