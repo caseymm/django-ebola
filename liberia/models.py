@@ -94,19 +94,28 @@ class Tag(models.Model):
 
 class Author(models.Model):
     name = models.CharField(max_length=50, blank=True)
-    #maybe image
 
     def __unicode__(self):
         return self.name
 
 class CrisisNetEntry(models.Model):
     tags = models.ManyToManyField(Tag, blank=True)
-    author = models.ForeignKey('Location', null=True, blank=True)
+    author = models.ForeignKey('Author', null=True, blank=True)
     publishedAt = models.CharField(max_length=500, blank=True)
-    summary = models.CharField(max_length=500, blank=True)
-    content = models.CharField(max_length=500, blank=True)
+    summary = models.TextField(blank=True)
+    content = models.TextField(blank=True)
     source = models.CharField(max_length=500, blank=True)
     lifespan = models.CharField(max_length=500, blank=True)
     updatedAt = models.CharField(max_length=500, blank=True)
-    geo = models.TextField(blank=True)
+    longitude = models.CharField(max_length=100, blank=True)
+    latitude = models.CharField(max_length=100, blank=True)
+    address = models.CharField(max_length=500, blank=True)
+    is_geocoded = models.BooleanField(default=False)
     createdAt = models.CharField(max_length=500, blank=True)
+    remoteID = models.CharField(max_length=500, blank=True)
+
+    class Meta:
+        ordering = ['createdAt', 'is_geocoded', 'author', 'source']
+
+    def __unicode__(self):
+        return self.createdAt

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from liberia.models import DateStats, SitRep, Location, LocationSitRep
+from liberia.models import DateStats, SitRep, Location, LocationSitRep, Tag, Author, CrisisNetEntry
 
 # Register your models here.
 class DateStatsAdmin(admin.ModelAdmin):
@@ -26,3 +26,22 @@ class LocationSitRepAdmin(admin.ModelAdmin):
     # list_filter = ()
     save_on_top = True
 admin.site.register(LocationSitRep, LocationSitRepAdmin)
+
+class TagAdmin(admin.ModelAdmin):
+    search_fields = ['name', ]
+    # list_filter = ()
+    save_on_top = True
+admin.site.register(Tag, TagAdmin)
+
+class AuthorAdmin(admin.ModelAdmin):
+    search_fields = ['name', ]
+    # list_filter = ()
+    save_on_top = True
+admin.site.register(Author, AuthorAdmin)
+
+class CrisisNetEntryAdmin(admin.ModelAdmin):
+    # search_fields = ['', ]
+    list_filter = ('is_geocoded', 'source')
+    list_display = ['createdAt', 'is_geocoded', 'author', 'source']
+    save_on_top = True
+admin.site.register(CrisisNetEntry, CrisisNetEntryAdmin)
