@@ -90,7 +90,7 @@ class Tag(models.Model):
     name = models.CharField(max_length=50, blank=True)
 
     def __unicode__(self):
-        return self.name
+        return self.name+' ('+str(self.crisisnetentry_set.count())+')'
 
 class Author(models.Model):
     name = models.CharField(max_length=50, blank=True)
