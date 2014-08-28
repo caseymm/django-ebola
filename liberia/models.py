@@ -120,3 +120,38 @@ class CrisisNetEntry(models.Model):
 
     def __unicode__(self):
         return self.createdAt
+
+class Summary(models.Model):
+    date = models.DateField(null=True)
+    total_deaths = models.IntegerField(max_length=50, blank=True, null=True)
+    deaths_last_week = models.IntegerField(max_length=50, blank=True, null=True)
+    deaths_this_week = models.IntegerField(max_length=50, blank=True, null=True)
+    total_cases = models.IntegerField(max_length=50, blank=True, null=True)
+    cases_last_week = models.IntegerField(max_length=50, blank=True, null=True)
+    cases_this_week = models.IntegerField(max_length=50, blank=True, null=True)
+    total_contacts = models.IntegerField(max_length=50, blank=True, null=True)
+    contacts_last_week = models.IntegerField(max_length=50, blank=True, null=True)
+    contacts_this_week = models.IntegerField(max_length=50, blank=True, null=True)
+    total_hcw_deaths = models.IntegerField(max_length=50, blank=True, null=True)
+    hcw_deaths_last_week = models.IntegerField(max_length=50, blank=True, null=True)
+    hcw_deaths_this_week = models.IntegerField(max_length=50, blank=True, null=True)
+    total_hcw_cases = models.IntegerField(max_length=50, blank=True, null=True)
+    hcw_cases_last_week = models.IntegerField(max_length=50, blank=True, null=True)
+    hcw_cases_this_week = models.IntegerField(max_length=50, blank=True, null=True)
+    total_labs_processed = models.IntegerField(max_length=50, blank=True, null=True)
+    labs_processed_last_week = models.IntegerField(max_length=50, blank=True, null=True)
+    labs_processed_this_week = models.IntegerField(max_length=50, blank=True, null=True)
+    total_labs_collected = models.IntegerField(max_length=50, blank=True, null=True)
+    labs_collected_last_week = models.IntegerField(max_length=50, blank=True, null=True)
+    labs_collected_this_week = models.IntegerField(max_length=50, blank=True, null=True)
+    total_fcr = models.IntegerField(max_length=50, blank=True, null=True)
+    fcr_last_week = models.IntegerField(max_length=50, blank=True, null=True)
+    fcr_this_week = models.IntegerField(max_length=50, blank=True, null=True)
+    total_clinics = models.IntegerField(max_length=50, blank=True, null=True)
+
+    class Meta:
+        ordering = ['date']
+        verbose_name_plural=u'Summaries'
+
+    def __unicode__(self):
+        return str(self.date)

@@ -1,10 +1,16 @@
 from django.contrib import admin
 from django import forms
-from liberia.models import DateStats, SitRep, Location, LocationSitRep, Tag, Author, CrisisNetEntry
+from liberia.models import DateStats, SitRep, Location, LocationSitRep, Tag, Author, CrisisNetEntry, Summary
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.admin.widgets import FilteredSelectMultiple
 import datetime
 import time
+
+class SummaryAdmin(admin.ModelAdmin):
+    search_fields = ['date', ]
+    # list_filter = ()
+    save_on_top = True
+admin.site.register(Summary, SummaryAdmin)
 
 class DateStatsAdmin(admin.ModelAdmin):
     exclude = ['original_date',]
