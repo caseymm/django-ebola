@@ -16,18 +16,21 @@ class Command(BaseCommand):
         week_ago_total = LocationSitRep.objects.get(date='2014-08-20', location=national)
         deaths = today_total.total_deaths_all - week_ago_total.total_deaths_all
         cases = today_total.cases_cum - week_ago_total.cases_cum
-        #
-        # print "% change"
-        # print (deaths/week_ago_total.total_deaths_all)*100
-        # print (cases/week_ago_total.cases_cum)*100
+        print 'deaths'
+        print deaths
+        print (deaths/week_ago_total.total_deaths_all)*100
+        print
+        print 'cases'
+        print cases
+        print (cases/week_ago_total.cases_cum)*100
+        print
 
         hcw_deaths = today_total.hcw_deaths_cum - week_ago_total.hcw_deaths_cum
         hcw_cases = today_total.hcw_cases_cum - week_ago_total.hcw_cases_cum
+        print 'hcw deaths'
         print hcw_deaths
-
-
-        print "% change"
         print (hcw_deaths/week_ago_total.hcw_deaths_cum)*100
         print
+        print 'hcw cases'
         print hcw_cases
         print (hcw_cases/week_ago_total.hcw_cases_cum)*100

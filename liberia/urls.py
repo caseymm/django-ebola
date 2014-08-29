@@ -7,7 +7,7 @@ urlpatterns = patterns(
     'liberia.views',
     url(
         r'^$',
-        views.TemplateView.as_view(template_name='home/index.html'),
+        views.LocationListView.as_view(template_name='home/index.html'),
         name='index'
     ),
     )

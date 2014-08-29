@@ -6,30 +6,30 @@ from django.contrib.admin.widgets import FilteredSelectMultiple
 import datetime
 import time
 
-class SummaryAdmin(admin.ModelAdmin):
-    search_fields = ['date', ]
-    # list_filter = ()
-    save_on_top = True
-admin.site.register(Summary, SummaryAdmin)
+# class SummaryAdmin(admin.ModelAdmin):
+#     search_fields = ['date', ]
+#     # list_filter = ()
+#     save_on_top = True
+# admin.site.register(Summary, SummaryAdmin)
 
-class DateStatsAdmin(admin.ModelAdmin):
-    exclude = ['original_date',]
-    search_fields = ['date', ]
-    # list_filter = ()
-    save_on_top = True
-admin.site.register(DateStats, DateStatsAdmin)
-
-class SitRepAdmin(admin.ModelAdmin):
-    search_fields = ['date', 'num']
-    # list_filter = ()
-    save_on_top = True
-admin.site.register(SitRep, SitRepAdmin)
-
-class LocationAdmin(admin.ModelAdmin):
-    search_fields = ['name', ]
-    # list_filter = ()
-    save_on_top = True
-admin.site.register(Location, LocationAdmin)
+# class DateStatsAdmin(admin.ModelAdmin):
+#     exclude = ['original_date',]
+#     search_fields = ['date', ]
+#     # list_filter = ()
+#     save_on_top = True
+# admin.site.register(DateStats, DateStatsAdmin)
+#
+# class SitRepAdmin(admin.ModelAdmin):
+#     search_fields = ['date', 'num']
+#     # list_filter = ()
+#     save_on_top = True
+# admin.site.register(SitRep, SitRepAdmin)
+#
+# class LocationAdmin(admin.ModelAdmin):
+#     search_fields = ['name', ]
+#     # list_filter = ()
+#     save_on_top = True
+# admin.site.register(Location, LocationAdmin)
 
 class LocationSitRepAdmin(admin.ModelAdmin):
     search_fields = ['location', 'num']
@@ -60,44 +60,44 @@ class TagAdminForm(forms.ModelForm):
 
         return tag
 
-class TagAdmin(admin.ModelAdmin):
-    search_fields = ['name', ]
-    # list_filter = ()
-    save_on_top = True
-    form = TagAdminForm
-admin.site.register(Tag, TagAdmin)
-
-class AuthorAdmin(admin.ModelAdmin):
-    search_fields = ['name', ]
-    # list_filter = ()
-    save_on_top = True
-admin.site.register(Author, AuthorAdmin)
-
-class CrisisNetEntryAdminForm(forms.ModelForm):
-    tags = forms.ModelMultipleChoiceField(queryset=Tag.objects.all(), required=False, widget=FilteredSelectMultiple(verbose_name=_('Tags'), is_stacked=False))
-    class Meta:
-        model = CrisisNetEntry
-
-    def __init__(self, *args, **kwargs):
-        super(CrisisNetEntryAdminForm, self).__init__(*args, **kwargs)
-
-        if self.instance and self.instance.pk:
-            self.fields['tags'].initial = self.instance.tags.all()
-
-    def save(self, commit=True):
-        crisisnetentry = super(CrisisNetEntryAdminForm, self).save(commit=False)
-        if commit:
-            crisisnetentry.save()
-        if CrisisNetEntry.pk:
-            crisisnetentry.crisisnetentries = self.cleaned_data['tags']
-            self.save_m2m()
-
-        return CrisisNetEntry
-
-class CrisisNetEntryAdmin(admin.ModelAdmin):
-    # search_fields = ['', ]
-    list_filter = ('is_geocoded', 'source')
-    list_display = ['createdAt', 'is_geocoded', 'author', 'source']
-    save_on_top = True
-    form = CrisisNetEntryAdminForm
-admin.site.register(CrisisNetEntry, CrisisNetEntryAdmin)
+# class TagAdmin(admin.ModelAdmin):
+#     search_fields = ['name', ]
+#     # list_filter = ()
+#     save_on_top = True
+#     form = TagAdminForm
+# admin.site.register(Tag, TagAdmin)
+#
+# class AuthorAdmin(admin.ModelAdmin):
+#     search_fields = ['name', ]
+#     # list_filter = ()
+#     save_on_top = True
+# admin.site.register(Author, AuthorAdmin)
+#
+# class CrisisNetEntryAdminForm(forms.ModelForm):
+#     tags = forms.ModelMultipleChoiceField(queryset=Tag.objects.all(), required=False, widget=FilteredSelectMultiple(verbose_name=_('Tags'), is_stacked=False))
+#     class Meta:
+#         model = CrisisNetEntry
+#
+#     def __init__(self, *args, **kwargs):
+#         super(CrisisNetEntryAdminForm, self).__init__(*args, **kwargs)
+#
+#         if self.instance and self.instance.pk:
+#             self.fields['tags'].initial = self.instance.tags.all()
+#
+#     def save(self, commit=True):
+#         crisisnetentry = super(CrisisNetEntryAdminForm, self).save(commit=False)
+#         if commit:
+#             crisisnetentry.save()
+#         if CrisisNetEntry.pk:
+#             crisisnetentry.crisisnetentries = self.cleaned_data['tags']
+#             self.save_m2m()
+#
+#         return CrisisNetEntry
+#
+# class CrisisNetEntryAdmin(admin.ModelAdmin):
+#     # search_fields = ['', ]
+#     list_filter = ('is_geocoded', 'source')
+#     list_display = ['createdAt', 'is_geocoded', 'author', 'source']
+#     save_on_top = True
+#     form = CrisisNetEntryAdminForm
+# admin.site.register(CrisisNetEntry, CrisisNetEntryAdmin)

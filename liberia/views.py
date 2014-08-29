@@ -1,20 +1,16 @@
 from django.shortcuts import render
 from django.views import generic
+from liberia.models import SitRep, Location, LocationSitRep
 
-class TemplateView(generic.TemplateView):
-    # model = FlatFile
+class LocationListView(generic.ListView):
+    model = Location
     template = 'templates/home/index.html'
-    # context_object_name = 'files'
+    context_object_name = 'locations'
 
-    def get_context_data(self, **kwargs):
-        # Call the base implementation first to get a context
-        context = super(TemplateView, self).get_context_data(**kwargs)
-        context['sit_reps'] = SitRep.objects.filter()
-        return context
-    #
     # def get_queryset(self):
-    #     """
-    #     Returns the contributions related to this committee.
-    #     """
-    #     files = FlatFile.objects.all().exclude(file_name='bulk_campaign_finance.zip')
-    #     return files
+    #     locations = Location.objects.all()
+    #     return locations
+
+class LocationDetailView(generic.LocationDetailView):
+    model = Location
+    template = 'templates/home/index_detail.html'
