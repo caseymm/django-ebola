@@ -93,6 +93,22 @@ class Command(BaseCommand):
                         # new_loc_sr.hcw_deaths_new = row[]
                     except:
                         new_loc_sr.hcw_deaths_cum = 0
+                    try:
+                        new_loc_sr.new_deaths_suspected = row[17]
+                    except:
+                        new_loc_sr.new_deaths_suspected = 0
+                    try:
+                        new_loc_sr.new_deaths_probable = row[15]
+                    except:
+                        new_loc_sr.new_deaths_probable = 0
+                    try:
+                        new_loc_sr.new_deaths_confirmed = row[13]
+                    except:
+                        new_loc_sr.new_deaths_confirmed = 0
+                    try:
+                        new_loc_sr.cases_new_total = row[10]
+                    except:
+                        new_loc_sr.cases_new_total = 0
                     new_loc_sr.save()
                 except:
                     pass

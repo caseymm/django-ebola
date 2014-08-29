@@ -34,6 +34,7 @@ admin.site.register(Location, LocationAdmin)
 class LocationSitRepAdmin(admin.ModelAdmin):
     search_fields = ['name', 'num']
     exclude = ('date_span','hc_workers','date')
+    list_display = ['location', 'formatted_date']
     # list_filter = ()
     save_on_top = True
 admin.site.register(LocationSitRep, LocationSitRepAdmin)
