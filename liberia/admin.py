@@ -32,7 +32,7 @@ class LocationAdmin(admin.ModelAdmin):
 admin.site.register(Location, LocationAdmin)
 
 class LocationSitRepAdmin(admin.ModelAdmin):
-    search_fields = ['name', 'num']
+    search_fields = ['location', 'num']
     exclude = ('date_span','hc_workers','date')
     list_display = ['location', 'formatted_date']
     # list_filter = ()

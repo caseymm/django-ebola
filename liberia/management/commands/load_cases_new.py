@@ -8,7 +8,7 @@ class Command(BaseCommand):
     help = 'Enter date information into db'
 
     def handle(self, *args, **options):
-        with open('data/sr0826_cases.csv', 'rU') as csvfile:
+        with open('data/cases.csv', 'rU') as csvfile:
             csvfile.readline()
             fp = csv.reader(csvfile, delimiter=',', quotechar='"')
 
@@ -31,6 +31,7 @@ class Command(BaseCommand):
                 new_loc_sr.cases_new_suspected = row[1]
                 new_loc_sr.cases_new_probable = row[2]
                 new_loc_sr.cases_new_confirmed = row[3]
+                new_loc_sr.cases_new_total = (int(new_loc_sr.cases_new_suspected)+int(new_loc_sr.cases_new_probable)+int(new_loc_sr.cases_new_confirmed))
                 new_loc_sr.cases_cum_suspected = row[4]
                 new_loc_sr.cases_cum_probable = row[5]
                 new_loc_sr.cases_cum_confirmed = row[6]
