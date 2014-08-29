@@ -41,15 +41,15 @@ class DateStats(models.Model):
         return str(self.date)
 
 class SitRep(models.Model):
-    num = models.IntegerField(max_length=50, blank=True, null=True)
     date = models.CharField(max_length=100, blank=True)
+    formatted_date = models.DateField(null=True)
     date_span = models.CharField(max_length=100, blank=True)
 
     class Meta:
-        ordering = ['num']
+        ordering = ['date']
 
     def __unicode__(self):
-        return self.num
+        return str(self.formatted_date)
 
 class Location(models.Model):
     name = models.CharField(max_length=100, blank=True)
@@ -64,12 +64,16 @@ class LocationSitRep(models.Model):
     sit_rep = models.ForeignKey('SitRep', null=True, blank=True)
     location = models.ForeignKey('Location', null=True, blank=True)
     date_span = models.CharField(max_length=100, blank=True)
+    formatted_date = models.DateField(null=True)
     date = models.CharField(max_length=100, blank=True)
-    total_probable_deaths = models.IntegerField(max_length=50, blank=True, null=True)
+    total_deaths_probable = models.IntegerField(max_length=50, blank=True, null=True)
     cases_cum_suspected = models.IntegerField(max_length=50, blank=True, null=True)
     cases_cum_probable = models.IntegerField(max_length=50, blank=True, null=True)
     cases_cum_confirmed = models.IntegerField(max_length=50, blank=True, null=True)
     cases_cum = models.IntegerField(max_length=50, blank=True, null=True)
+    cases_new_suspected = models.IntegerField(max_length=50, blank=True, null=True)
+    cases_new_probable = models.IntegerField(max_length=50, blank=True, null=True)
+    cases_new_confirmed = models.IntegerField(max_length=50, blank=True, null=True)
     total_deaths_suspected = models.IntegerField(max_length=50, blank=True, null=True)
     total_deaths_confirmed = models.IntegerField(max_length=50, blank=True, null=True)
     total_deaths_all = models.IntegerField(max_length=50, blank=True, null=True)
@@ -80,12 +84,16 @@ class LocationSitRep(models.Model):
     hcw_deaths_new = models.IntegerField(max_length=50, blank=True, null=True)
     hcw_deaths_cum = models.IntegerField(max_length=50, blank=True, null=True)
     CFR = models.CharField(max_length=100, null=True, blank=True)
+    admission_new = models.IntegerField(max_length=50, blank=True, null=True)
+    in_treatment = models.IntegerField(max_length=50, blank=True, null=True)
+    total_discharges = models.IntegerField(max_length=50, blank=True, null=True)
+    admission_cum = models.IntegerField(max_length=50, blank=True, null=True)
 
     class Meta:
-        ordering = ['location']
+        ordering = ['-date']
 
     def __unicode__(self):
-        return str(self.location)+', '+self.date_span
+        return str(self.location)+', '+str(self.formatted_date)
 
 class Tag(models.Model):
     name = models.CharField(max_length=50, blank=True)

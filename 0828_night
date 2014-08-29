@@ -570,7 +570,6 @@ CREATE TABLE liberia_locationsitrep (
     sit_rep_id integer,
     location_id integer,
     date_span character varying(100) NOT NULL,
-    total_probable_deaths integer,
     cases_cum_suspected integer,
     cases_cum_probable integer,
     cases_cum_confirmed integer,
@@ -582,9 +581,19 @@ CREATE TABLE liberia_locationsitrep (
     hc_workers integer,
     hcw_cases_cum integer,
     "CFR" character varying(100),
-    num integer,
     date character varying(100) NOT NULL,
-    hcw_deaths_cum integer
+    hcw_deaths_cum integer,
+    hcw_cases_new integer,
+    hcw_deaths_new integer,
+    cases_new_suspected integer,
+    cases_new_probable integer,
+    cases_new_confirmed integer,
+    total_deaths_probable integer,
+    admission_new integer,
+    in_treatment integer,
+    total_discharges integer,
+    admission_cum integer,
+    formatted_date date
 );
 
 
@@ -618,8 +627,8 @@ ALTER SEQUENCE liberia_locationsitrep_id_seq OWNED BY liberia_locationsitrep.id;
 CREATE TABLE liberia_sitrep (
     id integer NOT NULL,
     date_span character varying(100) NOT NULL,
-    num integer,
-    date character varying(100) NOT NULL
+    date character varying(100) NOT NULL,
+    formatted_date date
 );
 
 
@@ -644,6 +653,64 @@ ALTER TABLE public.liberia_sitrep_id_seq OWNER TO postgres;
 --
 
 ALTER SEQUENCE liberia_sitrep_id_seq OWNED BY liberia_sitrep.id;
+
+
+--
+-- Name: liberia_summary; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE liberia_summary (
+    id integer NOT NULL,
+    date date,
+    total_deaths integer,
+    deaths_last_week integer,
+    deaths_this_week integer,
+    total_cases integer,
+    cases_last_week integer,
+    cases_this_week integer,
+    total_contacts integer,
+    contacts_last_week integer,
+    contacts_this_week integer,
+    total_hcw_deaths integer,
+    hcw_deaths_last_week integer,
+    hcw_deaths_this_week integer,
+    total_hcw_cases integer,
+    hcw_cases_last_week integer,
+    hcw_cases_this_week integer,
+    total_labs_processed integer,
+    labs_processed_last_week integer,
+    labs_processed_this_week integer,
+    total_labs_collected integer,
+    labs_collected_last_week integer,
+    labs_collected_this_week integer,
+    total_fcr integer,
+    fcr_last_week integer,
+    fcr_this_week integer,
+    total_clinics integer
+);
+
+
+ALTER TABLE public.liberia_summary OWNER TO postgres;
+
+--
+-- Name: liberia_summary_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE liberia_summary_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.liberia_summary_id_seq OWNER TO postgres;
+
+--
+-- Name: liberia_summary_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE liberia_summary_id_seq OWNED BY liberia_summary.id;
 
 
 --
@@ -830,6 +897,13 @@ ALTER TABLE ONLY liberia_sitrep ALTER COLUMN id SET DEFAULT nextval('liberia_sit
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
+ALTER TABLE ONLY liberia_summary ALTER COLUMN id SET DEFAULT nextval('liberia_summary_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
 ALTER TABLE ONLY liberia_tag ALTER COLUMN id SET DEFAULT nextval('liberia_tag_id_seq'::regclass);
 
 
@@ -920,6 +994,9 @@ COPY auth_permission (id, name, content_type_id, codename) FROM stdin;
 43	Can add crisis net entry	15	add_crisisnetentry
 44	Can change crisis net entry	15	change_crisisnetentry
 45	Can delete crisis net entry	15	delete_crisisnetentry
+46	Can add summary	16	add_summary
+47	Can change summary	16	change_summary
+48	Can delete summary	16	delete_summary
 \.
 
 
@@ -927,7 +1004,7 @@ COPY auth_permission (id, name, content_type_id, codename) FROM stdin;
 -- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('auth_permission_id_seq', 45, true);
+SELECT pg_catalog.setval('auth_permission_id_seq', 48, true);
 
 
 --
@@ -1014,6 +1091,65 @@ COPY django_admin_log (id, action_time, user_id, content_type_id, object_id, obj
 31	2014-08-25 23:42:20.067193-04	1	11	13	RiverCess County	3	
 32	2014-08-25 23:42:27.532493-04	1	10	1	2014-08-12March 22 - Aug 12, 2014	3	
 33	2014-08-25 23:42:27.542213-04	1	10	2	March 22 - Aug 12, 2014	3	
+34	2014-08-28 17:52:15.925459-04	1	16	2	2014-08-28	3	
+35	2014-08-28 17:52:21.075171-04	1	16	27	2014-08-28	3	
+36	2014-08-28 17:52:21.085085-04	1	16	26	2014-08-28	3	
+37	2014-08-28 17:52:21.091265-04	1	16	25	2014-08-28	3	
+38	2014-08-28 17:52:21.098718-04	1	16	24	2014-08-28	3	
+39	2014-08-28 17:52:21.104386-04	1	16	23	2014-08-28	3	
+40	2014-08-28 17:52:21.109982-04	1	16	22	2014-08-28	3	
+41	2014-08-28 17:52:21.115704-04	1	16	21	2014-08-28	3	
+42	2014-08-28 17:52:21.121307-04	1	16	20	2014-08-28	3	
+43	2014-08-28 17:52:21.127315-04	1	16	19	2014-08-28	3	
+44	2014-08-28 17:52:21.132988-04	1	16	18	2014-08-28	3	
+45	2014-08-28 17:52:21.138411-04	1	16	17	2014-08-28	3	
+46	2014-08-28 17:52:21.144163-04	1	16	16	2014-08-28	3	
+47	2014-08-28 17:52:21.150102-04	1	16	15	2014-08-28	3	
+48	2014-08-28 17:52:21.156078-04	1	16	14	2014-08-28	3	
+49	2014-08-28 17:52:21.162048-04	1	16	13	2014-08-28	3	
+50	2014-08-28 17:52:21.168486-04	1	16	12	2014-08-28	3	
+51	2014-08-28 17:52:21.174178-04	1	16	11	2014-08-28	3	
+52	2014-08-28 17:52:21.179722-04	1	16	10	2014-08-28	3	
+53	2014-08-28 17:52:21.185392-04	1	16	9	2014-08-28	3	
+54	2014-08-28 17:52:21.190959-04	1	16	8	2014-08-28	3	
+55	2014-08-28 17:52:21.196613-04	1	16	7	2014-08-28	3	
+56	2014-08-28 17:52:21.20208-04	1	16	6	2014-08-28	3	
+57	2014-08-28 17:52:21.20757-04	1	16	5	2014-08-28	3	
+58	2014-08-28 17:52:21.213089-04	1	16	4	2014-08-28	3	
+59	2014-08-28 17:52:21.218581-04	1	16	3	2014-08-28	3	
+60	2014-08-28 17:52:21.224316-04	1	16	1	2014-08-28	3	
+61	2014-08-28 22:38:16.602775-04	1	12	46	Sinoe County, 	3	
+62	2014-08-28 22:38:16.612564-04	1	12	45	RiverCess County, 	3	
+63	2014-08-28 22:38:16.618498-04	1	12	44	River Gee County, 	3	
+64	2014-08-28 22:38:16.624147-04	1	12	43	Nimba County, 	3	
+65	2014-08-28 22:38:16.630916-04	1	12	42	Montserrado County, 	3	
+66	2014-08-28 22:38:16.637976-04	1	12	41	Maryland County, 	3	
+67	2014-08-28 22:38:16.643399-04	1	12	40	Margibi County, 	3	
+68	2014-08-28 22:38:16.648731-04	1	12	39	Lofa County, 	3	
+69	2014-08-28 22:38:16.654324-04	1	12	38	Grand Kru, 	3	
+70	2014-08-28 22:38:16.660035-04	1	12	37	Grand Gedeh, 	3	
+71	2014-08-28 22:38:16.665669-04	1	12	36	Grand Cape Mount, 	3	
+72	2014-08-28 22:38:16.671036-04	1	12	35	Grand Bassa, 	3	
+73	2014-08-28 22:38:16.676393-04	1	12	34	Gbarpolu County, 	3	
+74	2014-08-28 22:38:16.681846-04	1	12	33	Bong County, 	3	
+75	2014-08-28 22:38:16.687113-04	1	12	32	Bomi County, 	3	
+76	2014-08-28 22:38:16.692441-04	1	12	31	National, 	3	
+77	2014-08-28 22:39:03.530848-04	1	10	4	2014-08-27	3	
+78	2014-08-28 22:44:21.930656-04	1	12	30	Margibi County, None	3	
+79	2014-08-28 22:44:21.95327-04	1	12	29	RiverCess County, None	3	
+80	2014-08-28 22:44:21.970405-04	1	12	28	Maryland County, None	3	
+81	2014-08-28 22:44:21.986852-04	1	12	27	Lofa County, None	3	
+82	2014-08-28 22:44:22.003447-04	1	12	26	Grand Cape Mount, None	3	
+83	2014-08-28 22:44:22.020307-04	1	12	25	Gbarpolu County, None	3	
+84	2014-08-28 22:44:22.038167-04	1	12	24	Nimba County, None	3	
+85	2014-08-28 22:44:22.055821-04	1	12	23	National, None	3	
+86	2014-08-28 22:44:22.077362-04	1	12	22	Montserrado County, None	3	
+87	2014-08-28 22:44:22.096152-04	1	12	21	Grand Kru, None	3	
+88	2014-08-28 22:44:22.113108-04	1	12	20	Bong County, None	3	
+89	2014-08-28 22:44:22.129948-04	1	12	19	Grand Bassa, None	3	
+90	2014-08-28 22:44:22.146803-04	1	12	18	Grand Gedeh, None	3	
+91	2014-08-28 22:44:22.163865-04	1	12	17	Bomi County, None	3	
+92	2014-08-28 22:44:39.719753-04	1	10	3	None	3	
 \.
 
 
@@ -1021,7 +1157,7 @@ COPY django_admin_log (id, action_time, user_id, content_type_id, object_id, obj
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('django_admin_log_id_seq', 33, true);
+SELECT pg_catalog.setval('django_admin_log_id_seq', 92, true);
 
 
 --
@@ -1044,6 +1180,7 @@ COPY django_content_type (id, name, app_label, model) FROM stdin;
 13	tag	liberia	tag
 14	author	liberia	author
 15	crisis net entry	liberia	crisisnetentry
+16	summary	liberia	summary
 \.
 
 
@@ -1051,7 +1188,7 @@ COPY django_content_type (id, name, app_label, model) FROM stdin;
 -- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('django_content_type_id_seq', 15, true);
+SELECT pg_catalog.setval('django_content_type_id_seq', 16, true);
 
 
 --
@@ -1946,6 +2083,8 @@ COPY liberia_location (id, name) FROM stdin;
 26	Maryland County
 27	RiverCess County
 28	Margibi County
+29	River Gee County
+30	Sinoe County
 \.
 
 
@@ -1953,28 +2092,30 @@ COPY liberia_location (id, name) FROM stdin;
 -- Name: liberia_location_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('liberia_location_id_seq', 28, true);
+SELECT pg_catalog.setval('liberia_location_id_seq', 30, true);
 
 
 --
 -- Data for Name: liberia_locationsitrep; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY liberia_locationsitrep (id, sit_rep_id, location_id, date_span, total_probable_deaths, cases_cum_suspected, cases_cum_probable, cases_cum_confirmed, cases_cum, total_deaths_suspected, total_deaths_confirmed, total_deaths_all, deaths, hc_workers, hcw_cases_cum, "CFR", num, date, hcw_deaths_cum) FROM stdin;
-17	3	15	March 22 - Aug 12, 2014	6	4	28	9	41	0	14	13	\N	\N	4	35.1	89	2014-08-12	4
-18	3	16	March 22 - Aug 12, 2014	0	0	0	0	1	0	1	0	\N	\N	0	\N	89	2014-08-12	0
-19	3	17	March 22 - Aug 12, 2014	1	7	1	6	0	0	2	2	\N	\N	3	28.6	89	2014-08-12	0
-20	3	18	March 22 - Aug 12, 2014	11	41	25	20	110	3	34	21	\N	\N	24	46.2	89	2014-08-12	4
-21	3	19	March 22 - Aug 12, 2014	0	0	0	0	0	0	0	0	\N	\N	0	\N	89	2014-08-12	0
-22	3	20	March 22 - Aug 12, 2014	69	28	110	43	288	23	218	143	\N	\N	33	78.4	89	2014-08-12	14
-23	3	21	March 22 - Aug 12, 2014	158	155	367	263	1074	54	613	364	\N	\N	86	58.2	89	2014-08-12	36
-24	3	22	March 22 - Aug 12, 2014	3	5	5	8	57	1	33	8	\N	\N	1	63.6	89	2014-08-12	0
-25	3	23	March 22 - Aug 12, 2014	0	0	0	0	15	0	0	0	\N	\N	0	\N	89	2014-08-12	0
-26	3	24	March 22 - Aug 12, 2014	1	0	1	4	8	0	7	2	\N	\N	0	50	89	2014-08-12	0
-27	3	25	March 22 - Aug 12, 2014	66	61	195	144	466	23	235	166	\N	\N	17	52	89	2014-08-12	14
-28	3	26	March 22 - Aug 12, 2014	0	0	0	0	0	0	0	0	\N	\N	0	\N	89	2014-08-12	0
-29	3	27	March 22 - Aug 12, 2014	1	0	0	1	1	0	0	1	\N	\N	0	100	89	2014-08-12	0
-30	3	28	March 22 - Aug 12, 2014	0	9	2	27	86	4	68	8	\N	\N	4	66.7	89	2014-08-12	0
+COPY liberia_locationsitrep (id, sit_rep_id, location_id, date_span, cases_cum_suspected, cases_cum_probable, cases_cum_confirmed, cases_cum, total_deaths_suspected, total_deaths_confirmed, total_deaths_all, deaths, hc_workers, hcw_cases_cum, "CFR", date, hcw_deaths_cum, hcw_cases_new, hcw_deaths_new, cases_new_suspected, cases_new_probable, cases_new_confirmed, total_deaths_probable, admission_new, in_treatment, total_discharges, admission_cum, formatted_date) FROM stdin;
+50	5	23		1	0	0	1	0	0	0	0	\N	0	0.0	2014-08-27	0	0	0	1	0	0	0	0	0	0	0	2014-08-27
+51	5	17		18	11	11	40	3	6	12	0	\N	3	0.0	2014-08-27	1	0	0	0	0	0	3	0	0	0	0	2014-08-27
+52	5	24		1	4	4	9	2	4	7	0	\N	3	0.0	2014-08-27	0	0	0	0	1	0	1	0	0	0	0	2014-08-27
+53	5	16		3	0	0	3	2	0	2	1	\N	0	0.0	2014-08-27	0	0	0	1	0	0	0	0	0	0	0	2014-08-27
+54	5	19		0	0	0	0	0	0	0	0	\N	0	0.0	2014-08-27	0	0	0	0	0	0	0	0	0	0	0	2014-08-27
+55	5	25		63	319	189	571	34	129	284	6	\N	20	0.0	2014-08-27	17	0	0	0	14	0	121	14	71	2	71	2014-08-27
+56	5	28		98	58	27	183	30	23	93	0	\N	30	0.0	2014-08-27	18	0	0	0	0	0	40	0	0	0	0	2014-08-27
+57	5	26		0	0	0	0	0	0	0	0	\N	0	0.0	2014-08-27	0	0	0	0	0	0	0	0	0	0	0	2014-08-27
+58	5	20		163	236	44	443	104	103	321	8	\N	48	0.0	2014-08-27	26	0	0	7	9	0	114	0	0	0	0	2014-08-27
+59	5	22		15	58	29	102	6	23	57	3	\N	2	0.0	2014-08-27	0	0	0	0	13	1	28	0	0	0	0	2014-08-27
+60	5	29		5	0	0	5	5	0	5	0	\N	0	0.0	2014-08-27	0	0	0	0	0	0	0	0	0	0	0	2014-08-27
+61	5	27		0	0	1	1	0	0	1	0	\N	0	0.0	2014-08-27	0	0	0	0	0	0	1	0	0	0	0	2014-08-27
+62	5	30		1	0	1	2	0	0	0	0	\N	0	0.0	2014-08-27	0	0	0	0	0	0	0	0	0	0	0	2014-08-27
+47	5	21		446	749	347	1542	203	318	855	22	\N	137	0.0	2014-08-27	71	0	0	10	44	1	334	14	71	2	71	2014-08-27
+48	5	15		1	30	21	52	0	19	32	3	\N	5	0.0	2014-08-27	4	0	0	0	6	0	13	0	0	0	0	2014-08-27
+49	5	18		77	33	20	130	17	11	41	1	\N	26	0.0	2014-08-27	5	0	0	1	1	0	13	0	0	0	0	2014-08-27
 \.
 
 
@@ -1982,15 +2123,15 @@ COPY liberia_locationsitrep (id, sit_rep_id, location_id, date_span, total_proba
 -- Name: liberia_locationsitrep_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('liberia_locationsitrep_id_seq', 30, true);
+SELECT pg_catalog.setval('liberia_locationsitrep_id_seq', 62, true);
 
 
 --
 -- Data for Name: liberia_sitrep; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY liberia_sitrep (id, date_span, num, date) FROM stdin;
-3	March 22 - Aug 12, 2014	89	2014-08-12
+COPY liberia_sitrep (id, date_span, date, formatted_date) FROM stdin;
+5		2014-08-27	2014-08-27
 \.
 
 
@@ -1998,7 +2139,23 @@ COPY liberia_sitrep (id, date_span, num, date) FROM stdin;
 -- Name: liberia_sitrep_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('liberia_sitrep_id_seq', 3, true);
+SELECT pg_catalog.setval('liberia_sitrep_id_seq', 5, true);
+
+
+--
+-- Data for Name: liberia_summary; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY liberia_summary (id, date, total_deaths, deaths_last_week, deaths_this_week, total_cases, cases_last_week, cases_this_week, total_contacts, contacts_last_week, contacts_this_week, total_hcw_deaths, hcw_deaths_last_week, hcw_deaths_this_week, total_hcw_cases, hcw_cases_last_week, hcw_cases_this_week, total_labs_processed, labs_processed_last_week, labs_processed_this_week, total_labs_collected, labs_collected_last_week, labs_collected_this_week, total_fcr, fcr_last_week, fcr_this_week, total_clinics) FROM stdin;
+28	2014-08-28	613	106	136	1074	200	300	1689	0	0	61	0	0	115	0	0	10	0	0	20	0	0	59	0	0	59
+\.
+
+
+--
+-- Name: liberia_summary_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('liberia_summary_id_seq', 28, true);
 
 
 --
@@ -2077,6 +2234,14 @@ COPY south_migrationhistory (id, app_name, migration, applied) FROM stdin;
 11	liberia	0011_auto__del_field_crisisnetentry_geo__add_field_crisisnetentry_longitude	2014-08-27 20:53:38.208929-04
 12	liberia	0012_auto__chg_field_crisisnetentry_summary__chg_field_crisisnetentry_conte	2014-08-27 21:22:59.887493-04
 13	liberia	0013_auto__chg_field_crisisnetentry_author	2014-08-27 21:36:14.525464-04
+14	liberia	0014_auto__add_summary	2014-08-28 16:56:27.139021-04
+15	liberia	0015_auto__add_field_summary_total_clinics	2014-08-28 16:58:14.978171-04
+16	liberia	0016_auto__del_field_locationsitrep_num__add_field_locationsitrep_hcw_cases	2014-08-28 21:16:10.809223-04
+17	liberia	0017_auto__del_field_sitrep_num	2014-08-28 21:25:49.31881-04
+18	liberia	0018_auto__add_field_locationsitrep_cases_new_suspected__add_field_location	2014-08-28 21:46:31.265747-04
+19	liberia	0019_auto__del_field_locationsitrep_total_probable_deaths__add_field_locati	2014-08-28 22:14:05.514959-04
+20	liberia	0020_auto__add_field_locationsitrep_admission_new__add_field_locationsitrep	2014-08-28 22:20:44.253898-04
+21	liberia	0021_auto__add_field_sitrep_formatted_date__add_field_locationsitrep_format	2014-08-28 22:34:35.200165-04
 \.
 
 
@@ -2084,7 +2249,7 @@ COPY south_migrationhistory (id, app_name, migration, applied) FROM stdin;
 -- Name: south_migrationhistory_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('south_migrationhistory_id_seq', 13, true);
+SELECT pg_catalog.setval('south_migrationhistory_id_seq', 21, true);
 
 
 --
@@ -2285,6 +2450,14 @@ ALTER TABLE ONLY liberia_locationsitrep
 
 ALTER TABLE ONLY liberia_sitrep
     ADD CONSTRAINT liberia_sitrep_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: liberia_summary_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY liberia_summary
+    ADD CONSTRAINT liberia_summary_pkey PRIMARY KEY (id);
 
 
 --
