@@ -8,7 +8,7 @@ class Command(BaseCommand):
     help = 'Enter date information into db'
 
     def handle(self, *args, **options):
-        with open('cases.csv', 'rU') as csvfile:
+        with open('data/sr0826_cases.csv', 'rU') as csvfile:
             csvfile.readline()
             fp = csv.reader(csvfile, delimiter=',', quotechar='"')
 
