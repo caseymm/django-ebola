@@ -63,7 +63,6 @@ class Location(models.Model):
 class LocationSitRep(models.Model):
     sit_rep = models.ForeignKey('SitRep', null=True, blank=True)
     location = models.ForeignKey('Location', null=True, blank=True)
-    num = models.IntegerField(max_length=50, blank=True, null=True)
     date_span = models.CharField(max_length=100, blank=True)
     date = models.CharField(max_length=100, blank=True)
     total_probable_deaths = models.IntegerField(max_length=50, blank=True, null=True)
@@ -76,7 +75,9 @@ class LocationSitRep(models.Model):
     total_deaths_all = models.IntegerField(max_length=50, blank=True, null=True)
     deaths = models.IntegerField(max_length=50, blank=True, null=True)
     hc_workers = models.IntegerField(max_length=50, blank=True, null=True)
+    hcw_cases_new = models.IntegerField(max_length=50, blank=True, null=True)
     hcw_cases_cum = models.IntegerField(max_length=50, blank=True, null=True)
+    hcw_deaths_new = models.IntegerField(max_length=50, blank=True, null=True)
     hcw_deaths_cum = models.IntegerField(max_length=50, blank=True, null=True)
     CFR = models.CharField(max_length=100, null=True, blank=True)
 
