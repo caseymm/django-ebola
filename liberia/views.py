@@ -21,7 +21,7 @@ class DataPrepMixin(object):
         return (data_list, field_names)
 
 
-class JSONResponseMixin(DataPrepMixin):
+class JSONResponseMixin():
     """
     A mixin that can be used to render a JSON response.
     """
@@ -29,7 +29,7 @@ class JSONResponseMixin(DataPrepMixin):
         """
         Returns a JSON response, transforming 'context' to make the payload.
         """
-        data, fields = self.prep_context_for_serialization(context)
+        data, fields = self.context
         return HttpResponse(
             json.dumps(data, default=smart_text),
             content_type='application/json',
@@ -45,7 +45,7 @@ class LocationListView(generic.ListView):
     #     locations = Location.objects.all()
     #     return locations
 
-class LocationDetailView(JSONResponseMixin, generic.DetailView):
+class LocationDetailView(generic.DetailView):
     model = Location
     template = 'templates/home/index_detail.html'
     context_object_name = 'loc'
@@ -53,18 +53,18 @@ class LocationDetailView(JSONResponseMixin, generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super(LocationDetailView, self).get_context_data(**kwargs)
         context['location'] = self.object.locationsitrep_set.all()
+        context['location_vals'] = self.object.locationsitrep_set.all().values()
         # context['loc_name'] = self.object.location
         return context
 
     def render_to_response(self, context, **kwargs):
-        """
-        Return a normal response, or CSV or JSON depending
-        on a URL param from the user.
-        """
         # See if the user has requested a special format
         format = self.request.GET.get('format', '')
         if 'json' in format:
-            return self.render_to_json_response(context['location'].values())
+            return HttpResponse(
+                json.dumps(context['location_vals'], default=smart_text),
+                content_type='application/json'
+            )
 
         # And if it's none of the above return something normal
         return super(LocationDetailView, self).render_to_response(context, **kwargs)
