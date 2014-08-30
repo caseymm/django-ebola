@@ -11,7 +11,7 @@ urlpatterns = patterns(
         name='location_index'
     ),
     url(
-        r'^location/(?P<pk>\d+)/$',
+        r'^location/(?P<slug>[-\w\d]+)/$',
         views.LocationDetailView.as_view(template_name='home/index_detail.html'),
         name='location_detail'
     ),

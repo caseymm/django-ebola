@@ -25,11 +25,11 @@ import time
 #     save_on_top = True
 # admin.site.register(SitRep, SitRepAdmin)
 #
-# class LocationAdmin(admin.ModelAdmin):
-#     search_fields = ['name', ]
-#     # list_filter = ()
-#     save_on_top = True
-# admin.site.register(Location, LocationAdmin)
+class LocationAdmin(admin.ModelAdmin):
+    search_fields = ['name',]
+    # list_filter = ()
+    save_on_top = True
+admin.site.register(Location, LocationAdmin)
 
 class LocationSitRepAdmin(admin.ModelAdmin):
     search_fields = ['location', 'num']
@@ -39,26 +39,26 @@ class LocationSitRepAdmin(admin.ModelAdmin):
     save_on_top = True
 admin.site.register(LocationSitRep, LocationSitRepAdmin)
 
-class TagAdminForm(forms.ModelForm):
-    crisisnetentry_set = forms.ModelMultipleChoiceField(queryset=CrisisNetEntry.objects.all(), required=False, widget=FilteredSelectMultiple(verbose_name=_('Obituaries'), is_stacked=False))
-    class Meta:
-        model = Tag
-
-    def __init__(self, *args, **kwargs):
-        super(TagAdminForm, self).__init__(*args, **kwargs)
-
-        if self.instance and self.instance.pk:
-            self.fields['crisisnetentry_set'].initial = self.instance.crisisnetentry_set.all()
-
-    def save(self, commit=True):
-        tag = super(TagAdminForm, self).save(commit=False)
-        if commit:
-            tag.save()
-        if tag.pk:
-            tag.crisinetentries = self.cleaned_data['crisisnetentry_set']
-            self.save_m2m()
-
-        return tag
+# class TagAdminForm(forms.ModelForm):
+#     crisisnetentry_set = forms.ModelMultipleChoiceField(queryset=CrisisNetEntry.objects.all(), required=False, widget=FilteredSelectMultiple(verbose_name=_('Obituaries'), is_stacked=False))
+#     class Meta:
+#         model = Tag
+#
+#     def __init__(self, *args, **kwargs):
+#         super(TagAdminForm, self).__init__(*args, **kwargs)
+#
+#         if self.instance and self.instance.pk:
+#             self.fields['crisisnetentry_set'].initial = self.instance.crisisnetentry_set.all()
+#
+#     def save(self, commit=True):
+#         tag = super(TagAdminForm, self).save(commit=False)
+#         if commit:
+#             tag.save()
+#         if tag.pk:
+#             tag.crisinetentries = self.cleaned_data['crisisnetentry_set']
+#             self.save_m2m()
+#
+#         return tag
 
 # class TagAdmin(admin.ModelAdmin):
 #     search_fields = ['name', ]

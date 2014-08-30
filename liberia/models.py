@@ -53,6 +53,12 @@ class SitRep(models.Model):
 
 class Location(models.Model):
     name = models.CharField(max_length=100, blank=True)
+    slug = models.CharField(max_length=100, blank=True)
+
+    # def _create_slug(self):
+    #     return slugify(self.name)
+    #
+    # slug = property(_create_slug)
 
     class Meta:
         ordering = ['name']

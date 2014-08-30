@@ -1,6 +1,7 @@
 import json
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views import generic
+from django.template.defaultfilters import slugify
 from django.utils.encoding import smart_text
 from django.http import Http404, HttpResponse
 from liberia.models import SitRep, Location, LocationSitRep
@@ -56,7 +57,7 @@ class LocationDetailView(generic.DetailView):
         for ent in context['location']:
             context['date_str'] = ent.date
         context['list'] = []
-        context['location_vals'] = self.object.locationsitrep_set.values('location__name', 'total_deaths_probable', 'cases_cum_suspected', 'cases_cum_probable', 'cases_cum_confirmed', 'cases_cum', 'cases_new_total', 'cases_new_suspected', 'cases_new_probable', 'cases_new_confirmed', 'total_deaths_suspected', 'total_deaths_confirmed', 'total_deaths_all', 'deaths', 'new_deaths_probable', 'new_deaths_suspected', 'new_deaths_confirmed', 'hc_workers', 'hcw_cases_new', 'hcw_cases_cum', 'hcw_deaths_new', 'hcw_deaths_cum', 'CFR')
+        context['location_vals'] = self.object.locationsitrep_set.values('location__name', 'location__slug', 'total_deaths_probable', 'cases_cum_suspected', 'cases_cum_probable', 'cases_cum_confirmed', 'cases_cum', 'cases_new_total', 'cases_new_suspected', 'cases_new_probable', 'cases_new_confirmed', 'total_deaths_suspected', 'total_deaths_confirmed', 'total_deaths_all', 'deaths', 'new_deaths_probable', 'new_deaths_suspected', 'new_deaths_confirmed', 'hc_workers', 'hcw_cases_new', 'hcw_cases_cum', 'hcw_deaths_new', 'hcw_deaths_cum', 'CFR')
 
         for i in context['location_vals']:
             i.setdefault('date_str', context['date_str'])

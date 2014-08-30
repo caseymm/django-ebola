@@ -11,7 +11,7 @@
         <tbody>
             {% for loc in locations %}
                 <tr>
-                    <td><a href="{% url 'location_detail' loc.pk %}">{{loc}}</a></td>
+                    <td><a href="{% url 'location_detail' loc.slug %}">{{loc}}</a></td>
                 </tr>
             {% endfor %}
         </tbody>
