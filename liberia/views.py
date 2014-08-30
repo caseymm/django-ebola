@@ -14,8 +14,10 @@ class LocationListView(generic.ListView):
 class LocationDetailView(generic.DetailView):
     model = Location
     template = 'templates/home/index_detail.html'
+    context_object_name = 'loc'
 
     def get_context_data(self, **kwargs):
         context = super(LocationDetailView, self).get_context_data(**kwargs)
         context['location'] = self.object.locationsitrep_set.all()
+        # context['loc_name'] = self.object.location
         return context

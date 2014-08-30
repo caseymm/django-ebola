@@ -2,9 +2,18 @@
 {% load humanize %}
 
 {% block content %}
-    <ul>
-    {% for loc in locations %}
-        <li><a href="{% url 'location_detail' loc.pk %}">{{loc}}</a></li>
-    {% endfor %}
-    </ul>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Location</th>
+            </tr>
+        </thread>
+        <tbody>
+            {% for loc in locations %}
+                <tr>
+                    <td><a href="{% url 'location_detail' loc.pk %}">{{loc}}</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
