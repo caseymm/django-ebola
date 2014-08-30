@@ -8,6 +8,11 @@ urlpatterns = patterns(
     url(
         r'^$',
         views.LocationListView.as_view(template_name='home/index.html'),
-        name='index'
+        name='location_index'
+    ),
+    url(
+        r'^location/(?P<pk>\d+)/$',
+        views.LocationDetailView.as_view(template_name='home/index_detail.html'),
+        name='location_detail'
     ),
     )

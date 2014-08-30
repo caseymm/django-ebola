@@ -11,6 +11,11 @@ class LocationListView(generic.ListView):
     #     locations = Location.objects.all()
     #     return locations
 
-class LocationDetailView(generic.LocationDetailView):
+class LocationDetailView(generic.DetailView):
     model = Location
     template = 'templates/home/index_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(LocationDetailView, self).get_context_data(**kwargs)
+        context['location'] = self.object.locationsitrep_set.all()
+        return context

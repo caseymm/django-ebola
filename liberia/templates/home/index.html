@@ -1,5 +1,10 @@
-<ul>
-{% for loc in locations %}
-    <li><a href="#">{{loc}}</a></li>
-{% endfor %}
-</ul>
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block content %}
+    <ul>
+    {% for loc in locations %}
+        <li><a href="{% url 'location_detail' loc.pk %}">{{loc}}</a></li>
+    {% endfor %}
+    </ul>
+{% endblock %}

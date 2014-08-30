@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block content %}
+    <ul>
+    {% for entry in location %}
+        <li>{{entry.sit_rep}}, {{entry.deaths}}, {{entry.total_deaths_all}}, {{entry.hcw_deaths_cum}}</li>
+    {% endfor %}
+    </ul>
+{% endblock %}
