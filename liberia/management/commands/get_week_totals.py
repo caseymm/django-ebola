@@ -14,23 +14,40 @@ class Command(BaseCommand):
 
         today_total = LocationSitRep.objects.get(date='2014-08-27', location=national)
         week_ago_total = LocationSitRep.objects.get(date='2014-08-20', location=national)
-        deaths = today_total.total_deaths_all - week_ago_total.total_deaths_all
-        cases = today_total.cases_cum - week_ago_total.cases_cum
-        print 'deaths'
-        print deaths
-        print (deaths/week_ago_total.total_deaths_all)*100
+        two_week_ago_total = LocationSitRep.objects.get(date='2014-08-13', location=national)
+
+        deaths_this_week = today_total.total_deaths_all - week_ago_total.total_deaths_all
+        deaths_last_week = week_ago_total.total_deaths_all - two_week_ago_total.total_deaths_all
+
+        cases_this_week = today_total.cases_cum - week_ago_total.cases_cum
+        cases_last_week = week_ago_total.cases_cum - two_week_ago_total.cases_cum
+
+        print 'new deaths this week'
+        print deaths_this_week
+        print 'new deaths last week'
+        print deaths_last_week
+        print ((deaths_this_week-deaths_last_week)/deaths_last_week)*100
         print
-        print 'cases'
-        print cases
-        print (cases/week_ago_total.cases_cum)*100
+        print 'new cases this week'
+        print cases_this_week
+        print 'new cases last week'
+        print cases_last_week
+        print ((cases_this_week-cases_last_week)/cases_last_week)*100
         print
 
-        hcw_deaths = today_total.hcw_deaths_cum - week_ago_total.hcw_deaths_cum
-        hcw_cases = today_total.hcw_cases_cum - week_ago_total.hcw_cases_cum
-        print 'hcw deaths'
-        print hcw_deaths
-        print (hcw_deaths/week_ago_total.hcw_deaths_cum)*100
+        hcw_deaths_this_week = today_total.hcw_deaths_cum - week_ago_total.hcw_deaths_cum
+        hcw_deaths_last_week = week_ago_total.hcw_deaths_cum - two_week_ago_total.hcw_deaths_cum
+
+        hcw_cases_this_week = today_total.hcw_cases_cum - week_ago_total.hcw_cases_cum
+        hcw_cases_last_week = week_ago_total.hcw_cases_cum - two_week_ago_total.hcw_cases_cum
+        print 'new hcw deaths this week'
+        print hcw_deaths_this_week
+        print 'new hcw deaths last week'
+        print hcw_deaths_last_week
+        print ((hcw_deaths_this_week-hcw_deaths_last_week)/hcw_deaths_last_week)*100
         print
-        print 'hcw cases'
-        print hcw_cases
-        print (hcw_cases/week_ago_total.hcw_cases_cum)*100
+        print 'new hcw cases this week'
+        print hcw_cases_this_week
+        print 'new hcw cases last week'
+        print hcw_cases_last_week
+        print ((hcw_cases_this_week-hcw_cases_last_week)/hcw_cases_last_week)*100

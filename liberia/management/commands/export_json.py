@@ -67,7 +67,7 @@ class Command(BaseCommand):
         e_json.close()
 
 
-        e_json=open('export_main.json','w')
+        eb_json=open('export_main.json','w')
         deaths_list = []
         for obj in LocationSitRep.objects.filter(location=national).order_by('formatted_date'):
             if obj.date:
@@ -98,13 +98,8 @@ class Command(BaseCommand):
 
         jsonified = json.dumps(deaths_list)
         print jsonified
-        print>>e_json, jsonified
-        e_json.close()
-
-
-
-
-
+        print>>eb_json, jsonified
+        eb_json.close()
 
 
         # print 'series:['
