@@ -39,5 +39,9 @@ class LocationDetailView(generic.DetailView):
             return HttpResponse(
                 json.dumps(context['list'])
             )
+        if 'weekly_json' in format:
+            return HttpResponse(
+                json.dumps(context['list'])
+            )
 
         return super(LocationDetailView, self).render_to_response(context, **kwargs)

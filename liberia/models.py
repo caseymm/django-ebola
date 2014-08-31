@@ -1,3 +1,4 @@
+from __future__ import division
 from django.db import models
 from django.core.urlresolvers import reverse
 from django.core.exceptions import ValidationError
@@ -5,6 +6,8 @@ from django.template.defaultfilters import slugify
 import time
 import re
 import urllib
+import json
+from datetime import datetime
 from StringIO import StringIO
 from operator import itemgetter
 from django.core.management import call_command
@@ -44,6 +47,7 @@ class SitRep(models.Model):
     date = models.CharField(max_length=100, blank=True)
     formatted_date = models.DateField(null=True)
     date_span = models.CharField(max_length=100, blank=True)
+    day_of_year = models.IntegerField(max_length=50, blank=True, null=True)
 
     class Meta:
         ordering = ['date']
@@ -51,14 +55,26 @@ class SitRep(models.Model):
     def __unicode__(self):
         return str(self.formatted_date)
 
+    def get_doy(self):
+        d = datetime.strptime(self.date, '%Y-%m-%d')
+        self.day_of_year = datetime.strftime(d, "%j")
+        return self.day_of_year
+
+    def save(self):
+        self.get_doy()
+        super(SitRep, self).save()
+
 class Location(models.Model):
     name = models.CharField(max_length=100, blank=True)
     slug = models.CharField(max_length=100, blank=True)
 
-    # def _create_slug(self):
-    #     return slugify(self.name)
-    #
-    # slug = property(_create_slug)
+    def create_slug(self):
+        self.slug = slugify(self.name)
+        return self.slug
+
+    def save(self):
+        self.create_slug()
+        super(Location, self).save()
 
     class Meta:
         ordering = ['name']

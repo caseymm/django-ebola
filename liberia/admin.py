@@ -19,11 +19,11 @@ import time
 #     save_on_top = True
 # admin.site.register(DateStats, DateStatsAdmin)
 #
-# class SitRepAdmin(admin.ModelAdmin):
-#     search_fields = ['date', 'num']
-#     # list_filter = ()
-#     save_on_top = True
-# admin.site.register(SitRep, SitRepAdmin)
+class SitRepAdmin(admin.ModelAdmin):
+    search_fields = ['date',]
+    # list_filter = ()
+    save_on_top = True
+admin.site.register(SitRep, SitRepAdmin)
 #
 class LocationAdmin(admin.ModelAdmin):
     search_fields = ['name',]
