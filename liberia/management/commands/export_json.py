@@ -11,7 +11,7 @@ class Command(BaseCommand):
         national = Location.objects.filter(name='National')
 
         loc_list = []
-        for obj in LocationSitRep.objects.filter(date='2014-08-27').exclude(location=national).order_by('location'):
+        for obj in LocationSitRep.objects.exclude(location=national).order_by('location'):
             loc = str(obj.location)
             loc_list.append(loc)
         # print loc_list
@@ -19,9 +19,9 @@ class Command(BaseCommand):
 
 
 
-
+        e_json=open('export_main.json','w')
         deaths_list = []
-        for obj in LocationSitRep.objects.filter(location=national, formatted_date__gte='2014-08-01').order_by('formatted_date'):
+        for obj in LocationSitRep.objects.filter(location=national).order_by('formatted_date'):
             if obj.date:
                 obj_dict = {}
                 d = datetime.strptime(obj.date, '%Y-%m-%d')
@@ -50,6 +50,8 @@ class Command(BaseCommand):
 
         jsonified = json.dumps(deaths_list)
         print jsonified
+        print>>e_json, jsonified
+        e_json.close()
 
 
 
