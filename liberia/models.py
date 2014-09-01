@@ -82,6 +82,44 @@ class Location(models.Model):
     def __unicode__(self):
         return self.name
 
+    def _get_dates(self):
+        sr_list = []
+        latest_qs = SitRep.objects.latest('formatted_date')
+        sr_list.append(latest_qs)
+        sr_list.append(SitRep.objects.get(day_of_year=(latest_qs.day_of_year-7)))
+        sr_list.append(SitRep.objects.get(day_of_year=(latest_qs.day_of_year-14)))
+        return sr_list
+
+    get_dates = property(_get_dates)
+
+    def _death_total(self):
+        qs = LocationSitRep.objects.filter(location=self).latest('formatted_date')
+        return qs
+
+    death_total = property(_death_total)
+
+    def _get_death_pct(self):
+        srs = self._get_dates()
+        latest_q = LocationSitRep.objects.get(location=self, sit_rep=srs[0])
+        week_ago_q = LocationSitRep.objects.get(location=self, sit_rep=srs[1])
+        two_week_ago_q = LocationSitRep.objects.get(location=self, sit_rep=srs[2])
+        # #get num of deaths
+        deaths_total = latest_q.total_deaths_all
+        week_ago_deaths_total = week_ago_q.total_deaths_all
+        two_week_ago_deaths_total = two_week_ago_q.total_deaths_all
+        # #get week vals
+        deaths_this_week = deaths_total - week_ago_deaths_total
+        deaths_last_week = week_ago_deaths_total - two_week_ago_deaths_total
+        try:
+            pct_change = ((deaths_this_week-deaths_last_week)/deaths_last_week)*100
+        except:
+            pct_change = 'unable to compute'
+        return pct_change
+
+    death_pct_change = property(_get_death_pct)
+
+
+
 class LocationSitRep(models.Model):
     sit_rep = models.ForeignKey('SitRep', null=True, blank=True)
     location = models.ForeignKey('Location', null=True, blank=True)

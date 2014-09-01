@@ -48,15 +48,38 @@ class LocationDetailView(generic.DetailView):
 
         return context
 
+    #I should really be using a mixin for this
     def render_to_response(self, context, **kwargs):
         format = self.request.GET.get('format', '')
-        if 'json' in format:
-            return HttpResponse(
-                json.dumps(context['list'])
-            )
         if 'weekly_json' in format:
+            return HttpResponse(
+                json.dumps(context['filtered_list'])
+            )
+        elif 'json' in format:
             return HttpResponse(
                 json.dumps(context['list'])
             )
 
         return super(LocationDetailView, self).render_to_response(context, **kwargs)
+
+# class PctChangeListView(generic.ListView):
+#     template = 'templates/home/pct_change.html'
+#     model = Location
+#     context_object_name = 'locations'
+#
+#     # def get_queryset(self):
+#     #     locations = Location.objects.all()
+#     #     return locations
+#
+#     def get_context_data(self, **kwargs):
+#         context = super(PctChangeTemplateView, self).get_context_data(**kwargs)
+#         context[''] = .objects.get()
+#         return context
+
+# class PctChangeTemplateView(generic.TemplateView):
+#     template = 'templates/home/pct_change.html'
+#
+#     def get_context_data(self, **kwargs):
+#         context = super(PctChangeTemplateView, self).get_context_data(**kwargs)
+#         context[''] = .objects.get()
+#         return context

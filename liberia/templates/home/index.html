@@ -6,12 +6,16 @@
         <thead>
             <tr>
                 <th>Location</th>
+                <th>Total deaths</th>
+                <th>Pct change deaths last 7 days</th>
             </tr>
         </thread>
         <tbody>
             {% for loc in locations %}
-                <tr>
+                <tr class="{% if loc.name == 'National' %}success{% endif %}">
                     <td><a href="{% url 'location_detail' loc.slug %}">{{loc}}</a></td>
+                    <td>{{loc.death_total.total_deaths_all}}</td>
+                    <td>{{loc.death_pct_change}}</td>
                 </tr>
             {% endfor %}
         </tbody>
