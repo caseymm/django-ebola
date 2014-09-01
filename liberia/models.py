@@ -106,6 +106,17 @@ class Location(models.Model):
         list_o_three.append(LocationSitRep.objects.get(location=self, sit_rep=srs[2]))
         return list_o_three
 
+    def _get_new_deaths(self):
+        dates = self._get_relevant_srs()
+        #get num of deaths
+        deaths_total = dates[0].total_deaths_all
+        week_ago_deaths_total = dates[1].total_deaths_all
+        #get week vals
+        deaths_this_week = deaths_total - week_ago_deaths_total
+        return deaths_this_week
+
+    new_weekly_deaths = property(_get_new_deaths)
+
 
     def _get_death_pct(self):
         dates = self._get_relevant_srs()
@@ -123,6 +134,17 @@ class Location(models.Model):
         return pct_change
 
     death_pct_change = property(_get_death_pct)
+
+    def _get_new_cases(self):
+        dates = self._get_relevant_srs()
+        #get num of deaths
+        cases_total = dates[0].cases_cum
+        week_ago_cases_total = dates[1].cases_cum
+        #get week vals
+        cases_this_week = cases_total - week_ago_cases_total
+        return cases_this_week
+
+    new_weekly_cases = property(_get_new_cases)
 
     def _get_cases_pct(self):
         dates = self._get_relevant_srs()

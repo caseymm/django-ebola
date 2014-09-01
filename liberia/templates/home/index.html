@@ -7,7 +7,9 @@
             <tr>
                 <th>Location</th>
                 <th>Total deaths</th>
+                <th>New Weekly DEATHS</th>
                 <th>Pct change DEATHS last 7 days</th>
+                <th>New Weekly CASES</th>
                 <th>Pct change CASES last 7 days</th>
             </tr>
         </thread>
@@ -16,7 +18,9 @@
                 <tr class="{% if loc.name == 'National' %}success{% endif %}">
                     <td><a href="{% url 'location_detail' loc.slug %}">{{loc}}</a></td>
                     <td>{{loc.death_total.total_deaths_all}}</td>
+                    <td>{{loc.new_weekly_deaths}}</td>
                     <td>{{loc.death_pct_change}}</td>
+                    <td>{{loc.new_weekly_cases}}</td>
                     <td>{{loc.cases_pct_change}}</td>
                 </tr>
             {% endfor %}
