@@ -82,6 +82,12 @@ class Location(models.Model):
     def __unicode__(self):
         return self.name
 
+    def _death_total(self):
+        qs = LocationSitRep.objects.filter(location=self).latest('formatted_date')
+        return qs
+
+    death_total = property(_death_total)
+
     def _get_dates(self):
         sr_list = []
         latest_qs = SitRep.objects.latest('formatted_date')
@@ -92,21 +98,21 @@ class Location(models.Model):
 
     get_dates = property(_get_dates)
 
-    def _death_total(self):
-        qs = LocationSitRep.objects.filter(location=self).latest('formatted_date')
-        return qs
+    def _get_relevant_srs(self):
+        srs = self._get_dates()
+        list_o_three = []
+        list_o_three.append(LocationSitRep.objects.get(location=self, sit_rep=srs[0]))
+        list_o_three.append(LocationSitRep.objects.get(location=self, sit_rep=srs[1]))
+        list_o_three.append(LocationSitRep.objects.get(location=self, sit_rep=srs[2]))
+        return list_o_three
 
-    death_total = property(_death_total)
 
     def _get_death_pct(self):
-        srs = self._get_dates()
-        latest_q = LocationSitRep.objects.get(location=self, sit_rep=srs[0])
-        week_ago_q = LocationSitRep.objects.get(location=self, sit_rep=srs[1])
-        two_week_ago_q = LocationSitRep.objects.get(location=self, sit_rep=srs[2])
+        dates = self._get_relevant_srs()
         # #get num of deaths
-        deaths_total = latest_q.total_deaths_all
-        week_ago_deaths_total = week_ago_q.total_deaths_all
-        two_week_ago_deaths_total = two_week_ago_q.total_deaths_all
+        deaths_total = dates[0].total_deaths_all
+        week_ago_deaths_total = dates[1].total_deaths_all
+        two_week_ago_deaths_total = dates[2].total_deaths_all
         # #get week vals
         deaths_this_week = deaths_total - week_ago_deaths_total
         deaths_last_week = week_ago_deaths_total - two_week_ago_deaths_total
@@ -117,6 +123,26 @@ class Location(models.Model):
         return pct_change
 
     death_pct_change = property(_get_death_pct)
+
+    # def _get_cases_pct(self):
+    #     srs = self._get_dates()
+    #     latest_q = LocationSitRep.objects.get(location=self, sit_rep=srs[0])
+    #     week_ago_q = LocationSitRep.objects.get(location=self, sit_rep=srs[1])
+    #     two_week_ago_q = LocationSitRep.objects.get(location=self, sit_rep=srs[2])
+    #     # #get num of deaths
+    #     deaths_total = latest_q.total_deaths_all
+    #     week_ago_deaths_total = week_ago_q.total_deaths_all
+    #     two_week_ago_deaths_total = two_week_ago_q.total_deaths_all
+    #     # #get week vals
+    #     deaths_this_week = deaths_total - week_ago_deaths_total
+    #     deaths_last_week = week_ago_deaths_total - two_week_ago_deaths_total
+    #     try:
+    #         pct_change = ((deaths_this_week-deaths_last_week)/deaths_last_week)*100
+    #     except:
+    #         pct_change = 'unable to compute'
+    #     return pct_change
+    #
+    # cases_pct_change = property(_get_cases_pct)
 
 
 
