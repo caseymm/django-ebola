@@ -163,6 +163,64 @@ class Location(models.Model):
 
     cases_pct_change = property(_get_cases_pct)
 
+    def _get_new_deaths_hcw(self):
+        dates = self._get_relevant_srs()
+        #get num of deaths
+        deaths_total = dates[0].hcw_deaths_cum
+        week_ago_deaths_total = dates[1].hcw_deaths_cum
+        #get week vals
+        deaths_this_week = deaths_total - week_ago_deaths_total
+        return deaths_this_week
+
+    new_weekly_deaths_hcw = property(_get_new_deaths_hcw)
+
+
+    def _get_death_pct_hcw(self):
+        dates = self._get_relevant_srs()
+        #get num of deaths
+        deaths_total = dates[0].hcw_deaths_cum
+        week_ago_deaths_total = dates[1].hcw_deaths_cum
+        two_week_ago_deaths_total = dates[2].hcw_deaths_cum
+        #get week vals
+        deaths_this_week = deaths_total - week_ago_deaths_total
+        deaths_last_week = week_ago_deaths_total - two_week_ago_deaths_total
+        try:
+            pct_change = ((deaths_this_week-deaths_last_week)/deaths_last_week)*100
+        except:
+            pct_change = 'N/A'
+        return pct_change
+
+    death_pct_change_hcw = property(_get_death_pct_hcw)
+
+    def _get_new_cases_hcw(self):
+        dates = self._get_relevant_srs()
+        #get num of cases
+        cases_total = dates[0].hcw_cases_cum
+        week_ago_cases_total = dates[1].hcw_cases_cum
+        #get week vals
+        cases_this_week = cases_total - week_ago_cases_total
+        return cases_this_week
+
+    new_weekly_cases_hcw = property(_get_new_cases_hcw)
+
+
+    def _get_cases_pct_hcw(self):
+        dates = self._get_relevant_srs()
+        #get num of casess
+        cases_total = dates[0].hcw_cases_cum
+        week_ago_cases_total = dates[1].hcw_cases_cum
+        two_week_ago_cases_total = dates[2].hcw_cases_cum
+        #get week vals
+        cases_this_week = cases_total - week_ago_cases_total
+        cases_last_week = week_ago_cases_total - two_week_ago_cases_total
+        try:
+            pct_change = ((cases_this_week-cases_last_week)/cases_last_week)*100
+        except:
+            pct_change = 'N/A'
+        return pct_change
+
+    cases_pct_change_hcw = property(_get_cases_pct_hcw)
+
 
 
 class LocationSitRep(models.Model):
