@@ -109,40 +109,37 @@ class Location(models.Model):
 
     def _get_death_pct(self):
         dates = self._get_relevant_srs()
-        # #get num of deaths
+        #get num of deaths
         deaths_total = dates[0].total_deaths_all
         week_ago_deaths_total = dates[1].total_deaths_all
         two_week_ago_deaths_total = dates[2].total_deaths_all
-        # #get week vals
+        #get week vals
         deaths_this_week = deaths_total - week_ago_deaths_total
         deaths_last_week = week_ago_deaths_total - two_week_ago_deaths_total
         try:
             pct_change = ((deaths_this_week-deaths_last_week)/deaths_last_week)*100
         except:
-            pct_change = 'unable to compute'
+            pct_change = 'N/A'
         return pct_change
 
     death_pct_change = property(_get_death_pct)
 
-    # def _get_cases_pct(self):
-    #     srs = self._get_dates()
-    #     latest_q = LocationSitRep.objects.get(location=self, sit_rep=srs[0])
-    #     week_ago_q = LocationSitRep.objects.get(location=self, sit_rep=srs[1])
-    #     two_week_ago_q = LocationSitRep.objects.get(location=self, sit_rep=srs[2])
-    #     # #get num of deaths
-    #     deaths_total = latest_q.total_deaths_all
-    #     week_ago_deaths_total = week_ago_q.total_deaths_all
-    #     two_week_ago_deaths_total = two_week_ago_q.total_deaths_all
-    #     # #get week vals
-    #     deaths_this_week = deaths_total - week_ago_deaths_total
-    #     deaths_last_week = week_ago_deaths_total - two_week_ago_deaths_total
-    #     try:
-    #         pct_change = ((deaths_this_week-deaths_last_week)/deaths_last_week)*100
-    #     except:
-    #         pct_change = 'unable to compute'
-    #     return pct_change
-    #
-    # cases_pct_change = property(_get_cases_pct)
+    def _get_cases_pct(self):
+        dates = self._get_relevant_srs()
+        #get num of cases
+        cases_total = dates[0].cases_cum
+        week_ago_cases_total = dates[1].cases_cum
+        two_week_ago_cases_total = dates[2].cases_cum
+        #get week vals
+        cases_this_week = cases_total - week_ago_cases_total
+        cases_last_week = week_ago_cases_total - two_week_ago_cases_total
+        try:
+            pct_change = ((cases_this_week-cases_last_week)/cases_last_week)*100
+        except:
+            pct_change = 'N/A'
+        return pct_change
+
+    cases_pct_change = property(_get_cases_pct)
 
 
 
