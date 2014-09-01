@@ -1,10 +1,10 @@
 JSON:
 
-JSON Type    | URL
------------- | -------------
+| JSON Type    | URL          |
+| ------------ | -------------|
 
-daily | http://localhost:8089/location/national/?format=json
-weekly | http://localhost:8089/location/national/?format=weekly_json
+| daily | http://localhost:8089/location/national/?format=json |
+| weekly | http://localhost:8089/location/national/?format=weekly_json |
 
 pg_dump dbname > outfile
 ex) pg_dump ebola > 0825_night
