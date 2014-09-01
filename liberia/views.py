@@ -40,6 +40,7 @@ class LocationDetailView(generic.DetailView):
 
         for i in context['location_vals']:
             i.setdefault('pct_change_death', self.object.death_pct_change)
+            i.setdefault('pct_change_cases', self.object.cases_pct_change)
             context['list'].append(i)
 
         for i in context['location_vals']:
