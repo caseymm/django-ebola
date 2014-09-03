@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block content %}
+<h3>Latest data: {{latest_qs}}</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th></th>
+            </tr>
+        </thread>
+        <tbody>
+            <tr>
+                <td>Deaths by county</td>
+                <td><a href="{% url 'highcharts_data' %}?format=deaths_hc_json">Highcharts JSON</a></td>
+            </tr>
+            <tr>
+                <td>Cases by county</td>
+                <td><a href="{% url 'highcharts_data' %}?format=cases_hc_json">Highcharts JSON</a></td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

@@ -6,6 +6,8 @@ from django.utils.encoding import smart_text
 from django.http import Http404, HttpResponse
 from liberia.models import SitRep, Location, LocationSitRep
 
+national = Location.objects.filter(name='National')
+
 class LocationListView(generic.ListView):
     model = Location
     template = 'templates/home/index.html'
@@ -79,17 +81,55 @@ class LocationDetailView(generic.DetailView):
             )
 
         return super(LocationDetailView, self).render_to_response(context, **kwargs)
-#
-# class PctChangeListView(generic.ListView):
-#     template = 'templates/home/pct_change.html'
-#     model = Location
-#     context_object_name = 'locations'
-#
-#     # def get_queryset(self):
-#     #     locations = Location.objects.all()
-#     #     return locations
-#
-#     def get_context_data(self, **kwargs):
-#         context = super(PctChangeTemplateView, self).get_context_data(**kwargs)
-#         context[''] = .objects.get()
-#         return context
+
+class HighchartsTemplateView(generic.TemplateView):
+    template = 'templates/home/highcharts_data.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(HighchartsTemplateView, self).get_context_data(**kwargs)
+        context['latest_qs'] = SitRep.objects.latest('formatted_date')
+        county_d = 'series:['
+        new_deaths = {}
+        for obj in LocationSitRep.objects.filter(sit_rep=context['latest_qs']).exclude(location=national).order_by('location').values('total_deaths_suspected', 'total_deaths_probable', 'total_deaths_confirmed'):
+            for attr in obj:
+                new_deaths.setdefault(attr, []).append(obj[attr])
+
+        for i in new_deaths:
+            county_d += '{'
+            county_d += 'name: '+i+','
+            county_d += 'data: '+str(new_deaths[i])
+            county_d += '},'
+        county_d += ']'
+
+        context['county_d'] = county_d.replace(',]',']')
+
+        county_c = 'series:['
+        new_cases = {}
+        for obj in LocationSitRep.objects.filter(sit_rep=context['latest_qs']).exclude(location=national).order_by('location').values('cases_cum_suspected', 'cases_cum_probable', 'cases_cum_confirmed'):
+            for attr in obj:
+                new_cases.setdefault(attr, []).append(obj[attr])
+            #     print obj[attr]
+
+        for i in new_cases:
+            county_c += '{'
+            county_c += 'name: '+i+','
+            county_c += 'data: '+str(new_cases[i])
+            county_c += '},'
+        county_c += ']'
+
+        context['county_c'] = county_c.replace(',]',']')
+
+        return context
+
+    def render_to_response(self, context, **kwargs):
+        format = self.request.GET.get('format', '')
+        if 'deaths_hc_json' in format:
+            return HttpResponse(
+                context['county_d']
+            )
+        elif 'cases_hc_json' in format:
+            return HttpResponse(
+                context['county_c']
+            )
+
+        return super(HighchartsTemplateView, self).render_to_response(context, **kwargs)

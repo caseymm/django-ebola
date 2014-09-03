@@ -15,4 +15,9 @@ urlpatterns = patterns(
         views.LocationDetailView.as_view(template_name='home/index_detail.html'),
         name='location_detail'
     ),
+    url(
+        r'^highcharts/$',
+        views.HighchartsTemplateView.as_view(template_name='home/highcharts_data.html'),
+        name='highcharts_data'
+    ),
     )

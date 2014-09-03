@@ -11,6 +11,9 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         national = Location.objects.filter(name='National')
 
+        #All of this data is accessible by hitting the format=json urls as documented in the README. Has more concise
+        #dict values, but it is the same info.
+
         # loc_list = []
         # for obj in LocationSitRep.objects.exclude(location=national).order_by('location'):
         #     loc = str(obj.location)
@@ -101,22 +104,24 @@ class Command(BaseCommand):
         # print>>eb_json, jsonified
         # eb_json.close()
 
-
+        latest_qs = SitRep.objects.latest('formatted_date')
         print "county deaths info"
 
-        print 'series:['
+        county_d = 'series:['
         new_deaths = {}
-        for obj in LocationSitRep.objects.filter(date='2014-08-27').exclude(location=national).order_by('location').values('total_deaths_suspected', 'total_deaths_probable', 'total_deaths_confirmed'):
+        for obj in LocationSitRep.objects.filter(sit_rep=latest_qs).exclude(location=national).order_by('location').values('total_deaths_suspected', 'total_deaths_probable', 'total_deaths_confirmed'):
             for attr in obj:
                 new_deaths.setdefault(attr, []).append(obj[attr])
             #     print obj[attr]
 
         for i in new_deaths:
-            print '{'
-            print 'name: '+i+','
-            print 'data: '+str(new_deaths[i])
-            print '},'
-        print ']'
+            county_d += '{'
+            county_d += 'name: '+i+','
+            county_d += 'data: '+str(new_deaths[i])
+            county_d += '},'
+        county_d += ']'
+
+        print county_d.replace(',]',']')
 
         # locations = Location.objects.all()
         # for loc in locations:
@@ -124,16 +129,18 @@ class Command(BaseCommand):
 
         print "county cases info"
 
-        print 'series:['
+        county_c = 'series:['
         new_cases = {}
-        for obj in LocationSitRep.objects.filter(date='2014-08-27').exclude(location=national).order_by('location').values('cases_cum_suspected', 'cases_cum_probable', 'cases_cum_confirmed'):
+        for obj in LocationSitRep.objects.filter(sit_rep=latest_qs).exclude(location=national).order_by('location').values('cases_cum_suspected', 'cases_cum_probable', 'cases_cum_confirmed'):
             for attr in obj:
                 new_cases.setdefault(attr, []).append(obj[attr])
             #     print obj[attr]
 
         for i in new_cases:
-            print '{'
-            print 'name: '+i+','
-            print 'data: '+str(new_cases[i])
-            print '},'
-        print ']'
+            county_c += '{'
+            county_c += 'name: '+i+','
+            county_c += 'data: '+str(new_cases[i])
+            county_c += '},'
+        county_c += ']'
+
+        print county_c.replace(',]',']')
