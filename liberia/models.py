@@ -11,6 +11,7 @@ import json
 from datetime import datetime
 from StringIO import StringIO
 from operator import itemgetter
+# from .forms import UploadFileForm
 from django.core.management import call_command
 
 
@@ -49,7 +50,6 @@ class SitRep(models.Model):
     formatted_date = models.DateField(null=True)
     date_span = models.CharField(max_length=100, blank=True)
     day_of_year = models.IntegerField(max_length=50, blank=True, null=True)
-    excel_file = forms.FileField()
 
     class Meta:
         ordering = ['-date']
@@ -62,17 +62,24 @@ class SitRep(models.Model):
         self.day_of_year = datetime.strftime(d, "%j")
         return self.day_of_year
 
-    def upload_file(request):
-        if request.method == 'POST':
-            form = UploadFileForm(request.POST, request.FILES)
-            if form.is_valid():
-                handle_uploaded_file(request.FILES['excel_file'])
-        else:
-            form = UploadFileForm()
-        # return render_to_response('upload.html', {'form': form})
+    # def handle_uploaded_file(f):
+    #     df = pd.io.excel.read_excel(f, 0, index_col=None, na_values=['NA'])
+    #     print 'dd'
+    #     print df
+    #
+    # def upload_file(request):
+    #     # if request.method == 'POST':
+    #     form = UploadFileForm(request.POST, request.FILES)
+    #     if form.is_valid():
+    #         handle_uploaded_file(request.FILES['file'])
+    #         return HttpResponseRedirect('/success/url/')
+    #     else:
+    #         form = UploadFileForm()
+    #     return render_to_response('upload.html', {'form': form})
 
     def save(self, **kwargs):
         self.get_doy()
+        # self.upload_file()
         # call_command("test_this")
         super(SitRep, self).save()
 
@@ -308,38 +315,3 @@ class CrisisNetEntry(models.Model):
 
     def __unicode__(self):
         return self.createdAt
-
-class Summary(models.Model):
-    date = models.DateField(null=True)
-    total_deaths = models.IntegerField(max_length=50, blank=True, null=True)
-    deaths_last_week = models.IntegerField(max_length=50, blank=True, null=True)
-    deaths_this_week = models.IntegerField(max_length=50, blank=True, null=True)
-    total_cases = models.IntegerField(max_length=50, blank=True, null=True)
-    cases_last_week = models.IntegerField(max_length=50, blank=True, null=True)
-    cases_this_week = models.IntegerField(max_length=50, blank=True, null=True)
-    total_contacts = models.IntegerField(max_length=50, blank=True, null=True)
-    contacts_last_week = models.IntegerField(max_length=50, blank=True, null=True)
-    contacts_this_week = models.IntegerField(max_length=50, blank=True, null=True)
-    total_hcw_deaths = models.IntegerField(max_length=50, blank=True, null=True)
-    hcw_deaths_last_week = models.IntegerField(max_length=50, blank=True, null=True)
-    hcw_deaths_this_week = models.IntegerField(max_length=50, blank=True, null=True)
-    total_hcw_cases = models.IntegerField(max_length=50, blank=True, null=True)
-    hcw_cases_last_week = models.IntegerField(max_length=50, blank=True, null=True)
-    hcw_cases_this_week = models.IntegerField(max_length=50, blank=True, null=True)
-    total_labs_processed = models.IntegerField(max_length=50, blank=True, null=True)
-    labs_processed_last_week = models.IntegerField(max_length=50, blank=True, null=True)
-    labs_processed_this_week = models.IntegerField(max_length=50, blank=True, null=True)
-    total_labs_collected = models.IntegerField(max_length=50, blank=True, null=True)
-    labs_collected_last_week = models.IntegerField(max_length=50, blank=True, null=True)
-    labs_collected_this_week = models.IntegerField(max_length=50, blank=True, null=True)
-    total_fcr = models.IntegerField(max_length=50, blank=True, null=True)
-    fcr_last_week = models.IntegerField(max_length=50, blank=True, null=True)
-    fcr_this_week = models.IntegerField(max_length=50, blank=True, null=True)
-    total_clinics = models.IntegerField(max_length=50, blank=True, null=True)
-
-    class Meta:
-        ordering = ['date']
-        verbose_name_plural=u'Summaries'
-
-    def __unicode__(self):
-        return str(self.date)

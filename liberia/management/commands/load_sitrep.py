@@ -7,12 +7,13 @@ from numpy.random import randn
 import numpy as np
 import time
 from datetime import datetime
-import re
+from django.core.management import call_command
 
 class Command(BaseCommand):
     help = 'Load new sit rep into model objects'
 
     def handle(self, *args, **options):
+
         input_file = raw_input('Input file: ')
         print 'Please format date as yyyy-mm-dd'
         original_date = raw_input ("Enter SitRep date: ")
@@ -68,3 +69,12 @@ class Command(BaseCommand):
             new_loc_sr.total_deaths_probable = loc_dict[i].get("Total death/s in probable cases")
             new_loc_sr.cases_new_total = (int(new_loc_sr.cases_new_suspected)+int(new_loc_sr.cases_new_probable)+int(new_loc_sr.cases_new_confirmed))
             new_loc_sr.save()
+
+        call_command("export_cases_deaths")
+        call_command("export_hc_county")
+        call_command("export_hcw")
+        call_command("export_json")
+        # time.sleep(5)
+        call_command("zip_latest")
+        time.sleep(5)
+        call_command("email")

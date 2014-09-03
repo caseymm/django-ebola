@@ -12,7 +12,7 @@ class Command(BaseCommand):
         national = Location.objects.filter(name='National')
         sr_all = SitRep.objects.all()
 
-        print 'National all fields (March - present)'
+        # print 'National all fields (March - present)'
         n_all=open('latest_data/cd_national_all_fields.json','w')
         print
         nat_all_list = []
@@ -24,7 +24,7 @@ class Command(BaseCommand):
         print>>n_all, jsonified_nat_all
         n_all.close()
 
-        print 'National Simple'
+        # print 'National Simple'
         n_simple=open('latest_data/cd_national_simple.json','w')
         print
         nat_simple_list = []

@@ -1,16 +1,12 @@
 from django.contrib import admin
 from django import forms
-from liberia.models import DateStats, SitRep, Location, LocationSitRep, Tag, Author, CrisisNetEntry, Summary
+from liberia.models import DateStats, SitRep, Location, LocationSitRep, Tag, Author, CrisisNetEntry
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.admin.widgets import FilteredSelectMultiple
 import datetime
 import time
+# from .forms import UploadFileForm
 
-# class SummaryAdmin(admin.ModelAdmin):
-#     search_fields = ['date', ]
-#     # list_filter = ()
-#     save_on_top = True
-# admin.site.register(Summary, SummaryAdmin)
 
 # class DateStatsAdmin(admin.ModelAdmin):
 #     exclude = ['original_date',]
@@ -19,14 +15,16 @@ import time
 #     save_on_top = True
 # admin.site.register(DateStats, DateStatsAdmin)
 
-class UploadFileForm(forms.ModelForm):
-    excel_file = forms.FileField()
+# class UploadFileForm(forms.ModelForm):
+#     file = forms.FileField()
 
 class SitRepAdmin(admin.ModelAdmin):
     search_fields = ['date',]
     # list_filter = ()
     save_on_top = True
-    form = UploadFileForm
+    # form = UploadFileForm
+    # e_json=open('latest_data/export_main_weekly.json','w')
+
 admin.site.register(SitRep, SitRepAdmin)
 #
 class LocationAdmin(admin.ModelAdmin):
