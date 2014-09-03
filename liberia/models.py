@@ -62,7 +62,7 @@ class SitRep(models.Model):
 
     def save(self):
         self.get_doy()
-        call_command("test_this", noreload=True)
+        # call_command("test_this")
         super(SitRep, self).save()
 
 class Location(models.Model):
@@ -129,7 +129,7 @@ class Location(models.Model):
         deaths_this_week = deaths_total - week_ago_deaths_total
         deaths_last_week = week_ago_deaths_total - two_week_ago_deaths_total
         try:
-            pct_change = ((deaths_this_week-deaths_last_week)/deaths_last_week)*100
+            pct_change = round((((deaths_this_week-deaths_last_week)/deaths_last_week)*100), 2)
         except:
             pct_change = 'N/A'
         return pct_change
@@ -157,7 +157,7 @@ class Location(models.Model):
         cases_this_week = cases_total - week_ago_cases_total
         cases_last_week = week_ago_cases_total - two_week_ago_cases_total
         try:
-            pct_change = ((cases_this_week-cases_last_week)/cases_last_week)*100
+            pct_change = round((((cases_this_week-cases_last_week)/cases_last_week)*100), 2)
         except:
             pct_change = 'N/A'
         return pct_change
@@ -186,7 +186,7 @@ class Location(models.Model):
         deaths_this_week = deaths_total - week_ago_deaths_total
         deaths_last_week = week_ago_deaths_total - two_week_ago_deaths_total
         try:
-            pct_change = ((deaths_this_week-deaths_last_week)/deaths_last_week)*100
+            pct_change = round((((deaths_this_week-deaths_last_week)/deaths_last_week)*100), 2)
         except:
             pct_change = 'N/A'
         return pct_change
@@ -215,10 +215,10 @@ class Location(models.Model):
         cases_this_week = cases_total - week_ago_cases_total
         cases_last_week = week_ago_cases_total - two_week_ago_cases_total
         try:
-            pct_change = ((cases_this_week-cases_last_week)/cases_last_week)*100
+            pct_change = round((((cases_this_week-cases_last_week)/cases_last_week)*100), 2)
         except:
             pct_change = 'N/A'
-        return pct_change
+        return round(pct_change, 2)
 
     cases_pct_change_hcw = property(_get_cases_pct_hcw)
 
