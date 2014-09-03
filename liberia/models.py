@@ -60,7 +60,7 @@ class SitRep(models.Model):
         self.day_of_year = datetime.strftime(d, "%j")
         return self.day_of_year
 
-    def save(self):
+    def save(self, **kwargs):
         self.get_doy()
         # call_command("test_this")
         super(SitRep, self).save()
@@ -73,7 +73,7 @@ class Location(models.Model):
         self.slug = slugify(self.name)
         return self.slug
 
-    def save(self):
+    def save(self, **kwargs):
         self.create_slug()
         super(Location, self).save()
 
