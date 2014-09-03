@@ -10,15 +10,14 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
 
-        print 'HCW graph data for cases and deaths'
+        # print 'HCW graph data for cases and deaths'
 
         national = Location.objects.filter(name='National')
         sr_all = SitRep.objects.all()
         sr_aug = SitRep.objects.filter(formatted_date__gte='2014-08-01')
 
-        print 'National all (March - present)'
-        n_all=open('hcw_national_all.json','w')
-        print
+        # print 'National all (March - present)'
+        n_all=open('latest_data/hcw_national_all.json','w')
         nat_all_list = []
         for i in sr_all:
             for each in i.locationsitrep_set.values('date', 'hcw_cases_new', 'hcw_cases_cum', 'hcw_deaths_new', 'hcw_deaths_cum').filter(location=national):
@@ -28,9 +27,8 @@ class Command(BaseCommand):
         print>>n_all, jsonified_nat_all
         n_all.close()
 
-        print 'National August'
-        n_aug=open('hcw_national_aug.json','w')
-        print
+        # print 'National August'
+        n_aug=open('latest_data/hcw_national_aug.json','w')
         nat_aug_list = []
         for i in sr_aug:
             for each in i.locationsitrep_set.values('date', 'hcw_cases_new', 'hcw_cases_cum', 'hcw_deaths_new', 'hcw_deaths_cum').filter(location=national):
@@ -40,9 +38,8 @@ class Command(BaseCommand):
         print>>n_aug, jsonified_nat_aug
         n_aug.close()
 
-        print 'Locations all (March - present)'
-        loc_all=open('hcw_locations_all.json','w')
-        print
+        # print 'Locations all (March - present)'
+        loc_all=open('latest_data/hcw_locations_all.json','w')
         all_locs_list = []
         for i in sr_all:
             date_dict = {}
@@ -54,9 +51,8 @@ class Command(BaseCommand):
         print>>loc_all, jsonified_all_locs
         loc_all.close()
 
-        print 'Locations August'
-        loc_aug=open('hcw_locations_aug.json','w')
-        print
+        # print 'Locations August'
+        loc_aug=open('latest_data/hcw_locations_aug.json','w')
         aug_locs_list = []
         for i in sr_aug:
             date_dict = {}

@@ -18,7 +18,7 @@ class Command(BaseCommand):
         for obj in LocationSitRep.objects.exclude(location=national).order_by('location'):
             loc = str(obj.location)
             loc_list.append(loc)
-        print loc_list
+        # print loc_list
 
         latest_date = SitRep.objects.latest('formatted_date')
 
@@ -26,14 +26,14 @@ class Command(BaseCommand):
         latest = datetime.strftime(latest_date.formatted_date, "%j")
         nums = [int(latest)]
         num=int(latest)
-        print num
+        # print num
         while (num - 7) > 0:
             nums.append(num-7)
             num=num-7
-            print num
-        print nums
+        #     print num
+        # print nums
 
-        e_json=open('export_main_weekly.json','w')
+        e_json=open('latest_data/export_main_weekly.json','w')
         deaths_list = []
         for obj in LocationSitRep.objects.filter(location=national).order_by('formatted_date'):
             if obj.date:
@@ -65,12 +65,11 @@ class Command(BaseCommand):
                     deaths_list.append(obj_dict)
 
         jsonified = json.dumps(deaths_list)
-        print jsonified
         print>>e_json, jsonified
         e_json.close()
 
 
-        eb_json=open('export_main.json','w')
+        eb_json=open('latest_data/export_main.json','w')
         deaths_list = []
         for obj in LocationSitRep.objects.filter(location=national).order_by('formatted_date'):
             if obj.date:
@@ -100,6 +99,5 @@ class Command(BaseCommand):
                 deaths_list.append(obj_dict)
 
         jsonified = json.dumps(deaths_list)
-        print jsonified
         print>>eb_json, jsonified
         eb_json.close()

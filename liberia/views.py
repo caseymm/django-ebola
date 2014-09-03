@@ -13,10 +13,6 @@ class LocationListView(generic.ListView):
     template = 'templates/home/index.html'
     context_object_name = 'locations'
 
-    # def get_queryset(self):
-    #     locations = Location.objects.all()
-    #     return locations
-
 class LocationDetailView(generic.DetailView):
     model = Location
     template = 'templates/home/index_detail.html'
@@ -100,10 +96,8 @@ class HighchartsTemplateView(generic.TemplateView):
                 new_deaths.setdefault(attr, []).append(obj[attr])
 
         for i in new_deaths:
-            county_d += '{'
-            county_d += 'name: '+i+','
-            county_d += 'data: '+str(new_deaths[i])
-            county_d += '},'
+            county_d += '{name: '+i+','
+            county_d += 'data: '+str(new_deaths[i])+'},'
         county_d += ']'
 
         context['county_d'] = county_d.replace(',]',']')
@@ -114,13 +108,10 @@ class HighchartsTemplateView(generic.TemplateView):
         ).values('cases_cum_suspected', 'cases_cum_probable', 'cases_cum_confirmed'):
             for attr in obj:
                 new_cases.setdefault(attr, []).append(obj[attr])
-            #     print obj[attr]
 
         for i in new_cases:
-            county_c += '{'
-            county_c += 'name: '+i+','
-            county_c += 'data: '+str(new_cases[i])
-            county_c += '},'
+            county_c += '{name: '+i+','
+            county_c += 'data: '+str(new_cases[i])+'},'
         county_c += ']'
 
         context['county_c'] = county_c.replace(',]',']')

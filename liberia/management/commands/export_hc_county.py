@@ -12,7 +12,8 @@ class Command(BaseCommand):
         national = Location.objects.filter(name='National')
 
         latest_qs = SitRep.objects.latest('formatted_date')
-        print "county deaths info"
+        county_json=open('latest_data/highcharts_county.json','w')
+        # print "county deaths info"
 
         county_d = 'series:['
         new_deaths = {}
@@ -28,13 +29,10 @@ class Command(BaseCommand):
             county_d += '},'
         county_d += ']'
 
-        print county_d.replace(',]',']')
+        print>>county_json, county_d.replace(',]',']')
+        print>>county_json
 
-        # locations = Location.objects.all()
-        # for loc in locations:
-        #     print loc.locationsitrep_set.values()
-
-        print "county cases info"
+        # print "county cases info"
 
         county_c = 'series:['
         new_cases = {}
@@ -50,4 +48,6 @@ class Command(BaseCommand):
             county_c += '},'
         county_c += ']'
 
-        print county_c.replace(',]',']')
+        # print county_c.replace(',]',']')
+        print>>county_json, county_c.replace(',]',']')
+        county_json.close()
