@@ -38,7 +38,11 @@ class LocationDetailView(generic.DetailView):
             context['date_str'] = ent.date
         context['list'] = []
         context['filtered_list'] = []
-        context['location_vals'] = self.object.locationsitrep_set.values('sit_rep__day_of_year', 'sit_rep__date', 'location__name', 'location__slug', 'total_deaths_probable', 'cases_cum_suspected', 'cases_cum_probable', 'cases_cum_confirmed', 'cases_cum', 'cases_new_total', 'cases_new_suspected', 'cases_new_probable', 'cases_new_confirmed', 'total_deaths_suspected', 'total_deaths_confirmed', 'total_deaths_all', 'deaths', 'new_deaths_probable', 'new_deaths_suspected', 'new_deaths_confirmed', 'hc_workers', 'hcw_cases_new', 'hcw_cases_cum', 'hcw_deaths_new', 'hcw_deaths_cum', 'CFR')
+        context['location_vals'] = self.object.locationsitrep_set.values('sit_rep__day_of_year', 'sit_rep__date', 'location__name',
+        'location__slug', 'total_deaths_probable', 'cases_cum_suspected', 'cases_cum_probable', 'cases_cum_confirmed', 'cases_cum',
+        'cases_new_total', 'cases_new_suspected', 'cases_new_probable', 'cases_new_confirmed', 'total_deaths_suspected', 'total_deaths_confirmed',
+        'total_deaths_all', 'deaths', 'new_deaths_probable', 'new_deaths_suspected', 'new_deaths_confirmed', 'hc_workers', 'hcw_cases_new',
+        'hcw_cases_cum', 'hcw_deaths_new', 'hcw_deaths_cum', 'CFR')
 
         for i in context['location_vals']:
             if i['sit_rep__day_of_year'] == latest_date.day_of_year:
@@ -90,7 +94,8 @@ class HighchartsTemplateView(generic.TemplateView):
         context['latest_qs'] = SitRep.objects.latest('formatted_date')
         county_d = 'series:['
         new_deaths = {}
-        for obj in LocationSitRep.objects.filter(sit_rep=context['latest_qs']).exclude(location=national).order_by('location').values('total_deaths_suspected', 'total_deaths_probable', 'total_deaths_confirmed'):
+        for obj in LocationSitRep.objects.filter(sit_rep=context['latest_qs']).exclude(location=national).order_by('location'
+        ).values('total_deaths_suspected', 'total_deaths_probable', 'total_deaths_confirmed'):
             for attr in obj:
                 new_deaths.setdefault(attr, []).append(obj[attr])
 
@@ -105,7 +110,8 @@ class HighchartsTemplateView(generic.TemplateView):
 
         county_c = 'series:['
         new_cases = {}
-        for obj in LocationSitRep.objects.filter(sit_rep=context['latest_qs']).exclude(location=national).order_by('location').values('cases_cum_suspected', 'cases_cum_probable', 'cases_cum_confirmed'):
+        for obj in LocationSitRep.objects.filter(sit_rep=context['latest_qs']).exclude(location=national).order_by('location'
+        ).values('cases_cum_suspected', 'cases_cum_probable', 'cases_cum_confirmed'):
             for attr in obj:
                 new_cases.setdefault(attr, []).append(obj[attr])
             #     print obj[attr]

@@ -11,6 +11,7 @@
                 <th>Pct change DEATHS last 7 days</th>
                 <th>New Weekly CASES</th>
                 <th>Pct change CASES last 7 days</th>
+                <th>JSON</th>
             </tr>
         </thread>
         <tbody>
@@ -22,6 +23,7 @@
                     <td>{{loc.death_pct_change}}</td>
                     <td>{{loc.new_weekly_cases}}</td>
                     <td>{{loc.cases_pct_change}}</td>
+                    <td><a href="{% url 'location_detail' loc.slug %}?format=json" target="_blank" class="btn btn-success">Get JSON</a></td>
                 </tr>
             {% endfor %}
         </tbody>
