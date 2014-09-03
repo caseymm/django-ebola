@@ -62,6 +62,7 @@ class SitRep(models.Model):
 
     def save(self):
         self.get_doy()
+        call_command("test_this", noreload=True)
         super(SitRep, self).save()
 
 class Location(models.Model):

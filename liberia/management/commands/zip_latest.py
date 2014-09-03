@@ -4,15 +4,18 @@ from shutil import make_archive
 import os
 from os.path import abspath, basename, dirname, join, normpath
 from sys import path
+import time
+from datetime import datetime
 
 class Command(BaseCommand):
     help = 'Zip file of latest data for email'
 
     def handle(self, *args, **options):
+        today = datetime.today().strftime("%m-%d-%Y")
 
         BASE_DIR = os.path.dirname(os.path.dirname(__file__))
         SITE_ROOT = dirname(BASE_DIR)
         my_root = dirname(SITE_ROOT)
 
         data_dir = os.path.expanduser(os.path.join(my_root, 'latest_data'))
-        make_archive('latest', 'zip', data_dir)
+        make_archive('latest_'+today, 'zip', data_dir)
