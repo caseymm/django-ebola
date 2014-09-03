@@ -3,6 +3,7 @@ from django.db import models
 from django.core.urlresolvers import reverse
 from django.core.exceptions import ValidationError
 from django.template.defaultfilters import slugify
+from django import forms
 import time
 import re
 import urllib
@@ -48,9 +49,10 @@ class SitRep(models.Model):
     formatted_date = models.DateField(null=True)
     date_span = models.CharField(max_length=100, blank=True)
     day_of_year = models.IntegerField(max_length=50, blank=True, null=True)
+    excel_file = forms.FileField()
 
     class Meta:
-        ordering = ['date']
+        ordering = ['-date']
 
     def __unicode__(self):
         return str(self.formatted_date)
@@ -59,6 +61,15 @@ class SitRep(models.Model):
         d = datetime.strptime(self.date, '%Y-%m-%d')
         self.day_of_year = datetime.strftime(d, "%j")
         return self.day_of_year
+
+    def upload_file(request):
+        if request.method == 'POST':
+            form = UploadFileForm(request.POST, request.FILES)
+            if form.is_valid():
+                handle_uploaded_file(request.FILES['excel_file'])
+        else:
+            form = UploadFileForm()
+        # return render_to_response('upload.html', {'form': form})
 
     def save(self, **kwargs):
         self.get_doy()

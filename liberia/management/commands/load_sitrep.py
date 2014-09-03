@@ -13,7 +13,7 @@ class Command(BaseCommand):
     help = 'Load new sit rep into model objects'
 
     def handle(self, *args, **options):
-        # input_file = raw_input('Input file: ')
+        input_file = raw_input('Input file: ')
         print 'Please format date as yyyy-mm-dd'
         original_date = raw_input ("Enter SitRep date: ")
 
@@ -22,7 +22,7 @@ class Command(BaseCommand):
 
         current_sit_rep, created = SitRep.objects.get_or_create(date=original_date, formatted_date=date)
 
-        df = pd.io.excel.read_excel('data/sr_104.xls', 0, index_col=None, na_values=['NA'])
+        df = pd.io.excel.read_excel(input_file, 0, index_col=None, na_values=['NA'])
         sliced = df[:34]
         flipped = sliced.T
         idx = flipped.set_index([3])

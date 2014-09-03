@@ -18,11 +18,15 @@ import time
 #     # list_filter = ()
 #     save_on_top = True
 # admin.site.register(DateStats, DateStatsAdmin)
-#
+
+class UploadFileForm(forms.ModelForm):
+    excel_file = forms.FileField()
+
 class SitRepAdmin(admin.ModelAdmin):
     search_fields = ['date',]
     # list_filter = ()
     save_on_top = True
+    form = UploadFileForm
 admin.site.register(SitRep, SitRepAdmin)
 #
 class LocationAdmin(admin.ModelAdmin):
