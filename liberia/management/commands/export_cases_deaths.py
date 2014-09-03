@@ -14,7 +14,6 @@ class Command(BaseCommand):
 
         # print 'National all fields (March - present)'
         n_all=open('latest_data/cd_national_all_fields.json','w')
-        print
         nat_all_list = []
         for i in sr_all:
             for each in i.locationsitrep_set.values('date', 'total_deaths_probable', 'cases_cum_suspected', 'cases_cum_probable', 'cases_cum_confirmed', 'cases_cum', 'cases_new_total', 'cases_new_suspected', 'cases_new_probable', 'cases_new_confirmed', 'total_deaths_suspected', 'total_deaths_confirmed', 'total_deaths_all', 'deaths', 'new_deaths_probable', 'new_deaths_suspected', 'new_deaths_confirmed').filter(location=national):
@@ -26,7 +25,6 @@ class Command(BaseCommand):
 
         # print 'National Simple'
         n_simple=open('latest_data/cd_national_simple.json','w')
-        print
         nat_simple_list = []
         for i in sr_all:
             for each in i.locationsitrep_set.values('date', 'cases_cum', 'cases_new_total', 'total_deaths_all', 'deaths').filter(location=national):
