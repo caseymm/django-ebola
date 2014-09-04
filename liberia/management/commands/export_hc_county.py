@@ -13,7 +13,7 @@ class Command(BaseCommand):
 
         latest_qs = SitRep.objects.latest('formatted_date')
         county_json=open('latest_data/highcharts_county.json','w')
-        print "county deaths info"
+        # print "county deaths info"
 
         county_d = 'series:['
         new_deaths = {}
