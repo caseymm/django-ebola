@@ -9,7 +9,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         today = datetime.today().strftime("%m-%d-%Y")
-        subject, from_email, to = 'UPDATED DATA', 'unc.crisis.team@gmail.com', 'caseymm@gmail.com'
+        subject, from_email, to = 'UPDATED DATA'+today, 'unc.crisis.team@gmail.com', 'caseymm@gmail.com'
         text_content = 'This is an important message.'
         html_content = '<p>This is an <strong>important</strong> message.</p>'
         msg = EmailMultiAlternatives(subject, text_content, from_email, [to])

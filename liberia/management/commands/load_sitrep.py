@@ -74,6 +74,7 @@ class Command(BaseCommand):
         call_command("export_hc_county")
         call_command("export_hcw")
         call_command("export_json")
+        call_command("export_county_wdaily")
         # time.sleep(5)
         call_command("zip_latest")
         time.sleep(5)
