@@ -62,6 +62,16 @@ class Command(BaseCommand):
                     obj_dict['HealthCare worker total cases'] = obj.hcw_cases_cum
                     obj_dict['HealthCare worker new deaths'] = obj.hcw_deaths_new
                     obj_dict['HealthCare worker total deaths'] = obj.hcw_deaths_cum
+                    if obj.sit_rep == latest_date:
+                        loc = Location.objects.get(name="National")
+                        obj_dict.setdefault('new_weekly_deaths', loc.new_weekly_deaths)
+                        obj_dict.setdefault('pct_change_death', loc.death_pct_change)
+                        obj_dict.setdefault('new_weekly_cases', loc.new_weekly_cases)
+                        obj_dict.setdefault('pct_change_cases', loc.cases_pct_change)
+                        obj_dict.setdefault('new_weekly_deaths_hcw', loc.new_weekly_deaths_hcw)
+                        obj_dict.setdefault('pct_change_death_hcw', loc.death_pct_change_hcw)
+                        obj_dict.setdefault('new_weekly_cases_hcw', loc.new_weekly_cases_hcw)
+                        obj_dict.setdefault('pct_change_cases_hcw', loc.cases_pct_change_hcw)
                     deaths_list.append(obj_dict)
 
         jsonified = json.dumps(deaths_list)
@@ -96,6 +106,16 @@ class Command(BaseCommand):
                 obj_dict['HealthCare worker total cases'] = obj.hcw_cases_cum
                 obj_dict['HealthCare worker new deaths'] = obj.hcw_deaths_new
                 obj_dict['HealthCare worker total deaths'] = obj.hcw_deaths_cum
+                if obj.sit_rep == latest_date:
+                    loc = Location.objects.get(name="National")
+                    obj_dict.setdefault('new_weekly_deaths', loc.new_weekly_deaths)
+                    obj_dict.setdefault('pct_change_death', loc.death_pct_change)
+                    obj_dict.setdefault('new_weekly_cases', loc.new_weekly_cases)
+                    obj_dict.setdefault('pct_change_cases', loc.cases_pct_change)
+                    obj_dict.setdefault('new_weekly_deaths_hcw', loc.new_weekly_deaths_hcw)
+                    obj_dict.setdefault('pct_change_death_hcw', loc.death_pct_change_hcw)
+                    obj_dict.setdefault('new_weekly_cases_hcw', loc.new_weekly_cases_hcw)
+                    obj_dict.setdefault('pct_change_cases_hcw', loc.cases_pct_change_hcw)
                 deaths_list.append(obj_dict)
 
         jsonified = json.dumps(deaths_list)
