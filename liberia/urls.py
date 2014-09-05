@@ -20,4 +20,9 @@ urlpatterns = patterns(
         views.HighchartsTemplateView.as_view(template_name='home/highcharts_data.html'),
         name='highcharts_data'
     ),
+    url(
+        r'^table/$',
+        views.TableTemplateView.as_view(template_name='home/table_data.html'),
+        name='table_data'
+    ),
     )

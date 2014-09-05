@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block content %}
+<h3>Latest data: {{latest_qs}}</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th></th>
+            </tr>
+        </thread>
+        <tbody>
+            <tr>
+                <td>For table w/sparkline excluding national</td>
+                <td><a href="{% url 'table_data' %}?format=table_sparkline_ex_natl" target="_blank">Table JSON</a></td>
+            </tr>
+            <tr>
+                <td>For table w/sparkline including national</td>
+                <td><a href="{% url 'table_data' %}?format=table_sparkline_w_natl" target="_blank">Table JSON</a></td>
+            </tr>
+            <tr>
+                <td>For table w/sparkline only national</td>
+                <td><a href="{% url 'table_data' %}?format=table_sparkline_natl" target="_blank">Table JSON</a></td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}
