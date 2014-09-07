@@ -8,11 +8,13 @@ class Command(BaseCommand):
     help = 'Send email containing updated data when a new entry is added'
 
     def handle(self, *args, **options):
-        today = datetime.today().strftime("%m-%d-%Y")
-        subject, from_email, to = 'UPDATED DATA'+today, 'unc.crisis.team@gmail.com', 'stking@email.unc.edu'
-        text_content = 'This is an important message.'
-        html_content = '<p>This is an <strong>important</strong> message.</p>'
+        # today = datetime.today().strftime("%m-%d-%Y")
+        latest_date = SitRep.objects.latest('formatted_date')
+        latest_str = str(latest_date.formatted_date)
+        subject, from_email, to = 'UPDATED DATA '+latest_str, 'unc.crisis.team@gmail.com', 'caseymm@gmail.com'
+        text_content = 'This is contains SitRep data through '+latest_str+'.'
+        # html_content = '<p>This is an <strong>important</strong> message.</p>'
         msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
-        msg.attach_alternative(html_content, "text/html")
-        msg.attach_file('latest_'+today+'.zip')
+        # msg.attach_alternative(html_content, "text/html")
+        msg.attach_file('latest_'+latest_str+'.zip')
         msg.send()

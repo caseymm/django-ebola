@@ -8,6 +8,10 @@ from .base import *
 
 from os import environ
 
+import sys
+
+sys.dont_write_bytecode = True
+
 
 ########## DEBUG CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#debug

@@ -11,11 +11,12 @@ class Command(BaseCommand):
     help = 'Zip file of latest data for email'
 
     def handle(self, *args, **options):
-        today = datetime.today().strftime("%m-%d-%Y")
+        latest_date = SitRep.objects.latest('formatted_date')
+        latest_str = str(latest_date.formatted_date)
 
         BASE_DIR = os.path.dirname(os.path.dirname(__file__))
         SITE_ROOT = dirname(BASE_DIR)
         my_root = dirname(SITE_ROOT)
 
         data_dir = os.path.expanduser(os.path.join(my_root, 'latest_data'))
-        make_archive('latest_'+today, 'zip', data_dir)
+        make_archive('latest_'+latest_str, 'zip', data_dir)

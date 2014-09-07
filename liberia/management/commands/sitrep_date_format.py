@@ -4,36 +4,40 @@ from datetime import datetime
 
 class Command(BaseCommand):
     help = 'Format date for dict get in sitrep excel data'
+    args = de
 
     def handle(self, *args, **options):
-        def date_ending(de):
-            if de[-2] == '0':
-                de = de[1:]
+        for arg in args:
+            print arg
+        print args
+        def date_ending(date):
+            if date[-2] == '0':
+                date = date[1:]
 
             st = '1'
             nd = '2'
             rd = '3'
             th = ['4', '5', '6', '7', '8', '9', '0']
 
-            if len(de) == 1:
-                if de == st:
-                    de += 'st'
-                elif de == nd:
-                    de += 'nd'
-                elif de == rd:
-                    de += 'rd'
+            if len(date) == 1:
+                if date == st:
+                    date += 'st'
+                elif date == nd:
+                    date += 'nd'
+                elif date == rd:
+                    date += 'rd'
                 else:
-                    de += 'th'
-            elif len(de) == 2:
-                if de[-2] == '1':
-                    de += 'th'
+                    date += 'th'
+            elif len(date) == 2:
+                if date[-2] == '1':
+                    date += 'th'
                 else:
-                    if de[-1] == st:
-                        de += 'st'
-                    elif de[-1] == nd:
-                        de += 'nd'
-                    elif de[-1] == rd:
-                        de += 'rd'
+                    if date[-1] == st:
+                        date += 'st'
+                    elif date[-1] == nd:
+                        date += 'nd'
+                    elif date[-1] == rd:
+                        date += 'rd'
                     else:
-                        de += 'th'
-            print de
+                        date += 'th'
+            print date
