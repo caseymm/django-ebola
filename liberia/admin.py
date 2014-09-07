@@ -1,19 +1,11 @@
 from django.contrib import admin
 from django import forms
-from liberia.models import DateStats, SitRep, Location, LocationSitRep, Tag, Author, CrisisNetEntry
+from liberia.models import SitRep, Location, LocationSitRep, Tag, Author, CrisisNetEntry
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.admin.widgets import FilteredSelectMultiple
 import datetime
 import time
 # from .forms import UploadFileForm
-
-
-# class DateStatsAdmin(admin.ModelAdmin):
-#     exclude = ['original_date',]
-#     search_fields = ['date', ]
-#     # list_filter = ()
-#     save_on_top = True
-# admin.site.register(DateStats, DateStatsAdmin)
 
 # class UploadFileForm(forms.ModelForm):
 #     file = forms.FileField()

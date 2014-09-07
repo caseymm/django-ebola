@@ -14,42 +14,25 @@ from operator import itemgetter
 # from .forms import UploadFileForm
 from django.core.management import call_command
 
-
-class DateStats(models.Model):
-    original_date = models.CharField(max_length=50, blank=True)
-    date = models.DateField(null=True)
-    total_cases = models.IntegerField(max_length=50, blank=True, null=True)
-    total_suspected_cases = models.IntegerField(max_length=50, blank=True, null=True)
-    total_probable_cases = models.IntegerField(max_length=50, blank=True, null=True)
-    total_confirmed_cases = models.IntegerField(max_length=50, blank=True, null=True)
+class WeekOfYear(models.Model):
+    week = models.IntegerField(max_length=50, blank=True, null=True)
+    year = models.IntegerField(max_length=50, blank=True, null=True)
     new_cases = models.IntegerField(max_length=50, blank=True, null=True)
-    new_suspected_cases = models.IntegerField(max_length=50, blank=True, null=True)
-    new_probable_cases = models.IntegerField(max_length=50, blank=True, null=True)
-    new_confirmed_cases = models.IntegerField(max_length=50, blank=True, null=True)
-    news_contacts = models.IntegerField(max_length=50, blank=True, null=True)
-    contacts_completed_observation = models.IntegerField(max_length=50, blank=True, null=True)
-    contacts_lost_followup = models.IntegerField(max_length=50, blank=True, null=True)
-    total_deaths_all = models.IntegerField(max_length=50, blank=True, null=True)
-    total_deaths_suspected = models.IntegerField(max_length=50, blank=True, null=True)
-    total_deaths_probable = models.IntegerField(max_length=50, blank=True, null=True)
-    total_deaths_confirmed = models.IntegerField(max_length=50, blank=True, null=True)
-    today_deaths_all = models.IntegerField(max_length=50, blank=True, null=True)
-    today_deaths_suspected = models.IntegerField(max_length=50, blank=True, null=True)
-    today_deaths_probable = models.IntegerField(max_length=50, blank=True, null=True)
-    today_deaths_confirmed = models.IntegerField(max_length=50, blank=True, null=True)
+    new_deaths = models.IntegerField(max_length=50, blank=True, null=True)
 
     class Meta:
-        ordering = ['date']
-        verbose_name_plural=u'Date statistics'
+        ordering = ['-week', '-year']
 
     def __unicode__(self):
-        return str(self.date)
+        return str(self.week+' '+self.year)
+
 
 class SitRep(models.Model):
     date = models.CharField(max_length=100, blank=True)
     formatted_date = models.DateField(null=True)
     date_span = models.CharField(max_length=100, blank=True)
     day_of_year = models.IntegerField(max_length=50, blank=True, null=True)
+    week_of_year = models.ForeignKey('WeekOfYear', null=True, blank=True)
 
     class Meta:
         ordering = ['-date']
@@ -61,6 +44,14 @@ class SitRep(models.Model):
         d = datetime.strptime(self.date, '%Y-%m-%d')
         self.day_of_year = datetime.strftime(d, "%j")
         return self.day_of_year
+
+    def get_woy(self):
+        d = datetime.strptime(self.date, '%Y-%m-%d')
+        week = datetime.strftime(d, "%U")
+        year = datetime.strftime(d, "%Y")
+        current_week, created = WeekOfYear.objects.get_or_create(week=week, year=year)
+        self.week_of_year = current_week
+        return self.week_of_year
 
     # def handle_uploaded_file(f):
     #     df = pd.io.excel.read_excel(f, 0, index_col=None, na_values=['NA'])
@@ -79,6 +70,7 @@ class SitRep(models.Model):
 
     def save(self, **kwargs):
         self.get_doy()
+        self.get_woy()
         # self.upload_file()
         # call_command("test_this")
         super(SitRep, self).save()
@@ -86,6 +78,8 @@ class SitRep(models.Model):
 class Location(models.Model):
     name = models.CharField(max_length=100, blank=True)
     slug = models.CharField(max_length=100, blank=True)
+    new_weekly_cases = models.TextField(blank=True)
+    new_weekly_deaths = models.TextField(blank=True)
 
     def create_slug(self):
         self.slug = slugify(self.name)
