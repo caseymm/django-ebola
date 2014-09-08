@@ -24,7 +24,7 @@ class WeekOfYear(models.Model):
         ordering = ['-week', '-year']
 
     def __unicode__(self):
-        return str(self.week+' '+self.year)
+        return str(self.week)+' '+str(self.year)
 
 
 class SitRep(models.Model):
