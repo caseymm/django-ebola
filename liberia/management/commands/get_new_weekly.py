@@ -9,8 +9,6 @@ class Command(BaseCommand):
     help = 'Get totals for new weekly deaths and new weekly cases and save to WeekOfYear obj.'
 
     def handle(self, *args, **options):
-        # for loc in Location.objects.all():
-        #     print loc
 
         loc_dict = {}
         for loc in Location.objects.all():
@@ -43,8 +41,10 @@ class Command(BaseCommand):
                 except:
                     pass
 
+            loc.weekly_deaths = d_sub
+            loc.weekly_cases = c_sub
+            loc.save()
+
             both.setdefault('weekly_deaths', d_sub)
             both.setdefault('weekly_cases', c_sub)
             loc_dict.setdefault(loc.name, both)
-
-        print loc_dict

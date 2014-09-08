@@ -78,8 +78,8 @@ class SitRep(models.Model):
 class Location(models.Model):
     name = models.CharField(max_length=100, blank=True)
     slug = models.CharField(max_length=100, blank=True)
-    new_weekly_cases = models.TextField(blank=True)
-    new_weekly_deaths = models.TextField(blank=True)
+    weekly_deaths = models.TextField(blank=True)
+    weekly_cases = models.TextField(blank=True)
 
     def create_slug(self):
         self.slug = slugify(self.name)
