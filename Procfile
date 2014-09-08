@@ -1,1 +1,1 @@
-web: gunicorn ebola_project.wsgi
+web: gunicorn ebola_project.wsgi --log-file -
