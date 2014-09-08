@@ -283,3 +283,5 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
+
+ALLOWED_HOSTS = ['localhost', 'django-ebola.herokuapp.com']
