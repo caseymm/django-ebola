@@ -1,0 +1,7 @@
+{
+  "name": "django-ebola",
+  "description": "A django application that parses reports and analyses the data related to the ebola crisis in Liberia.",
+  "repository": "https://github.com/caseymm/django-ebola",
+  "logo": "http://www.django-developer.co.uk/pony.png",
+  "keywords": ["django", "ebola", "liberia"]
+}
