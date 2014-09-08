@@ -110,9 +110,9 @@ class Command(BaseCommand):
             new_loc_sr.save()
 
         call_command("get_new_weekly")
-        call_command("export_cases_deaths")
+        # call_command("export_cases_deaths")
         call_command("export_hc_county")
-        call_command("export_hcw")
+        # call_command("export_hcw")
         call_command("export_json")
         call_command("export_county_wweekly")
         call_command("zip_latest")

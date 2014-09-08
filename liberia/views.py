@@ -102,45 +102,27 @@ class HighchartsTemplateView(generic.TemplateView):
         context = super(HighchartsTemplateView, self).get_context_data(**kwargs)
         context['latest_qs'] = SitRep.objects.latest('formatted_date')
         context['us_date'] = us_date
-        county_d = 'series:['
-        new_deaths = {}
-        for obj in LocationSitRep.objects.filter(sit_rep=context['latest_qs']).exclude(location=national).order_by('location'
-        ).values('total_deaths_suspected', 'total_deaths_probable', 'total_deaths_confirmed'):
-            for attr in obj:
-                new_deaths.setdefault(attr, []).append(obj[attr])
+        new_cds = {}
+        d_dict = {}
+        c_dict = {}
+        for obj in LocationSitRep.objects.filter(sit_rep=context['latest_qs']).exclude(location=national).order_by('location').values('total_deaths_suspected', 'total_deaths_probable', 'total_deaths_confirmed', 'cases_cum_suspected', 'cases_cum_probable', 'cases_cum_confirmed'):
+            d_dict.setdefault('total_deaths_suspected', []).append(obj['total_deaths_suspected'])
+            d_dict.setdefault('total_deaths_probable', []).append(obj['total_deaths_probable'])
+            d_dict.setdefault('total_deaths_confirmed', []).append(obj['total_deaths_confirmed'])
+            new_cds.setdefault("deaths", d_dict)
+            c_dict.setdefault('cases_cum_suspected', []).append(obj['cases_cum_suspected'])
+            c_dict.setdefault('cases_cum_probable', []).append(obj['cases_cum_probable'])
+            c_dict.setdefault('cases_cum_confirmed', []).append(obj['cases_cum_confirmed'])
+            new_cds.setdefault("cases", c_dict)
 
-        for i in new_deaths:
-            county_d += '{name: '+i+','
-            county_d += 'data: '+str(new_deaths[i])+'},'
-        county_d += ']'
-
-        context['county_d'] = county_d.replace(',]',']')
-
-        county_c = 'series:['
-        new_cases = {}
-        for obj in LocationSitRep.objects.filter(sit_rep=context['latest_qs']).exclude(location=national).order_by('location'
-        ).values('cases_cum_suspected', 'cases_cum_probable', 'cases_cum_confirmed'):
-            for attr in obj:
-                new_cases.setdefault(attr, []).append(obj[attr])
-
-        for i in new_cases:
-            county_c += '{name: '+i+','
-            county_c += 'data: '+str(new_cases[i])+'},'
-        county_c += ']'
-
-        context['county_c'] = county_c.replace(',]',']')
-
+        context['county_json'] = json.dumps(new_cds)
         return context
 
     def render_to_response(self, context, **kwargs):
         format = self.request.GET.get('format', '')
-        if 'deaths_hc_json' in format:
+        if 'hc_json' in format:
             return HttpResponse(
-                context['county_d']
-            )
-        elif 'cases_hc_json' in format:
-            return HttpResponse(
-                context['county_c']
+                context['county_json']
             )
 
         return super(HighchartsTemplateView, self).render_to_response(context, **kwargs)

@@ -13,41 +13,22 @@ class Command(BaseCommand):
 
         latest_qs = SitRep.objects.latest('formatted_date')
         county_json=open('latest_data/highcharts_county.json','w')
-        # print "county deaths info"
 
-        county_d = 'series:['
-        new_deaths = {}
-        for obj in LocationSitRep.objects.filter(sit_rep=latest_qs).exclude(location=national).order_by('location').values('total_deaths_suspected', 'total_deaths_probable', 'total_deaths_confirmed'):
-            for attr in obj:
-                new_deaths.setdefault(attr, []).append(obj[attr])
-            #     print obj[attr]
+        #produces json with arrays where each entry in the array represents the total deaths or cases for that county
+        new_cds = {}
+        d_dict = {}
+        c_dict = {}
+        for obj in LocationSitRep.objects.filter(sit_rep=latest_qs).exclude(location=national).order_by('location').values('total_deaths_suspected', 'total_deaths_probable', 'total_deaths_confirmed', 'cases_cum_suspected', 'cases_cum_probable', 'cases_cum_confirmed'):
+            d_dict.setdefault('total_deaths_suspected', []).append(obj['total_deaths_suspected'])
+            d_dict.setdefault('total_deaths_probable', []).append(obj['total_deaths_probable'])
+            d_dict.setdefault('total_deaths_confirmed', []).append(obj['total_deaths_confirmed'])
+            new_cds.setdefault("deaths", d_dict)
+            c_dict.setdefault('cases_cum_suspected', []).append(obj['cases_cum_suspected'])
+            c_dict.setdefault('cases_cum_probable', []).append(obj['cases_cum_probable'])
+            c_dict.setdefault('cases_cum_confirmed', []).append(obj['cases_cum_confirmed'])
+            new_cds.setdefault("cases", c_dict)
 
-        for i in new_deaths:
-            county_d += '{'
-            county_d += 'name: '+i+','
-            county_d += 'data: '+str(new_deaths[i])
-            county_d += '},'
-        county_d += ']'
 
-        print>>county_json, county_d.replace(',]',']')
-        print>>county_json
-
-        # print "county cases info"
-
-        county_c = 'series:['
-        new_cases = {}
-        for obj in LocationSitRep.objects.filter(sit_rep=latest_qs).exclude(location=national).order_by('location').values('cases_cum_suspected', 'cases_cum_probable', 'cases_cum_confirmed'):
-            for attr in obj:
-                new_cases.setdefault(attr, []).append(obj[attr])
-            #     print obj[attr]
-
-        for i in new_cases:
-            county_c += '{'
-            county_c += 'name: '+i+','
-            county_c += 'data: '+str(new_cases[i])
-            county_c += '},'
-        county_c += ']'
-
-        # print county_c.replace(',]',']')
-        print>>county_json, county_c.replace(',]',']')
+        jsonified = json.dumps(new_cds)
+        print>>county_json, jsonified
         county_json.close()
