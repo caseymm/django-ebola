@@ -109,11 +109,16 @@ class Command(BaseCommand):
             new_loc_sr.cases_new_total = (int(new_loc_sr.cases_new_suspected)+int(new_loc_sr.cases_new_probable)+int(new_loc_sr.cases_new_confirmed))
             new_loc_sr.save()
 
-        call_command("get_new_weekly")
-        # call_command("export_cases_deaths")
-        call_command("export_hc_county")
         # call_command("export_hcw")
-        call_command("export_json")
-        call_command("export_county_wweekly")
+        # call_command("export_cases_deaths")
+
+        call_command("get_new_weekly")  #Gets the weekly total in change of deaths and cases and appends to Location
+
+        #write to files
+        call_command("export_hc_county") #Creates json with array where i == countystuff
+        call_command("export_json") #Exports main json files
+        call_command("export_county_wweekly") #Creates the table data (w/sparklines)
+
+        #do things
         call_command("zip_latest")
         call_command("email")
