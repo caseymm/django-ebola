@@ -1,1 +1,1 @@
-web: gunicorn django-ebola.wsgi
+web: gunicorn ebola_project.wsgi
