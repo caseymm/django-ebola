@@ -17,13 +17,34 @@ class Command(BaseCommand):
             both = {}
             deaths_array = []
             cases_array = []
-            for entry in LocationSitRep.objects.values('location__name', 'sit_rep__week_of_year__week'
-            ).annotate(max_deaths=Max("total_deaths_all"), max_cases=Max("cases_cum")).order_by('location__name'):
+
+            lsrs = LocationSitRep.objects.values('location__name', 'sit_rep__week_of_year__week'
+            ).annotate(max_deaths=Max("total_deaths_all"), max_cases=Max("cases_cum")).order_by('location__name')
+
+            for entry in lsrs:
                 if loc.name == entry['location__name']:
+                    # if entry['sit_rep__week_of_year__week']+1:
                     deaths_array.append(entry['max_deaths'])
                     cases_array.append(entry['max_cases'])
-                    both.setdefault('weekly_deaths', deaths_array)
-                    both.setdefault('weekly_cases', cases_array)
-                    loc_dict.setdefault(entry['location__name'], both)
+
+            d_sub = []
+            c_sub = []
+
+            for d in range(len(deaths_array)):
+                try:
+                    # if deaths_array[d+1]:
+                    d_sub.append(deaths_array[d+1] - deaths_array[d])
+                except:
+                    pass
+
+            for c in range(len(cases_array)):
+                try:
+                    c_sub.append(cases_array[c+1] - cases_array[c])
+                except:
+                    pass
+
+            both.setdefault('weekly_deaths', d_sub)
+            both.setdefault('weekly_cases', c_sub)
+            loc_dict.setdefault(loc.name, both)
 
         print loc_dict
