@@ -273,4 +273,4 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-ALLOWED_HOSTS = ['localhost', 'django-ebola.herokuapp.com']
+# ALLOWED_HOSTS = ['localhost', 'django-ebola.herokuapp.com']
