@@ -11,6 +11,7 @@
                 <th>Total deaths</th>
                 <th>New Weekly DEATHS</th>
                 <th>Pct change DEATHS last 7 days</th>
+                <th>Total cases</th>
                 <th>New Weekly CASES</th>
                 <th>Pct change CASES last 7 days</th>
                 <th>JSON</th>
@@ -21,9 +22,10 @@
                 {% if loc.name == 'National' %}
                     <tr>
                         <td><a href="{% url 'location_detail' loc.slug %}">{{loc}}</a></td>
-                        <td>{{loc.death_total.total_deaths_all}}</td>
+                        <td>{{loc.dc_totals.total_deaths_all}}</td>
                         <td>{{loc.new_weekly_deaths}}</td>
                         <td class="{% if loc.death_pct_change == 'N/A' %}default{% elif loc.death_pct_change > 0 %}list-group-item-danger{% elif loc.death_pct_change <= 0 %}list-group-item-success{% endif %}">{{loc.death_pct_change}}{% if loc.death_pct_change != 'N/A' %}%{% endif %}</td>
+                        <td>{{loc.dc_totals.cases_cum}}</td>
                         <td>{{loc.new_weekly_cases}}</td>
                         <td class="{% if loc.cases_pct_change == 'N/A' %}default{% elif loc.cases_pct_change > 0 %}list-group-item-danger{% elif loc.cases_pct_change <= 0 %}list-group-item-success{% endif %}">{{loc.cases_pct_change}}{% if loc.cases_pct_change != 'N/A' %}%{% endif %}</td>
                         <td><a href="{% url 'location_detail' loc.slug %}?format=json" target="_blank" class="btn btn-sm btn-success">Get JSON</a></td>
@@ -35,9 +37,10 @@
                 {% if loc.name != 'National' %}
                     <tr>
                         <td><a href="{% url 'location_detail' loc.slug %}">{{loc}}</a></td>
-                        <td>{{loc.death_total.total_deaths_all}}</td>
+                        <td>{{loc.dc_totals.total_deaths_all}}</td>
                         <td>{{loc.new_weekly_deaths}}</td>
                         <td class="{% if loc.death_pct_change == 'N/A' %}default{% elif loc.death_pct_change > 0 %}list-group-item-danger{% elif loc.death_pct_change <= 0 %}list-group-item-success{% endif %}">{{loc.death_pct_change}}{% if loc.death_pct_change != 'N/A' %}%{% endif %}</td>
+                        <td>{{loc.dc_totals.cases_cum}}</td>
                         <td>{{loc.new_weekly_cases}}</td>
                         <td class="{% if loc.cases_pct_change == 'N/A' %}default{% elif loc.cases_pct_change > 0 %}list-group-item-danger{% elif loc.cases_pct_change <= 0 %}list-group-item-success{% endif %}">{{loc.cases_pct_change}}{% if loc.cases_pct_change != 'N/A' %}%{% endif %}</td>
                         <td><a href="{% url 'location_detail' loc.slug %}?format=json" target="_blank" class="btn btn-sm btn-success">Get JSON</a></td>

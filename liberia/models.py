@@ -95,11 +95,11 @@ class Location(models.Model):
     def __unicode__(self):
         return self.name
 
-    def _death_total(self):
+    def _dc_totals(self):
         qs = LocationSitRep.objects.filter(location=self).latest('formatted_date')
         return qs
 
-    death_total = property(_death_total)
+    dc_totals = property(_dc_totals)
 
     def _get_dates(self):
         sr_list = []
