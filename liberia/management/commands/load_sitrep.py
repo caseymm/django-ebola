@@ -109,6 +109,7 @@ class Command(BaseCommand):
             new_loc_sr.cases_new_total = (int(new_loc_sr.cases_new_suspected)+int(new_loc_sr.cases_new_probable)+int(new_loc_sr.cases_new_confirmed))
             new_loc_sr.save()
 
+        call_command("get_new_weekly")
         call_command("export_cases_deaths")
         call_command("export_hc_county")
         call_command("export_hcw")

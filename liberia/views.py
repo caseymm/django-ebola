@@ -9,11 +9,18 @@ import time
 from datetime import datetime
 
 national = Location.objects.filter(name='National')
+latest_date = SitRep.objects.latest('formatted_date')
+us_date = datetime.strftime(latest_date.formatted_date, "%x")
 
 class LocationListView(generic.ListView):
     model = Location
     template = 'templates/home/index.html'
     context_object_name = 'locations'
+
+    def get_context_data(self, **kwargs):
+        context = super(LocationListView, self).get_context_data(**kwargs)
+        context['us_date'] = us_date
+        return context
 
 class LocationDetailView(generic.DetailView):
     model = Location
@@ -21,7 +28,6 @@ class LocationDetailView(generic.DetailView):
     context_object_name = 'loc'
 
     def get_context_data(self, **kwargs):
-        latest_date = SitRep.objects.latest('formatted_date')
         nums=[latest_date.day_of_year]
         num=latest_date.day_of_year
         while (num - 7) > 0:
@@ -90,6 +96,7 @@ class HighchartsTemplateView(generic.TemplateView):
     def get_context_data(self, **kwargs):
         context = super(HighchartsTemplateView, self).get_context_data(**kwargs)
         context['latest_qs'] = SitRep.objects.latest('formatted_date')
+        context['us_date'] = us_date
         county_d = 'series:['
         new_deaths = {}
         for obj in LocationSitRep.objects.filter(sit_rep=context['latest_qs']).exclude(location=national).order_by('location'
@@ -139,6 +146,7 @@ class TableTemplateView(generic.TemplateView):
     def get_context_data(self, **kwargs):
         context = super(TableTemplateView, self).get_context_data(**kwargs)
         latest_sr = SitRep.objects.latest('formatted_date')
+        context['us_date'] = us_date
         latest = datetime.strftime(latest_sr.formatted_date, "%j")
 
         #No nat

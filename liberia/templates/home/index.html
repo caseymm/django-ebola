@@ -2,6 +2,8 @@
 {% load humanize %}
 
 {% block content %}
+<h2>Latest SitRep: {{us_date}}</h2>
+<br />
     <table class="table">
         <thead>
             <tr>
@@ -24,7 +26,7 @@
                         <td class="{% if loc.death_pct_change == 'N/A' %}default{% elif loc.death_pct_change > 0 %}list-group-item-danger{% elif loc.death_pct_change <= 0 %}list-group-item-success{% endif %}">{{loc.death_pct_change}}{% if loc.death_pct_change != 'N/A' %}%{% endif %}</td>
                         <td>{{loc.new_weekly_cases}}</td>
                         <td class="{% if loc.cases_pct_change == 'N/A' %}default{% elif loc.cases_pct_change > 0 %}list-group-item-danger{% elif loc.cases_pct_change <= 0 %}list-group-item-success{% endif %}">{{loc.cases_pct_change}}{% if loc.cases_pct_change != 'N/A' %}%{% endif %}</td>
-                        <td><a href="{% url 'location_detail' loc.slug %}?format=json" target="_blank" class="btn btn-sm btn-primary">Get JSON</a></td>
+                        <td><a href="{% url 'location_detail' loc.slug %}?format=json" target="_blank" class="btn btn-sm btn-success">Get JSON</a></td>
                     </tr>
                 {% endif %}
             {% endfor %}
@@ -38,7 +40,7 @@
                         <td class="{% if loc.death_pct_change == 'N/A' %}default{% elif loc.death_pct_change > 0 %}list-group-item-danger{% elif loc.death_pct_change <= 0 %}list-group-item-success{% endif %}">{{loc.death_pct_change}}{% if loc.death_pct_change != 'N/A' %}%{% endif %}</td>
                         <td>{{loc.new_weekly_cases}}</td>
                         <td class="{% if loc.cases_pct_change == 'N/A' %}default{% elif loc.cases_pct_change > 0 %}list-group-item-danger{% elif loc.cases_pct_change <= 0 %}list-group-item-success{% endif %}">{{loc.cases_pct_change}}{% if loc.cases_pct_change != 'N/A' %}%{% endif %}</td>
-                        <td><a href="{% url 'location_detail' loc.slug %}?format=json" target="_blank" class="btn btn-sm btn-primary">Get JSON</a></td>
+                        <td><a href="{% url 'location_detail' loc.slug %}?format=json" target="_blank" class="btn btn-sm btn-success">Get JSON</a></td>
                     </tr>
                 {% endif %}
             {% endfor %}
