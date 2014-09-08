@@ -88,7 +88,7 @@ class LocationDetailView(generic.DetailView):
             return HttpResponse(
                 json.dumps(context['filtered_list'])
             )
-        elif 'json' in format:
+        elif 'daily_json' in format:
             return HttpResponse(
                 json.dumps(context['list'])
             )
