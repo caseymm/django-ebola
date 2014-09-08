@@ -1,0 +1,3 @@
+{% for loc in locations %}
+    <li><a href="{% url 'location_detail' loc.slug %}">{{loc}}</a></li>
+{% endfor %}

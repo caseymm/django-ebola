@@ -12,6 +12,11 @@ national = Location.objects.filter(name='National')
 latest_date = SitRep.objects.latest('formatted_date')
 us_date = datetime.strftime(latest_date.formatted_date, "%x")
 
+class NavLocationListView(generic.ListView):
+    model = Location
+    template = 'templates/nav_locs.html'
+    context_object_name = 'locations'
+
 class LocationListView(generic.ListView):
     model = Location
     template = 'templates/home/index.html'

@@ -142,9 +142,10 @@ class Location(models.Model):
         deaths_last_week = week_ago_deaths_total - two_week_ago_deaths_total
         try:
             pct_change = round((((deaths_this_week-deaths_last_week)/deaths_last_week)*100), 2)
+            return pct_change
         except:
             pct_change = 'N/A'
-        return pct_change
+            return pct_change
 
     death_pct_change = property(_get_death_pct)
 
@@ -170,9 +171,10 @@ class Location(models.Model):
         cases_last_week = week_ago_cases_total - two_week_ago_cases_total
         try:
             pct_change = round((((cases_this_week-cases_last_week)/cases_last_week)*100), 2)
+            return pct_change
         except:
             pct_change = 'N/A'
-        return pct_change
+            return pct_change
 
     cases_pct_change = property(_get_cases_pct)
 
@@ -199,9 +201,10 @@ class Location(models.Model):
         deaths_last_week = week_ago_deaths_total - two_week_ago_deaths_total
         try:
             pct_change = round((((deaths_this_week-deaths_last_week)/deaths_last_week)*100), 2)
+            return pct_change
         except:
             pct_change = 'N/A'
-        return pct_change
+            return pct_change
 
     death_pct_change_hcw = property(_get_death_pct_hcw)
 
@@ -228,9 +231,10 @@ class Location(models.Model):
         cases_last_week = week_ago_cases_total - two_week_ago_cases_total
         try:
             pct_change = round((((cases_this_week-cases_last_week)/cases_last_week)*100), 2)
+            return round(pct_change, 2)
         except:
             pct_change = 'N/A'
-        return round(pct_change, 2)
+            return pct_change
 
     cases_pct_change_hcw = property(_get_cases_pct_hcw)
 
