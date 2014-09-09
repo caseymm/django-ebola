@@ -121,4 +121,4 @@ class Command(BaseCommand):
 
         #do things
         call_command("zip_latest")
-        call_command("email")
+        # call_command("email")
