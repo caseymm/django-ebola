@@ -65,3 +65,11 @@ class Command(BaseCommand):
         jsonified = json.dumps(filtered_list)
         print>>eb_json, jsonified
         eb_json.close()
+
+        ex_json=open('latest_data/example_main.json','w')
+        jsonified = json.dumps(list[0])
+        print>>ex_json, jsonified
+        print>>ex_json
+        for i in list[0]:
+            print>>ex_json, i
+        ex_json.close()

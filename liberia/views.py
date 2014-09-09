@@ -42,6 +42,7 @@ class LocationDetailView(generic.DetailView):
             num=num-7
 
         context = super(LocationDetailView, self).get_context_data(**kwargs)
+        context['locations'] = Location.objects.all()
         context['location'] = self.object.locationsitrep_set.all()
         for ent in context['location']:
             context['date_str'] = ent.date
@@ -100,6 +101,7 @@ class HighchartsTemplateView(generic.TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(HighchartsTemplateView, self).get_context_data(**kwargs)
+        context['locations'] = Location.objects.all()
         context['latest_qs'] = SitRep.objects.latest('formatted_date')
         context['us_date'] = us_date
         new_cds = {}
@@ -132,39 +134,46 @@ class TableTemplateView(generic.TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(TableTemplateView, self).get_context_data(**kwargs)
+        context['locations'] = Location.objects.all()
         latest_sr = SitRep.objects.latest('formatted_date')
         context['us_date'] = us_date
         latest = datetime.strftime(latest_sr.formatted_date, "%j")
 
         #No nat
+        format_nn = {}
         no_nat_list = []
         for i in latest_sr.locationsitrep_set.values('location__name', 'cases_cum', 'total_deaths_all', 'hcw_cases_cum', 'hcw_deaths_cum').exclude(location=national):
             loc = Location.objects.get(name=i['location__name'])
             i.setdefault('new_weekly_deaths', loc.weekly_deaths)
             i.setdefault('new_weekly_cases', loc.weekly_cases)
             no_nat_list.append(i)
+        format_nn.setdefault("aaData", no_nat_list)
 
-        context['jsonified_nn'] = json.dumps(no_nat_list)
+        context['jsonified_nn'] = json.dumps(format_nn)
 
         #Inc nat
+        format_incn = {}
         inc_nat_list = []
         for i in latest_sr.locationsitrep_set.values('location__name', 'cases_cum', 'total_deaths_all', 'hcw_cases_cum', 'hcw_deaths_cum'):
             loc = Location.objects.get(name=i['location__name'])
             i.setdefault('new_weekly_deaths', loc.weekly_deaths)
             i.setdefault('new_weekly_cases', loc.weekly_cases)
             inc_nat_list.append(i)
+        format_incn.setdefault("aaData", inc_nat_list)
 
-        context['jsonified_incn'] = json.dumps(inc_nat_list)
+        context['jsonified_incn'] = json.dumps(format_incn)
 
         #Only nat
+        format_n = {}
         nat_list = []
         for i in latest_sr.locationsitrep_set.values('location__name', 'cases_cum', 'total_deaths_all', 'hcw_cases_cum', 'hcw_deaths_cum').filter(location=national):
             loc = Location.objects.get(name=i['location__name'])
             i.setdefault('new_weekly_deaths', loc.weekly_deaths)
             i.setdefault('new_weekly_cases', loc.weekly_cases)
             nat_list.append(i)
+        format_n.setdefault("aaData", nat_list)
 
-        context['jsonified_n'] = json.dumps(nat_list)
+        context['jsonified_n'] = json.dumps(format_n)
 
         return context
 
