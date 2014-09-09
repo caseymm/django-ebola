@@ -7,35 +7,31 @@
         <thead>
             <tr>
                 <th>Type</th>
-                <th></th>
+                <th>Preview</th>
+                <th>JSON</th>
             </tr>
         </thread>
         <tbody>
             <tr>
                 <td>Deaths & Cases by county</td>
+                <td>
+                    {"cases": {"cases_cum_probable": [31, 40, 0, 12, 4, 0, 0, 345, 89, 0, 309, 50, 3, 0, 0], "cases_cum_confirmed": [31, 24, 0, 13,...
+                </td>
                 <td><a href="{% url 'data_resources' %}?format=hc_json" target="_blank" class="btn btn-sm btn-success">Get Highcharts data</a></td>
             </tr>
-        </tbody>
-    </table>
-
-    <table class="table">
-        <thead>
             <tr>
-                <th>Type</th>
-                <th></th>
-            </tr>
-        </thread>
-        <tbody>
-            <tr>
-                <td>For table w/sparkline excluding national</td>
+                <td>For table w/sparkline excluding national (regional_drilldown)</td>
+                <td>{"aaData": [{"cases_cum": 63, "new_weekly_deaths": "[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 6, 4, 2, 4, 15, 1]", "total_deaths_all": 34,...</td>
                 <td><a href="{% url 'data_resources' %}?format=table_sparkline_ex_natl" target="_blank" class="btn btn-sm btn-success">Get table JSON</a></td>
             </tr>
             <tr>
                 <td>For table w/sparkline including national</td>
+                <td></td>
                 <td><a href="{% url 'data_resources' %}?format=table_sparkline_w_natl" target="_blank" class="btn btn-sm btn-success">Get table JSON</a></td>
             </tr>
             <tr>
                 <td>For table w/sparkline only national</td>
+                <td></td>
                 <td><a href="{% url 'data_resources' %}?format=table_sparkline_natl" target="_blank" class="btn btn-sm btn-success">Get table JSON</a></td>
             </tr>
         </tbody>
