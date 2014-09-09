@@ -96,11 +96,11 @@ class LocationDetailView(generic.DetailView):
 
         return super(LocationDetailView, self).render_to_response(context, **kwargs)
 
-class HighchartsTemplateView(generic.TemplateView):
-    template = 'templates/home/highcharts_data.html'
+class DataResourcesTemplateView(generic.TemplateView):
+    template = 'templates/home/data_resources.html'
 
     def get_context_data(self, **kwargs):
-        context = super(HighchartsTemplateView, self).get_context_data(**kwargs)
+        context = super(DataResourcesTemplateView, self).get_context_data(**kwargs)
         context['locations'] = Location.objects.all()
         context['latest_qs'] = SitRep.objects.latest('formatted_date')
         context['us_date'] = us_date
@@ -118,23 +118,7 @@ class HighchartsTemplateView(generic.TemplateView):
             new_cds.setdefault("cases", c_dict)
 
         context['county_json'] = json.dumps(new_cds)
-        return context
 
-    def render_to_response(self, context, **kwargs):
-        format = self.request.GET.get('format', '')
-        if 'hc_json' in format:
-            return HttpResponse(
-                context['county_json']
-            )
-
-        return super(HighchartsTemplateView, self).render_to_response(context, **kwargs)
-
-class TableTemplateView(generic.TemplateView):
-    template = 'templates/home/table_data.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(TableTemplateView, self).get_context_data(**kwargs)
-        context['locations'] = Location.objects.all()
         latest_sr = SitRep.objects.latest('formatted_date')
         context['us_date'] = us_date
         latest = datetime.strftime(latest_sr.formatted_date, "%j")
@@ -179,7 +163,11 @@ class TableTemplateView(generic.TemplateView):
 
     def render_to_response(self, context, **kwargs):
         format = self.request.GET.get('format', '')
-        if 'table_sparkline_ex_natl' in format:
+        if 'hc_json' in format:
+            return HttpResponse(
+                context['county_json']
+            )
+        elif 'table_sparkline_ex_natl' in format:
             return HttpResponse(
                 context['jsonified_nn']
             )
@@ -192,4 +180,4 @@ class TableTemplateView(generic.TemplateView):
                 context['jsonified_n']
             )
 
-        return super(TableTemplateView, self).render_to_response(context, **kwargs)
+        return super(DataResourcesTemplateView, self).render_to_response(context, **kwargs)

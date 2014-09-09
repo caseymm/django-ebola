@@ -9,7 +9,7 @@ class Command(BaseCommand):
     help = 'Export necessary json for charts from db'
 
     def handle(self, *args, **options):
-        exp_county=open('latest_data/export_county_wweekly.json','w')
+        exp_county=open('latest_data/regional.json','w')
         latest_sr = SitRep.objects.latest('formatted_date')
         latest = datetime.strftime(latest_sr.formatted_date, "%j")
 
