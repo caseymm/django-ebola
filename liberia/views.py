@@ -133,7 +133,8 @@ class DataResourcesTemplateView(generic.TemplateView):
             no_nat_list.append(i)
         format_nn.setdefault("aaData", no_nat_list)
 
-        context['jsonified_nn'] = json.dumps(format_nn)
+        rem_quote_nn = json.dumps(format_nn)
+        context['jsonified_nn'] = rem_quote_nn.replace('"[', '[').replace(']"', ']')
 
         #Inc nat
         format_incn = {}
@@ -145,7 +146,8 @@ class DataResourcesTemplateView(generic.TemplateView):
             inc_nat_list.append(i)
         format_incn.setdefault("aaData", inc_nat_list)
 
-        context['jsonified_incn'] = json.dumps(format_incn)
+        rem_quote_incn = json.dumps(format_incn)
+        context['jsonified_incn'] = rem_quote_incn.replace('"[', '[').replace(']"', ']')
 
         #Only nat
         format_n = {}
@@ -157,7 +159,8 @@ class DataResourcesTemplateView(generic.TemplateView):
             nat_list.append(i)
         format_n.setdefault("aaData", nat_list)
 
-        context['jsonified_n'] = json.dumps(format_n)
+        rem_quote_n = json.dumps(format_n)
+        context['jsonified_n'] = rem_quote_n.replace('"[', '[').replace(']"', ']')
 
         return context
 
