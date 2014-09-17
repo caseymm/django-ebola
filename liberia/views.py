@@ -188,6 +188,7 @@ class DataResourcesTemplateView(generic.TemplateView):
 
         return super(DataResourcesTemplateView, self).render_to_response(context, **kwargs)
 
+
 class DocumentLoadFormView(generic.FormView):
     template = 'templates/home/upload_sit_rep.html'
     form_class = DocumentForm

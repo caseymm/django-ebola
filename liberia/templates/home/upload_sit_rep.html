@@ -2,14 +2,19 @@
 {% load humanize %}
 
 {% block content %}
-<form action="{% url 'upload_xls' %}" method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    <p>{{ form.non_field_errors }}</p>
-    <p>{{ form.docfile.label_tag }} {{ form.docfile.help_text }}</p>
-    <p>
-        {{ form.docfile.errors }}
-        {{ form.docfile }}
-    </p>
-    <p><input type="submit" value="Upload" /></p>
-</form>
+
+{% if user.is_authenticated %}
+    <form action="{% url 'upload_xls' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>{{ form.non_field_errors }}</p>
+        <p>{{ form.docfile.label_tag }} {{ form.docfile.help_text }}</p>
+        <p>
+            {{ form.docfile.errors }}
+            {{ form.docfile }}
+        </p>
+        <input class="btn btn-md btn-success dropdown-toggle" type="submit" value="Upload" />
+    </form>
+{% else %}
+    <p>Please login to upload a SitRep.</p>
+{% endif %}
 {% endblock %}
