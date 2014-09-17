@@ -3,4 +3,6 @@
 
 {% block content %}
 <h2>Success</h2>
+
+<p>Check out the <a href="{% url 'location_index' %}">overall view</a>, a <a href="{% url 'location_detail' 'national' %}">location view</a>, or the admin to make sure the data looks right.</p>
 {% endblock %}

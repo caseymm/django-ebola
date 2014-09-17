@@ -11,5 +11,5 @@ class DocumentForm(forms.Form):
         )
     month_format = forms.CharField(
         label='Enter month format with punctuation.',
-        help_text='ex) "Aug" or "Sept."'
+        help_text='ex) "Aug" or "Sept." Do not include the quotation marks.'
         )
