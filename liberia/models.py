@@ -11,7 +11,7 @@ import json
 from datetime import datetime
 from StringIO import StringIO
 from operator import itemgetter
-# from .forms import UploadFileForm
+from liberia.forms import UploadFileForm
 from django.core.management import call_command
 
 class WeekOfYear(models.Model):
@@ -52,21 +52,6 @@ class SitRep(models.Model):
         current_week, created = WeekOfYear.objects.get_or_create(week=week, year=year)
         self.week_of_year = current_week
         return self.week_of_year
-
-    # def handle_uploaded_file(f):
-    #     df = pd.io.excel.read_excel(f, 0, index_col=None, na_values=['NA'])
-    #     print 'dd'
-    #     print df
-    #
-    # def upload_file(request):
-    #     # if request.method == 'POST':
-    #     form = UploadFileForm(request.POST, request.FILES)
-    #     if form.is_valid():
-    #         handle_uploaded_file(request.FILES['file'])
-    #         return HttpResponseRedirect('/success/url/')
-    #     else:
-    #         form = UploadFileForm()
-    #     return render_to_response('upload.html', {'form': form})
 
     def save(self, **kwargs):
         self.get_doy()

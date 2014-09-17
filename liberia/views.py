@@ -7,6 +7,7 @@ from django.http import Http404, HttpResponse
 from liberia.models import SitRep, Location, LocationSitRep
 import time
 from datetime import datetime
+from liberia.forms import UploadFileForm
 
 national = Location.objects.filter(name='National')
 latest_date = SitRep.objects.latest('formatted_date')

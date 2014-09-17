@@ -5,17 +5,39 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.admin.widgets import FilteredSelectMultiple
 import datetime
 import time
-# from .forms import UploadFileForm
+from pandas import Series, DataFrame
+import pandas as pd
+from numpy.random import randn
+import numpy as np
+# from liberia.forms import UploadFileForm
 
-# class UploadFileForm(forms.ModelForm):
-#     file = forms.FileField()
+class UploadFileForm(forms.ModelForm):
+    file = forms.FileField()
 
 class SitRepAdmin(admin.ModelAdmin):
     search_fields = ['date',]
     # list_filter = ()
     save_on_top = True
-    # form = UploadFileForm
+    form = UploadFileForm
     # e_json=open('latest_data/export_main_weekly.json','w')
+    def handle_uploaded_file(self, f):
+        print 'got here'
+        df = pd.io.excel.read_excel(f, 0, index_col=None, na_values=['NA'])
+        print 'dd'
+        print df
+    #
+    # def upload_file(self):
+    #     form = UploadFileForm(POST, FILES)
+    #     if form.is_valid():
+    #     self.handle_uploaded_file(self.FILES['file'])
+    #         return HttpResponseRedirect('/success/url/')
+
+    def save(self, commit=True):
+        self.handle_uploaded_file(self.form.FILES['file'])
+
+        # else:
+        #     form = UploadFileForm()
+        # return render_to_response('upload.html', {'form': form})
 
 admin.site.register(SitRep, SitRepAdmin)
 #
