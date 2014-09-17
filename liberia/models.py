@@ -404,12 +404,10 @@ class Document(models.Model):
             new_loc_sr.save()
 
         call_command("get_new_weekly")  #Gets the weekly total in change of deaths and cases and appends to Location
-        print "first"
+
         #write to files
         call_command("export_hc_county") #Creates json with array where i == countystuff
-        print "second"
         call_command("export_json") #Exports main json files
-        print "third"
         call_command("export_county_wweekly") #Creates the table data (w/sparklines)
 
         #do things
