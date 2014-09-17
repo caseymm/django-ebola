@@ -7,6 +7,16 @@
     <form action="{% url 'upload_xls' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <p>{{ form.non_field_errors }}</p>
+        <p>{{ form.sit_rep_date.label_tag }}</p>
+        <p>{{form.sit_rep_date.help_text}}</p>
+        <p>{{form.sit_rep_date}}</p>
+        <br/>
+
+        <p>{{ form.month_format.label_tag }}</p>
+        <p>{{form.month_format.help_text}}</p>
+        <p>{{form.month_format}}</p>
+        <br/>
+        
         <p>{{ form.docfile.label_tag }} {{ form.docfile.help_text }}</p>
         <p>
             {{ form.docfile.errors }}

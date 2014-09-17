@@ -299,4 +299,6 @@ class CrisisNetEntry(models.Model):
         return self.createdAt
 
 class Document(models.Model):
-    docfile = models.FileField(upload_to='%Y-%m-%d')
+    docfile = models.FileField(upload_to='sitreps')
+    sit_rep_date = models.CharField(max_length=200, blank=True)
+    month_format = models.CharField(max_length=200, blank=True)
