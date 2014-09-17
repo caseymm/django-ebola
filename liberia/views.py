@@ -4,10 +4,12 @@ from django.views import generic
 from django.template.defaultfilters import slugify
 from django.utils.encoding import smart_text
 from django.http import Http404, HttpResponse
-from liberia.models import SitRep, Location, LocationSitRep
+from liberia.models import SitRep, Location, LocationSitRep, Document
+from liberia.forms import DocumentForm
+from django.views.generic.edit import FormView
+from django.core.urlresolvers import reverse
 import time
 from datetime import datetime
-from liberia.forms import UploadFileForm
 
 national = Location.objects.filter(name='National')
 latest_date = SitRep.objects.latest('formatted_date')
@@ -185,3 +187,20 @@ class DataResourcesTemplateView(generic.TemplateView):
             )
 
         return super(DataResourcesTemplateView, self).render_to_response(context, **kwargs)
+
+class DocumentLoadFormView(generic.FormView):
+    template = 'templates/home/upload_sit_rep.html'
+    form_class = DocumentForm
+    success_url = '../'
+
+    def get_context_data(self, **kwargs):
+        context = super(DocumentLoadFormView, self).get_context_data(**kwargs)
+        context['locations'] = Location.objects.all()
+
+        return context
+
+    def form_valid(self, form):
+        form = Document(docfile = self.request.FILES['docfile'])
+        form.save()
+
+        return super(DocumentLoadFormView, self).form_valid(form)

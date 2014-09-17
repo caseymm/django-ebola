@@ -20,4 +20,9 @@ urlpatterns = patterns(
         views.DataResourcesTemplateView.as_view(template_name='home/data_resources.html'),
         name='data_resources'
     ),
+    url(
+        r'^upload/$',
+        views.DocumentLoadFormView.as_view(template_name='home/upload_sit_rep.html'),
+        name='upload_xls'
+    ),
     )

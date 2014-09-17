@@ -11,7 +11,6 @@ import json
 from datetime import datetime
 from StringIO import StringIO
 from operator import itemgetter
-from liberia.forms import UploadFileForm
 from django.core.management import call_command
 
 class WeekOfYear(models.Model):
@@ -298,3 +297,6 @@ class CrisisNetEntry(models.Model):
 
     def __unicode__(self):
         return self.createdAt
+
+class Document(models.Model):
+    docfile = models.FileField(upload_to='%Y-%m-%d')

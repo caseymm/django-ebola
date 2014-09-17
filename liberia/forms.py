@@ -1,6 +1,7 @@
 from django import forms
 
-class UploadFileForm(forms.Form):
-
-    file  = forms.FileField(label='Select a file',
-        help_text='excel')
+class DocumentForm(forms.Form):
+    docfile = forms.FileField(
+        label='Select a file',
+        help_text='Must be a SitRep with .xls ending.'
+    )
