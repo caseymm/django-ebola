@@ -9,14 +9,28 @@
         <p>{{ form.non_field_errors }}</p>
         <p>{{ form.sit_rep_date.label_tag }}</p>
         <p>{{form.sit_rep_date.help_text}}</p>
+        <p style="font-size:11px; color: #666666;">(Please make sure this is right - I haven't had a chance to add validation to this part yet.)</p>
         <p>{{form.sit_rep_date}}</p>
         <br/>
 
         <p>{{ form.month_format.label_tag }}</p>
         <p>{{form.month_format.help_text}}</p>
-        <p>{{form.month_format}}</p>
+        <a id='date_ex'>Click here to see an example of what I'm talking about.</a>
+        <div id='date_toggle'>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>August</h4>
+                    <img src="{{STATIC_URL}}images/aug_ex.png" width=100% />
+                </div>
+                <div class="col-md-6">
+                    <h4>September</h4>
+                    <img src="{{STATIC_URL}}images/sept_ex.png" width=100% />
+                </div>
+            </div>
+        </div>
+        <p style="margin-top: 10px;">{{form.month_format}}</p>
         <br/>
-        
+
         <p>{{ form.docfile.label_tag }} {{ form.docfile.help_text }}</p>
         <p>
             {{ form.docfile.errors }}
@@ -24,6 +38,8 @@
         </p>
         <input class="btn btn-md btn-success dropdown-toggle" type="submit" value="Upload" />
     </form>
+
+
 {% else %}
     <p>Please login to upload a SitRep.</p>
 {% endif %}
