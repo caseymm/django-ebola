@@ -192,7 +192,7 @@ class DataResourcesTemplateView(generic.TemplateView):
 class DocumentLoadFormView(generic.FormView):
     template = 'templates/home/upload_sit_rep.html'
     form_class = DocumentForm
-    success_url = '../'
+    success_url = '../success/'
 
     def get_context_data(self, **kwargs):
         context = super(DocumentLoadFormView, self).get_context_data(**kwargs)
@@ -201,7 +201,7 @@ class DocumentLoadFormView(generic.FormView):
         return context
 
     def form_valid(self, form):
-        form = Document(docfile = self.request.FILES['docfile'])
+        form = Document(docfile = self.request.FILES['docfile'], sit_rep_date = self.request.POST['sit_rep_date'], month_format = self.request.POST['month_format'])
         form.save()
 
         return super(DocumentLoadFormView, self).form_valid(form)

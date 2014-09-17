@@ -302,3 +302,8 @@ class Document(models.Model):
     docfile = models.FileField(upload_to='sitreps')
     sit_rep_date = models.CharField(max_length=200, blank=True)
     month_format = models.CharField(max_length=200, blank=True)
+
+    def save(self, **kwargs):
+        print 'doc save'
+        # call_command("test_this")
+        super(Document, self).save()

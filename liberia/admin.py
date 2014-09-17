@@ -1,6 +1,6 @@
 from django.contrib import admin
 # from django import forms
-from liberia.models import SitRep, Location, LocationSitRep, Tag, Author, CrisisNetEntry
+from liberia.models import SitRep, Location, LocationSitRep, Tag, Author, CrisisNetEntry, Document
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.admin.widgets import FilteredSelectMultiple
 import datetime
@@ -26,6 +26,10 @@ class LocationSitRepAdmin(admin.ModelAdmin):
     # list_filter = ()
     save_on_top = True
 admin.site.register(LocationSitRep, LocationSitRepAdmin)
+
+class DocumentAdmin(admin.ModelAdmin):
+    save_on_top = True
+admin.site.register(Document, DocumentAdmin)
 
 # class TagAdminForm(forms.ModelForm):
 #     crisisnetentry_set = forms.ModelMultipleChoiceField(queryset=CrisisNetEntry.objects.all(), required=False, widget=FilteredSelectMultiple(verbose_name=_('Obituaries'), is_stacked=False))
