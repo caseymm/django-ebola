@@ -27,6 +27,8 @@ class LocationListView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super(LocationListView, self).get_context_data(**kwargs)
+        latest_date = SitRep.objects.latest('formatted_date')
+        us_date = datetime.strftime(latest_date.formatted_date, "%x")
         context['us_date'] = us_date
         return context
 
