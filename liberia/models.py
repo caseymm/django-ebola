@@ -412,4 +412,4 @@ class Document(models.Model):
 
         #do things
         call_command("zip_latest")
-        super(Document, self).save()
+        # super(Document, self).save()
