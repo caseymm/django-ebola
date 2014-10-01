@@ -7,6 +7,7 @@ from django import forms
 import time
 import re
 import urllib
+import requests
 import json
 from datetime import datetime
 from StringIO import StringIO
@@ -412,4 +413,6 @@ class Document(models.Model):
 
         #do things
         call_command("zip_latest")
+        r = requests.get('http://ebolainliberia.org/scripts/grab-data.php')
+        # print r
         # super(Document, self).save()
