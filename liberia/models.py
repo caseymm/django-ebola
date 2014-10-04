@@ -407,9 +407,22 @@ class Document(models.Model):
         call_command("get_new_weekly")  #Gets the weekly total in change of deaths and cases and appends to Location
 
         #write to files
-        call_command("export_hc_county") #Creates json with array where i == countystuff
-        call_command("export_json") #Exports main json files
-        call_command("export_county_wweekly") #Creates the table data (w/sparklines)
+        #fail silently if past data is missing
+        try:
+            call_command("export_hc_county") #Creates json with array where i == countystuff
+            print 'export hc county success'
+        except:
+            pass
+        try:
+            call_command("export_json") #Exports main json files
+            print 'export main success'
+        except:
+            pass
+        try:
+            call_command("export_county_wweekly") #Creates the table data (w/sparklines)
+            print 'export county weekly success'
+        except:
+            pass
 
         #do things
         call_command("zip_latest")
