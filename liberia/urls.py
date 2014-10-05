@@ -16,6 +16,16 @@ urlpatterns = patterns(
         name='location_detail'
     ),
     url(
+        r'^sitreps/$',
+        views.SitRepListView.as_view(template_name='home/sitreps_list.html'),
+        name='sitreps_list'
+    ),
+    url(
+        r'^sitreps/(?P<slug>[-\w\d]+)/$',
+        views.SitRepDetailView.as_view(template_name='home/sitreps_detail.html'),
+        name='sitreps_detail'
+    ),
+    url(
         r'^data/$',
         views.DataResourcesTemplateView.as_view(template_name='home/data_resources.html'),
         name='data_resources'

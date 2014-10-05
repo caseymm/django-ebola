@@ -20,6 +20,27 @@ class NavLocationListView(generic.ListView):
     template = 'templates/nav_locs.html'
     context_object_name = 'locations'
 
+class SitRepListView(generic.ListView):
+    model = SitRep
+    template = 'templates/home/sitreps_list.html'
+    context_object_name = 'sitreps'
+
+class SitRepDetailView(generic.DetailView):
+    template = 'templates/home/sitreps_detail.html'
+
+    def get_object(self):
+        return get_object_or_404(SitRep, date=self.kwargs['slug'])
+
+    # def get_queryset(self):
+    #     self.category = get_object_or_404(Category, name_slug=self.kwargs['name_slug'])
+    #     return self.category.obituary_set.all()
+
+    def get_context_data(self, **kwargs):
+        context = super(SitRepDetailView, self).get_context_data(**kwargs)
+
+        return context
+
+
 class LocationListView(generic.ListView):
     model = Location
     template = 'templates/home/index.html'
