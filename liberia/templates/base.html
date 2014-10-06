@@ -52,13 +52,14 @@
                 </ul>
             </li>
             <li><a href="{% url 'data_resources' %}">Data</a></li>
+            <li><a href="{% url 'sitreps_list' %}">SitReps</a></li>
             <li><a href="{% url 'upload_xls' %}">Upload SitRep</a></li>
-            {% if user.is_authenticated %}
-                <li><a href="http://ebolainliberia.org/scripts/grab-data.php" target="_BLANK">Publish Data</a></li>
-            {% endif %}
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
+              {% if user.is_authenticated %}
+                  <li><a href="http://ebolainliberia.org/scripts/grab-data.php" target="_BLANK">Publish Data</a></li>
+              {% endif %}
             <li><a href="{% url 'location_index' %}admin"><span class="glyphicon glyphicon-user"></span>
                 {% if user.is_authenticated %} Admin{% else %} Login{% endif %}</a></li>
           </ul>

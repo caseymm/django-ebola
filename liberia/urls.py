@@ -21,7 +21,7 @@ urlpatterns = patterns(
         name='sitreps_list'
     ),
     url(
-        r'^sitreps/(?P<slug>[-\w\d]+)/$',
+        r'^sitreps/(?P<date>[-\w\d]+)/$',
         views.SitRepDetailView.as_view(template_name='home/sitreps_detail.html'),
         name='sitreps_detail'
     ),

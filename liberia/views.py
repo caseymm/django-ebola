@@ -1,4 +1,5 @@
 import json
+import csv
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from django.template.defaultfilters import slugify
@@ -25,20 +26,39 @@ class SitRepListView(generic.ListView):
     template = 'templates/home/sitreps_list.html'
     context_object_name = 'sitreps'
 
+    def get_context_data(self, **kwargs):
+        context = super(SitRepListView, self).get_context_data(**kwargs)
+        context['locations'] = Location.objects.all()
+        return context
+
 class SitRepDetailView(generic.DetailView):
     template = 'templates/home/sitreps_detail.html'
 
     def get_object(self):
-        return get_object_or_404(SitRep, date=self.kwargs['slug'])
-
-    # def get_queryset(self):
-    #     self.category = get_object_or_404(Category, name_slug=self.kwargs['name_slug'])
-    #     return self.category.obituary_set.all()
+        return get_object_or_404(SitRep, date=self.kwargs['date'])
 
     def get_context_data(self, **kwargs):
         context = super(SitRepDetailView, self).get_context_data(**kwargs)
 
+        fields = []
+        fields.append('location__name')
+        all_counties = LocationSitRep.objects.filter(sit_rep=self.object)
+        for a in all_counties[:1].values():
+            for item in a:
+                fields.append(item)
+
+        a_list = list(all_counties.values_list(*fields))
+        context['formatted_list'] = list(a_list)
+        context['fields'] = fields
         return context
+
+    def render_to_response(self, context, **kwargs):
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename=sitrep_'+self.object.date+'.csv'
+        writer = csv.writer(response)
+        writer.writerow(context['fields'])
+        writer.writerows(context['formatted_list'])
+        return response
 
 
 class LocationListView(generic.ListView):
