@@ -1,6 +1,6 @@
 # http://django-ebola.herokuapp.com/
 
-![alt tag](static/images/djpliberia.png)
+![alt tag](static/images/djp-liberia.png)
 
 ### Backup or load pg database
 
