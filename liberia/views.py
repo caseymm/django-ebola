@@ -35,6 +35,8 @@ class SitRepDetailView(generic.DetailView):
     template = 'templates/home/sitreps_detail.html'
 
     def get_object(self):
+        if self.kwargs['date'] == 'latest':
+            self.kwargs['date'] = SitRep.objects.latest('date')
         return get_object_or_404(SitRep, date=self.kwargs['date'])
 
     def get_context_data(self, **kwargs):
