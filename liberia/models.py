@@ -271,6 +271,39 @@ class LocationSitRep(models.Model):
     def __unicode__(self):
         return str(self.location)+', '+str(self.formatted_date)
 
+    def _get_previous_sr(self):
+        latest_qs = SitRep.objects.latest('formatted_date')
+        previous_sr = SitRep.objects.get(day_of_year=(latest_qs.day_of_year-1))
+        return previous_sr
+
+    def _get_relevant_loc_sr(self):
+        previous_sr_doy = self._get_previous_sr()
+        prev_loc_sr = LocationSitRep.objects.get(location=self.location, sit_rep=previous_sr_doy)
+        return prev_loc_sr
+
+    def _get_new_deaths_alt(self):
+        yesterday = self._get_relevant_loc_sr()
+        new_total_deaths = self.total_deaths_all
+        yesterday_total_deaths = yesterday.total_deaths_all
+        self.auto_new_deaths = new_total_deaths - yesterday_total_deaths
+        return self.auto_new_deaths
+
+    def _display_valid_number(self):
+        if self.deaths:
+            return self.deaths
+        else:
+            if self.auto_new_deaths >= 0:
+                return self.auto_new_deaths
+            else:
+                return 'Null'
+
+    show_new_death_num = property(_display_valid_number)
+
+    def save(self, **kwargs):
+        self._get_new_deaths_alt()
+        self._display_valid_number()
+        super(LocationSitRep, self).save()
+
 class Tag(models.Model):
     name = models.CharField(max_length=50, blank=True)
 
