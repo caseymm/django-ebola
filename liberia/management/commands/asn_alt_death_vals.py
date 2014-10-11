@@ -9,7 +9,6 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         for loc in LocationSitRep.objects.all():
-            # try and pass loc in as self
             def _get_previous_sr(loc):
                 latest_qs = SitRep.objects.latest('formatted_date')
                 previous_sr = SitRep.objects.get(day_of_year=(latest_qs.day_of_year-1))

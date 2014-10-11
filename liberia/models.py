@@ -438,6 +438,14 @@ class Document(models.Model):
             new_loc_sr.cases_new_total = (int(new_loc_sr.cases_new_suspected)+int(new_loc_sr.cases_new_probable)+int(new_loc_sr.cases_new_confirmed))
             new_loc_sr.save()
 
+        #will need to run through all of the existing sitreps, but can probably use this code like for location deaths info
+        #THEN
+        #if previous sr exists, great, do this stuff...
+        #else:
+        #while missing create the sitrep for that day that provide a duplicate of the latest entry previous to this one while marking it as a copy
+        #then if the sitrep is later uploaded, save that info and mark as real
+
+
         call_command("get_new_weekly")  #Gets the weekly total in change of deaths and cases and appends to Location
 
         #write to files
