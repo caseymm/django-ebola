@@ -8,17 +8,15 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding model 'Document'
-        db.create_table(u'liberia_document', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('docfile', self.gf('django.db.models.fields.files.FileField')(max_length=100)),
-        ))
-        db.send_create_signal(u'liberia', ['Document'])
+        # Adding field 'LocationSitRep.auto_new_deaths'
+        db.add_column(u'liberia_locationsitrep', 'auto_new_deaths',
+                      self.gf('django.db.models.fields.IntegerField')(max_length=50, null=True, blank=True),
+                      keep_default=False)
 
 
     def backwards(self, orm):
-        # Deleting model 'Document'
-        db.delete_table(u'liberia_document')
+        # Deleting field 'LocationSitRep.auto_new_deaths'
+        db.delete_column(u'liberia_locationsitrep', 'auto_new_deaths')
 
 
     models = {
@@ -48,7 +46,9 @@ class Migration(SchemaMigration):
         u'liberia.document': {
             'Meta': {'object_name': 'Document'},
             'docfile': ('django.db.models.fields.files.FileField', [], {'max_length': '100'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'})
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'month_format': ('django.db.models.fields.CharField', [], {'max_length': '200', 'blank': 'True'}),
+            'sit_rep_date': ('django.db.models.fields.CharField', [], {'max_length': '200', 'blank': 'True'})
         },
         u'liberia.location': {
             'Meta': {'ordering': "['name']", 'object_name': 'Location'},
@@ -63,6 +63,7 @@ class Migration(SchemaMigration):
             'Meta': {'ordering': "['-date']", 'object_name': 'LocationSitRep'},
             'admission_cum': ('django.db.models.fields.IntegerField', [], {'max_length': '50', 'null': 'True', 'blank': 'True'}),
             'admission_new': ('django.db.models.fields.IntegerField', [], {'max_length': '50', 'null': 'True', 'blank': 'True'}),
+            'auto_new_deaths': ('django.db.models.fields.IntegerField', [], {'max_length': '50', 'null': 'True', 'blank': 'True'}),
             'cases_cum': ('django.db.models.fields.IntegerField', [], {'max_length': '50', 'null': 'True', 'blank': 'True'}),
             'cases_cum_confirmed': ('django.db.models.fields.IntegerField', [], {'max_length': '50', 'null': 'True', 'blank': 'True'}),
             'cases_cum_probable': ('django.db.models.fields.IntegerField', [], {'max_length': '50', 'null': 'True', 'blank': 'True'}),

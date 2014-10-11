@@ -250,6 +250,7 @@ class LocationSitRep(models.Model):
     total_deaths_confirmed = models.IntegerField(max_length=50, blank=True, null=True)
     total_deaths_all = models.IntegerField(max_length=50, blank=True, null=True)
     deaths = models.IntegerField(max_length=50, blank=True, null=True)
+    auto_new_deaths = models.IntegerField(max_length=50, blank=True, null=True) #if we aren't given the new deaths
     new_deaths_probable = models.IntegerField(max_length=50, blank=True, null=True)
     new_deaths_suspected = models.IntegerField(max_length=50, blank=True, null=True)
     new_deaths_confirmed = models.IntegerField(max_length=50, blank=True, null=True)
