@@ -39,6 +39,8 @@ class SitRep(models.Model):
     date_span = models.CharField(max_length=100, blank=True)
     day_of_year = models.IntegerField(max_length=50, blank=True, null=True)
     week_of_year = models.ForeignKey('WeekOfYear', null=True, blank=True)
+    is_copy = models.BooleanField(default=False)
+
 
     class Meta:
         ordering = ['-date']
@@ -406,7 +408,7 @@ class Document(models.Model):
         for dn in dates_needed:
             d = datetime.strptime(str(dn), '%j')
             get_date = datetime.strftime(d, '2014-%m-%d')
-            copy_sit_rep, created = SitRep.objects.get_or_create(date=get_date, formatted_date=get_date)
+            copy_sit_rep, created = SitRep.objects.get_or_create(date=get_date, formatted_date=get_date, is_copy=True)
             #still need to mark as copy
             loc_info = LocationSitRep.objects.filter(sit_rep=temp_latest)
             for lsr in loc_info:
@@ -490,6 +492,7 @@ class Document(models.Model):
             new_loc_sr.hcw_cases_new = loc_dict[i].get("Newly Reported Cases in HCW on "+de+" "+self.month_format+" "+year+"")
             new_loc_sr.total_deaths_probable = loc_dict[i].get("Total death/s in probable cases")
             new_loc_sr.cases_new_total = (int(new_loc_sr.cases_new_suspected)+int(new_loc_sr.cases_new_probable)+int(new_loc_sr.cases_new_confirmed))
+            new_loc_sr.is_copy = False
             new_loc_sr.save()
 
 
