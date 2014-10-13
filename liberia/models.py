@@ -389,7 +389,29 @@ class Document(models.Model):
                     de += 'th'
 
         current_sit_rep, created = SitRep.objects.get_or_create(date=self.sit_rep_date, formatted_date=date)
+        #will need to run through all of the existing sitreps, but can probably use this code like for location deaths info
+        #THEN
+        #if previous sr exists, great, do this stuff...
+        #else:
+        cdoy = int(current_sit_rep.day_of_year)
 
+        #latest sitrep before this one
+        temp_latest =  SitRep.objects.all().order_by('-date')[1]
+        dates_needed = []
+        while cdoy - temp_latest.day_of_year > 1:
+            cdoy+=-1
+            dates_needed.append(cdoy)
+
+        dates_needed.reverse()
+        for dn in dates_needed:
+            d = datetime.strptime(str(dn), '%j')
+            get_date = datetime.strftime(d, '2014-%m-%d')
+            copy_sit_rep, created = SitRep.objects.get_or_create(date=get_date, formatted_date=get_date)
+            #still need to mark as copy
+
+        #while missing create the sitrep for that day that provide a duplicate of the latest entry previous to this one while marking it as a copy
+        #then if the sitrep is later uploaded, save that info and mark as real
+        #
         df = pd.io.excel.read_excel(self.docfile, 0, index_col=None, na_values=['NA'])
         sliced = df[:34]
         flipped = sliced.T
@@ -438,13 +460,6 @@ class Document(models.Model):
             new_loc_sr.cases_new_total = (int(new_loc_sr.cases_new_suspected)+int(new_loc_sr.cases_new_probable)+int(new_loc_sr.cases_new_confirmed))
             new_loc_sr.save()
 
-        #will need to run through all of the existing sitreps, but can probably use this code like for location deaths info
-        #THEN
-        #if previous sr exists, great, do this stuff...
-        #else:
-        #while missing create the sitrep for that day that provide a duplicate of the latest entry previous to this one while marking it as a copy
-        #then if the sitrep is later uploaded, save that info and mark as real
-
 
         call_command("get_new_weekly")  #Gets the weekly total in change of deaths and cases and appends to Location
 
@@ -468,6 +483,6 @@ class Document(models.Model):
 
         #do things
         call_command("zip_latest")
-        r = requests.get('http://ebolainliberia.org/scripts/grab-data.php')
+        # r = requests.get('http://ebolainliberia.org/scripts/grab-data.php')
         # print r
         # super(Document, self).save()
