@@ -393,10 +393,6 @@ class Document(models.Model):
                     de += 'th'
 
         current_sit_rep, created = SitRep.objects.get_or_create(date=self.sit_rep_date, formatted_date=date)
-        #will need to run through all of the existing sitreps, but can probably use this code like for location deaths info
-        #THEN
-        #if previous sr exists, great, do this stuff...
-        #else:
         cdoy = int(current_sit_rep.day_of_year)
 
         #latest sitrep before this one
@@ -413,95 +409,112 @@ class Document(models.Model):
             copy_sit_rep, created = SitRep.objects.get_or_create(date=get_date, formatted_date=get_date)
             #still need to mark as copy
             loc_info = LocationSitRep.objects.filter(sit_rep=temp_latest)
-            # list_keys = []
-            # for e in loc_info.values():
-            #     for key in e:
-            #         list_keys.append(key)
             for lsr in loc_info:
                 new_lsr, created = LocationSitRep.objects.get_or_create(sit_rep=copy_sit_rep, location=lsr.location, date=get_date, formatted_date=get_date, auto_new_deaths=lsr.auto_new_deaths)
-                exempt = ['sit_rep', 'date', 'formatted_date', 'auto_new_deaths']
-                make_vals = LocationSitRep.objects.filter(sit_rep=lsr.sit_rep, location=lsr.location).values()
-                for val in make_vals:
-                    for attr in val:
-                        if attr not in exempt:
-                            print val[attr]
-                            setattr(new_lsr, attr, val[attr])
-                            new_lsr.save()
+                new_lsr.cases_new_probable = lsr.cases_new_probable
+                new_lsr.total_deaths_suspected = lsr.total_deaths_suspected
+                #Need to fix this
+                new_lsr.total_discharges = lsr.total_discharges
+                new_lsr.hcw_deaths_new = lsr.hcw_deaths_new
+                new_lsr.total_deaths_confirmed = lsr.total_deaths_confirmed
+                new_lsr.deaths = lsr.deaths
+                new_lsr.CFR = lsr.CFR
+                new_lsr.total_deaths_all = lsr.total_deaths_all
+                new_lsr.admission_cum = lsr.admission_cum
+                new_lsr.cases_new_confirmed = lsr.cases_new_confirmed
+                new_lsr.cases_new_suspected = lsr.cases_new_suspected
+                new_lsr.cases_cum = lsr.cases_cum
+                new_lsr.cases_cum_probable = lsr.cases_cum_probable
+                new_lsr.in_treatment = lsr.in_treatment
+                new_lsr.hcw_cases_cum = lsr.hcw_cases_cum
+                new_lsr.cases_cum_confirmed = lsr.cases_cum_confirmed
+                new_lsr.admission_new = lsr.admission_new
+                new_lsr.hcw_deaths_cum = lsr.hcw_deaths_cum
+                new_lsr.cases_cum_suspected = lsr.cases_cum_suspected
+                new_lsr.hcw_cases_new = lsr.hcw_cases_new
+                new_lsr.total_deaths_probable = lsr.total_deaths_probable
+                new_lsr.cases_new_total = (int(lsr.cases_new_suspected)+int(lsr.cases_new_probable)+int(lsr.cases_new_confirmed))
+                new_lsr.save()
+                # exempt = ['sit_rep', 'date', 'formatted_date', 'auto_new_deaths']
+                # make_vals = LocationSitRep.objects.filter(sit_rep=copy_sit_rep, location=lsr.location).values()
+                # for val in make_vals:
+                #     for attr in val:
+                #         if attr not in exempt:
+                #             print attr, val[attr]
+                    #         setattr(new_lsr, attr, val[attr])
+                    #         new_lsr.save()
 
-        #while missing create the sitrep for that day that provide a duplicate of the latest entry previous to this one while marking it as a copy
-        #then if the sitrep is later uploaded, save that info and mark as real
-        #
-        # df = pd.io.excel.read_excel(self.docfile, 0, index_col=None, na_values=['NA'])
-        # sliced = df[:34]
-        # flipped = sliced.T
-        # idx = flipped.set_index([3])
-        # flipback = idx.T
-        # get_index = flipback.columns[0]
-        # idx = flipback.set_index(get_index)
-        # loc_dict = idx.to_dict()
-        # for i in loc_dict:
-        #     county = loc_dict[i]
-        #     for i in county:
-        #         try:
-        #             county[i] = int(county[i])
-        #         except:
-        #             county[i] = 0
-        #
-        # for i in loc_dict:
-        #     current_loc, created = Location.objects.get_or_create(name=i.strip())
-        #     new_loc_sr, created = LocationSitRep.objects.get_or_create(location=current_loc, sit_rep=current_sit_rep)
-        #
-        #     new_loc_sr.date = self.sit_rep_date
-        #     new_loc_sr.formatted_date = date
-        #
-        #     new_loc_sr.cases_new_probable = loc_dict[i].get("New Case/s (Probable)")
-        #     new_loc_sr.total_deaths_suspected = loc_dict[i].get("Total death/s in suspected cases")
-        #     #Need to fix this
-        #     new_loc_sr.total_discharges = loc_dict[i].get("Total discharges on "+de+" "+self.month_format+" "+year+"")
-        #     new_loc_sr.hcw_deaths_new = loc_dict[i].get("Newly Reported deaths in HCW on "+de+" "+self.month_format+" "+year+"")
-        #     new_loc_sr.total_deaths_confirmed = loc_dict[i].get("Total death/s in confirmed cases")
-        #     new_loc_sr.deaths = loc_dict[i].get("Newly reported deaths "+de+" "+self.month_format+" "+year+"")
-        #     new_loc_sr.CFR = loc_dict[i].get("Case Fatality Rate (CFR) - Confirmed & Probable Cases")
-        #     new_loc_sr.total_deaths_all = loc_dict[i].get("Total death/s in confirmed, probable, suspected cases")
-        #     new_loc_sr.admission_cum = loc_dict[i].get("Cumulative admission/isolation ")
-        #     new_loc_sr.cases_new_confirmed = loc_dict[i].get("New case/s (confirmed) ")
-        #     new_loc_sr.cases_new_suspected = loc_dict[i].get("New Case/s (Suspected)")
-        #     new_loc_sr.cases_cum = loc_dict[i].get("Cumulative (confirmed, probable, suspected) cases")
-        #     new_loc_sr.cases_cum_probable = loc_dict[i].get("Total probable cases")
-        #     new_loc_sr.in_treatment = loc_dict[i].get("Total no. currently in Treatment Units")
-        #     new_loc_sr.hcw_cases_cum = loc_dict[i].get("Cumulative  cases among HCW ")
-        #     new_loc_sr.cases_cum_confirmed = loc_dict[i].get("Total confirmed cases")
-        #     new_loc_sr.admission_new = loc_dict[i].get("New Admission on "+self.month_format+" "+date_ending+" "+year+"")
-        #     new_loc_sr.hcw_deaths_cum = loc_dict[i].get("Cumulative  deaths among HCW ")
-        #     new_loc_sr.cases_cum_suspected = loc_dict[i].get("Total suspected cases")
-        #     new_loc_sr.hcw_cases_new = loc_dict[i].get("Newly Reported Cases in HCW on "+de+" "+self.month_format+" "+year+"")
-        #     new_loc_sr.total_deaths_probable = loc_dict[i].get("Total death/s in probable cases")
-        #     new_loc_sr.cases_new_total = (int(new_loc_sr.cases_new_suspected)+int(new_loc_sr.cases_new_probable)+int(new_loc_sr.cases_new_confirmed))
-        #     new_loc_sr.save()
-        #
-        #
-        # call_command("get_new_weekly")  #Gets the weekly total in change of deaths and cases and appends to Location
-        #
-        # #write to files
-        # #fail silently if past data is missing
-        # try:
-        #     call_command("export_hc_county") #Creates json with array where i == countystuff
-        #     print 'export hc county success'
-        # except:
-        #     pass
-        # try:
-        #     call_command("export_json") #Exports main json files
-        #     print 'export main success'
-        # except:
-        #     pass
-        # try:
-        #     call_command("export_county_wweekly") #Creates the table data (w/sparklines)
-        #     print 'export county weekly success'
-        # except:
-        #     pass
-        #
-        # #do things
-        # call_command("zip_latest")
+        df = pd.io.excel.read_excel(self.docfile, 0, index_col=None, na_values=['NA'])
+        sliced = df[:34]
+        flipped = sliced.T
+        idx = flipped.set_index([3])
+        flipback = idx.T
+        get_index = flipback.columns[0]
+        idx = flipback.set_index(get_index)
+        loc_dict = idx.to_dict()
+        for i in loc_dict:
+            county = loc_dict[i]
+            for i in county:
+                try:
+                    county[i] = int(county[i])
+                except:
+                    county[i] = 0
+
+        for i in loc_dict:
+            current_loc, created = Location.objects.get_or_create(name=i.strip())
+            new_loc_sr, created = LocationSitRep.objects.get_or_create(location=current_loc, sit_rep=current_sit_rep)
+
+            new_loc_sr.date = self.sit_rep_date
+            new_loc_sr.formatted_date = date
+
+            new_loc_sr.cases_new_probable = loc_dict[i].get("New Case/s (Probable)")
+            new_loc_sr.total_deaths_suspected = loc_dict[i].get("Total death/s in suspected cases")
+            #Need to fix this
+            new_loc_sr.total_discharges = loc_dict[i].get("Total discharges on "+de+" "+self.month_format+" "+year+"")
+            new_loc_sr.hcw_deaths_new = loc_dict[i].get("Newly Reported deaths in HCW on "+de+" "+self.month_format+" "+year+"")
+            new_loc_sr.total_deaths_confirmed = loc_dict[i].get("Total death/s in confirmed cases")
+            new_loc_sr.deaths = loc_dict[i].get("Newly reported deaths "+de+" "+self.month_format+" "+year+"")
+            new_loc_sr.CFR = loc_dict[i].get("Case Fatality Rate (CFR) - Confirmed & Probable Cases")
+            new_loc_sr.total_deaths_all = loc_dict[i].get("Total death/s in confirmed, probable, suspected cases")
+            new_loc_sr.admission_cum = loc_dict[i].get("Cumulative admission/isolation ")
+            new_loc_sr.cases_new_confirmed = loc_dict[i].get("New case/s (confirmed) ")
+            new_loc_sr.cases_new_suspected = loc_dict[i].get("New Case/s (Suspected)")
+            new_loc_sr.cases_cum = loc_dict[i].get("Cumulative (confirmed, probable, suspected) cases")
+            new_loc_sr.cases_cum_probable = loc_dict[i].get("Total probable cases")
+            new_loc_sr.in_treatment = loc_dict[i].get("Total no. currently in Treatment Units")
+            new_loc_sr.hcw_cases_cum = loc_dict[i].get("Cumulative  cases among HCW ")
+            new_loc_sr.cases_cum_confirmed = loc_dict[i].get("Total confirmed cases")
+            new_loc_sr.admission_new = loc_dict[i].get("New Admission on "+self.month_format+" "+date_ending+" "+year+"")
+            new_loc_sr.hcw_deaths_cum = loc_dict[i].get("Cumulative  deaths among HCW ")
+            new_loc_sr.cases_cum_suspected = loc_dict[i].get("Total suspected cases")
+            new_loc_sr.hcw_cases_new = loc_dict[i].get("Newly Reported Cases in HCW on "+de+" "+self.month_format+" "+year+"")
+            new_loc_sr.total_deaths_probable = loc_dict[i].get("Total death/s in probable cases")
+            new_loc_sr.cases_new_total = (int(new_loc_sr.cases_new_suspected)+int(new_loc_sr.cases_new_probable)+int(new_loc_sr.cases_new_confirmed))
+            new_loc_sr.save()
+
+
+        call_command("get_new_weekly")  #Gets the weekly total in change of deaths and cases and appends to Location
+
+        #write to files
+        #fail silently if past data is missing
+        try:
+            call_command("export_hc_county") #Creates json with array where i == countystuff
+            print 'export hc county success'
+        except:
+            pass
+        try:
+            call_command("export_json") #Exports main json files
+            print 'export main success'
+        except:
+            pass
+        try:
+            call_command("export_county_wweekly") #Creates the table data (w/sparklines)
+            print 'export county weekly success'
+        except:
+            pass
+
+        #do things
+        call_command("zip_latest")
         # r = requests.get('http://ebolainliberia.org/scripts/grab-data.php')
         # print r
         # super(Document, self).save()
