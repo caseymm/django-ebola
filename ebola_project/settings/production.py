@@ -81,7 +81,14 @@ CACHES = {
 # Parse database configuration from $DATABASE_URL
 
 DATABASES = {
-    "default": dj_database_url.config(default='postgres://localhost/ebola'),
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd3eoh2vbd1dllk',
+        'USER': 'yvgxnhboicttff',
+        'PASSWORD': 'enytxCuCCYUjrFWYAnz7Clweb8',
+        'HOST': 'ec2-54-204-16-232.compute-1.amazonaws.com',
+        'PORT': '5432',
+    }
 }
 
 
