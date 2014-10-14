@@ -183,6 +183,7 @@ DJANGO_APPS = (
 LOCAL_APPS = (
     'liberia',
     'south',
+    'gunicorn',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
