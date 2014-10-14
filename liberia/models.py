@@ -274,8 +274,8 @@ class LocationSitRep(models.Model):
         return str(self.location)+', '+str(self.formatted_date)
 
     def _get_previous_sr(self):
-        latest_qs = SitRep.objects.latest('formatted_date')
-        previous_sr = SitRep.objects.get(day_of_year=(latest_qs.day_of_year-1))
+        latest_qs = SitRep.objects.filter(date=self.sit_rep)
+        previous_sr = SitRep.objects.get(day_of_year=(latest_qs[0].day_of_year-1))
         return previous_sr
 
     def _get_relevant_loc_sr(self):
@@ -283,11 +283,25 @@ class LocationSitRep(models.Model):
         prev_loc_sr = LocationSitRep.objects.get(location=self.location, sit_rep=previous_sr_doy)
         return prev_loc_sr
 
+    def _get_previous_sr_b(self):
+        latest_qs = SitRep.objects.filter(date=self.sit_rep)
+        previous_sr = SitRep.objects.get(day_of_year=(latest_qs[0].day_of_year-2))
+        return previous_sr
+
+    def _get_relevant_loc_sr_b(self):
+        previous_sr_doy = self._get_previous_sr_b()
+        prev_loc_sr_b = LocationSitRep.objects.get(location=self.location, sit_rep=previous_sr_doy)
+        return prev_loc_sr_b
+
     def _get_new_deaths_alt(self):
         yesterday = self._get_relevant_loc_sr()
+        two_ago = self._get_relevant_loc_sr_b()
         new_total_deaths = self.total_deaths_all
         yesterday_total_deaths = yesterday.total_deaths_all
-        self.auto_new_deaths = new_total_deaths - yesterday_total_deaths
+        if yesterday_total_deaths > two_ago.total_deaths_all:
+            self.auto_new_deaths = new_total_deaths - yesterday_total_deaths
+        else:
+            self.auto_new_deaths = new_total_deaths - two_ago.total_deaths_all
         return self.auto_new_deaths
 
     def _display_valid_number(self):
