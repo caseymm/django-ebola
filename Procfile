@@ -1,1 +1,1 @@
-web: gunicorn ebola_project.wsgi:liberia
+web: gunicorn ebola_project.wsgi:application
