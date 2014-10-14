@@ -41,6 +41,7 @@ ADMINS = (
 MANAGERS = ADMINS
 ########## END MANAGER CONFIGURATION
 
+
 ########## DATABASE CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
 DATABASES = {
@@ -54,6 +55,7 @@ DATABASES = {
     }
 }
 ########## END DATABASE CONFIGURATION
+
 
 ########## GENERAL CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#time-zone
@@ -195,8 +197,6 @@ DJANGO_APPS = (
 # Apps specific for this project go here.
 LOCAL_APPS = (
     'liberia',
-    'south',
-    # 'gunicorn',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -245,10 +245,70 @@ WSGI_APPLICATION = 'ebola_project.wsgi.application'
 
 ########## SOUTH CONFIGURATION
 # See: http://south.readthedocs.org/en/latest/installation.html#configuring-your-django-installation
-# INSTALLED_APPS += (
-#     # Database migration helpers:
-#     # 'south',
-# )
+INSTALLED_APPS += (
+    # Database migration helpers:
+    'south',
+)
 # Don't need to use South when setting up a test database.
 SOUTH_TESTS_MIGRATE = False
 ########## END SOUTH CONFIGURATION
+
+# Parse database configuration from $DATABASE_URL
+import dj_database_url
+DATABASES['default'] =  dj_database_url.config()
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Allow all host headers
+ALLOWED_HOSTS = ['*']
+
+# Static asset configuration
+# import os
+# BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+# STATIC_ROOT = 'staticfiles'
+# STATIC_URL = '/static/'
+#
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, 'static'),
+# )
+
+# ALLOWED_HOSTS = ['localhost', 'django-ebola.herokuapp.com']
+
+from os.path import abspath, basename, dirname, join, normpath
+from sys import path
+
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+SITE_ROOT = dirname(BASE_DIR)
+SITE_NAME = basename(BASE_DIR)
+path.append(BASE_DIR)
+
+########## MEDIA CONFIGURATION
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#media-root
+MEDIA_ROOT = normpath(join(SITE_ROOT, 'media'))
+
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#media-url
+MEDIA_URL = '/media/'
+########## END MEDIA CONFIGURATION
+
+
+########## STATIC FILE CONFIGURATION
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#static-root
+STATIC_ROOT = normpath(join(SITE_ROOT, 'assets'))
+
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#static-url
+STATIC_URL = '/static/'
+
+# See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
+STATICFILES_DIRS = (
+    normpath(join(SITE_ROOT, 'static')),
+)
+
+# See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
+########## END STATIC FILE CONFIGURATION
+
+ALLOWED_HOSTS = ['localhost', 'django-ebola.herokuapp.com']

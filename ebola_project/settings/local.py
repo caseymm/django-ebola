@@ -15,25 +15,11 @@ sys.dont_write_bytecode = True
 
 ########## DEBUG CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#debug
-DEBUG = True
+# DEBUG = True
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-debug
 TEMPLATE_DEBUG = DEBUG
 ########## END DEBUG CONFIGURATION
-
-# ########## DATABASE CONFIGURATION
-# # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'ebola',
-#         'USER': 'postgres',
-#         'PASSWORD': 'postgres',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#     }
-# }
-# ########## END DATABASE CONFIGURATION
 
 
 ########## EMAIL CONFIGURATION
@@ -67,6 +53,20 @@ EMAIL_USE_TLS = True
 SERVER_EMAIL = EMAIL_HOST_USER
 ########## END EMAIL CONFIGURATION
 
+# ########## DATABASE CONFIGURATION
+# # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'ebola',
+#         'USER': 'postgres',
+#         'PASSWORD': 'postgres',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
+# ########## END DATABASE CONFIGURATION
+
 
 ########## CACHE CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#caches
@@ -91,5 +91,5 @@ MIDDLEWARE_CLASSES += (
 DEBUG_TOOLBAR_PATCH_SETTINGS = False
 
 # http://django-debug-toolbar.readthedocs.org/en/latest/installation.html
-# INTERNAL_IPS = ('127.0.0.1',)
+INTERNAL_IPS = ('127.0.0.1',)
 ########## END TOOLBAR CONFIGURATION
