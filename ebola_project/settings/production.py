@@ -102,6 +102,7 @@ if os.environ.has_key('DATABASE_URL'):
      DATABASES['default'] = {
          'NAME':     url.path[1:],
          'USER':     url.username,
+         }
 
 from os.path import abspath, basename, dirname, join, normpath
 from sys import path
