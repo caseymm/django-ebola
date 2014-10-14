@@ -3,12 +3,12 @@
 from __future__ import absolute_import
 
 from os import environ
-# import dj_database_url
+import dj_database_url
 
 from .base import *
 #
-# from os.path import abspath, basename, dirname, join, normpath
-# from sys import path
+from os.path import abspath, basename, dirname, join, normpath
+from sys import path
 
 # Normally you should not import ANYTHING from Django directly
 # into your settings, but ImproperlyConfigured is an exception.
@@ -80,16 +80,17 @@ CACHES = {
 
 # Parse database configuration from $DATABASE_URL
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd3eoh2vbd1dllk',
-        'USER': 'yvgxnhboicttff',
-        'PASSWORD': 'enytxCuCCYUjrFWYAnz7Clweb8',
-        'HOST': 'ec2-54-204-16-232.compute-1.amazonaws.com',
-        'PORT': '5432',
-    }
-}
+DATABASES['default'] = dj_database_url.config()
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'd3eoh2vbd1dllk',
+#         'USER': 'yvgxnhboicttff',
+#         'PASSWORD': 'enytxCuCCYUjrFWYAnz7Clweb8',
+#         'HOST': 'ec2-54-204-16-232.compute-1.amazonaws.com',
+#         'PORT': '5432',
+#     }
+# }
 
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
