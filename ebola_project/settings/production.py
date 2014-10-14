@@ -3,8 +3,12 @@
 from __future__ import absolute_import
 
 from os import environ
+import dj_database_url
 
 from .base import *
+# 
+# from os.path import abspath, basename, dirname, join, normpath
+# from sys import path
 
 # Normally you should not import ANYTHING from Django directly
 # into your settings, but ImproperlyConfigured is an exception.
@@ -75,7 +79,7 @@ CACHES = {
 ########## END DATABASE CONFIGURATION
 
 # Parse database configuration from $DATABASE_URL
-import dj_database_url
+
 DATABASES = {
     "default": dj_database_url.config(default='postgres://localhost'),
 }
@@ -98,8 +102,7 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # ALLOWED_HOSTS = ['localhost', 'django-ebola.herokuapp.com']
 
-from os.path import abspath, basename, dirname, join, normpath
-from sys import path
+
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SITE_ROOT = dirname(BASE_DIR)
