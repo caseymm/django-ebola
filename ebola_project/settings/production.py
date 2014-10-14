@@ -3,7 +3,7 @@
 from __future__ import absolute_import
 
 from os import environ
-import dj_database_url
+# import dj_database_url
 
 from .base import *
 #
