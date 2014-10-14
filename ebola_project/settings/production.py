@@ -6,7 +6,7 @@ from os import environ
 import dj_database_url
 
 from .base import *
-# 
+#
 # from os.path import abspath, basename, dirname, join, normpath
 # from sys import path
 
@@ -81,8 +81,9 @@ CACHES = {
 # Parse database configuration from $DATABASE_URL
 
 DATABASES = {
-    "default": dj_database_url.config(default='postgres://localhost'),
+    "default": dj_database_url.config(default='postgres://yvgxnhboicttff:enytxCuCCYUjrFWYAnz7Clweb8@ec2-54-204-16-232.compute-1.amazonaws.com:5432/d3eoh2vbd1dllk'),
 }
+
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
