@@ -62,6 +62,7 @@ CACHES = {
 }
 ########## END CACHE CONFIGURATION
 
+DATABASES = {}
 
 ########## SECRET CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
