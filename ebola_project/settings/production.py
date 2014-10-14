@@ -81,7 +81,7 @@ CACHES = {
 # Parse database configuration from $DATABASE_URL
 
 DATABASES = {
-    "default": dj_database_url.config(default='postgres://yvgxnhboicttff:enytxCuCCYUjrFWYAnz7Clweb8@ec2-54-204-16-232.compute-1.amazonaws.com:5432/d3eoh2vbd1dllk'),
+    "default": dj_database_url.config(default='postgres://localhost/ebola'),
 }
 
 
