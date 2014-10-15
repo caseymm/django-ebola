@@ -99,7 +99,7 @@ class LocationDetailView(generic.DetailView):
         context['location_vals'] = self.object.locationsitrep_set.values('sit_rep__day_of_year', 'sit_rep__date', 'location__name',
         'location__slug', 'total_deaths_probable', 'cases_cum_suspected', 'cases_cum_probable', 'cases_cum_confirmed', 'cases_cum',
         'cases_new_total', 'cases_new_suspected', 'cases_new_probable', 'cases_new_confirmed', 'total_deaths_suspected', 'total_deaths_confirmed',
-        'total_deaths_all', 'deaths', 'new_deaths_probable', 'new_deaths_suspected', 'new_deaths_confirmed', 'hc_workers', 'hcw_cases_new',
+        'total_deaths_all', 'deaths', 'auto_new_deaths', 'new_deaths_probable', 'new_deaths_suspected', 'new_deaths_confirmed', 'hc_workers', 'hcw_cases_new',
         'hcw_cases_cum', 'hcw_deaths_new', 'hcw_deaths_cum', 'CFR')
 
         for i in context['location_vals']:
