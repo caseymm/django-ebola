@@ -5,8 +5,8 @@ from django.views import generic
 from django.template.defaultfilters import slugify
 from django.utils.encoding import smart_text
 from django.http import Http404, HttpResponse
-from liberia.models import SitRep, Location, LocationSitRep, Document
-from liberia.forms import DocumentForm
+from liberia.models import SitRep, Location, LocationSitRep, Document, Uploader
+from liberia.forms import UploaderForm
 from django.views.generic.edit import FormView
 from django.core.urlresolvers import reverse
 import time
@@ -234,19 +234,19 @@ class DataResourcesTemplateView(generic.TemplateView):
         return super(DataResourcesTemplateView, self).render_to_response(context, **kwargs)
 
 
-class DocumentLoadFormView(generic.FormView):
+class UploaderFormView(generic.FormView):
     template = 'templates/home/upload_sit_rep.html'
-    form_class = DocumentForm
+    form_class = UploaderForm
     success_url = '../success/'
 
     def get_context_data(self, **kwargs):
-        context = super(DocumentLoadFormView, self).get_context_data(**kwargs)
+        context = super(UploaderFormView, self).get_context_data(**kwargs)
         context['locations'] = Location.objects.all()
 
         return context
 
     def form_valid(self, form):
-        form = Document(docfile = self.request.FILES['docfile'], sit_rep_date = self.request.POST['sit_rep_date'], month_format = self.request.POST['month_format'])
+        form = Uploader(docfile = self.request.FILES['docfile'], sit_rep_date = self.request.POST['sit_rep_date'], month_format = self.request.POST['month_format'])
         form.save()
 
-        return super(DocumentLoadFormView, self).form_valid(form)
+        return super(UploaderFormView, self).form_valid(form)

@@ -32,12 +32,12 @@ urlpatterns = patterns(
     ),
     url(
         r'^upload/$',
-        views.DocumentLoadFormView.as_view(template_name='home/upload_sit_rep.html'),
+        views.UploaderFormView.as_view(template_name='home/upload_sit_rep.html'),
         name='upload_xls'
     ),
     url(
         r'^success/$',
-        views.DocumentLoadFormView.as_view(template_name='home/success.html'),
+        views.UploaderFormView.as_view(template_name='home/success.html'),
         name='success'
     ),
     )
