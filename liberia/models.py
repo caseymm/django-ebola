@@ -532,6 +532,6 @@ class Document(models.Model):
         #
         # #do things
         # call_command("zip_latest")
-        r = requests.get('http://ebolainliberia.org/scripts/grab-data.php')
+        r = requests.get('http://ebolainliberia.org/scripts/grab-data.php', headers={'Connection':'close'})
         print r
         # super(Document, self).save()
