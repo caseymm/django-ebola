@@ -3,6 +3,14 @@
 
 {% block content %}
 {% if user.is_authenticated %}
+
+<div class="alert alert-danger" role="alert">
+    THIS WILL GIVE YOU AN ERROR.
+    <br />
+    I thought I'd fixed it, but apparently it didn't work. That said, <h3>PLEASE</h3> check and see if the data updated before emailing me.
+    Heroku won't let me run migrations, hence the error. I will continue trying to fix the problem.
+</div>
+
     <form action="{% url 'upload_xls' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <p>{{ form.non_field_errors }}</p>
