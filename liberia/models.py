@@ -495,7 +495,7 @@ class Document(models.Model):
             new_loc_sr.admission_cum = loc_dict[i].get("Cumulative admission/isolation ")
             new_loc_sr.cases_new_confirmed = loc_dict[i].get("New case/s (confirmed) ")
             new_loc_sr.cases_new_suspected = loc_dict[i].get("New Case/s (Suspected)")
-            new_loc_sr.cases_cum = loc_dict[i].get("Cumulative (confirmed, probable, suspected)")
+            new_loc_sr.cases_cum = loc_dict[i].get("Cumulative (confirmed, probable, suspected) cases")
             new_loc_sr.cases_cum_probable = loc_dict[i].get("Total probable cases")
             new_loc_sr.in_treatment = loc_dict[i].get("Total no. currently in Treatment Units")
             new_loc_sr.hcw_cases_cum = loc_dict[i].get("Cumulative  cases among HCW ")
