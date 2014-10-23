@@ -489,7 +489,7 @@ class Document(models.Model):
             new_loc_sr.total_discharges = loc_dict[i].get("Total discharges on "+de+" "+self.month_format+" "+year+"")
             new_loc_sr.hcw_deaths_new = loc_dict[i].get("Newly Reported deaths in HCW on "+de+" "+self.month_format+" "+year+"")
             new_loc_sr.total_deaths_confirmed = loc_dict[i].get("Total death/s in confirmed cases")
-            new_loc_sr.deaths = loc_dict[i].get("Newly reported deaths "+de+" "+self.month_format+" "+year+"")
+            new_loc_sr.deaths = loc_dict[i].get("Newly reported deaths "+self.month_format+" "+de+". "+year+"")
             new_loc_sr.CFR = loc_dict[i].get("Case Fatality Rate (CFR) - Confirmed & Probable Cases")
             new_loc_sr.total_deaths_all = loc_dict[i].get("Total death/s in confirmed, probable, suspected cases")
             new_loc_sr.admission_cum = loc_dict[i].get("Cumulative admission/isolation ")
