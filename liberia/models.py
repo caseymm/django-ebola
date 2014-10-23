@@ -514,24 +514,24 @@ class Document(models.Model):
 
         #write to files
         #fail silently if past data is missing
-        try:
-            call_command("export_hc_county") #Creates json with array where i == countystuff
-            print 'export hc county success'
-        except:
-            pass
-        try:
-            call_command("export_json") #Exports main json files
-            print 'export main success'
-        except:
-            pass
-        try:
-            call_command("export_county_wweekly") #Creates the table data (w/sparklines)
-            print 'export county weekly success'
-        except:
-            pass
-
-        #do things
-        call_command("zip_latest")
+        # try:
+        #     call_command("export_hc_county") #Creates json with array where i == countystuff
+        #     print 'export hc county success'
+        # except:
+        #     pass
+        # try:
+        #     call_command("export_json") #Exports main json files
+        #     print 'export main success'
+        # except:
+        #     pass
+        # try:
+        #     call_command("export_county_wweekly") #Creates the table data (w/sparklines)
+        #     print 'export county weekly success'
+        # except:
+        #     pass
+        #
+        # #do things
+        # call_command("zip_latest")
         r = requests.get('http://ebolainliberia.org/scripts/grab-data.php')
-        # print r
+        print r
         super(Document, self).save()
