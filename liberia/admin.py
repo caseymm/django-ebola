@@ -1,6 +1,6 @@
 from django.contrib import admin
 # from django import forms
-from liberia.models import SitRep, Location, LocationSitRep, Tag, Author, CrisisNetEntry, Document, Uploader
+from liberia.models import SitRep, Location, LocationSitRep, Tag, Author, CrisisNetEntry, Document
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.admin.widgets import FilteredSelectMultiple
 import datetime
@@ -28,6 +28,6 @@ class LocationSitRepAdmin(admin.ModelAdmin):
     save_on_top = True
 admin.site.register(LocationSitRep, LocationSitRepAdmin)
 
-class UploaderAdmin(admin.ModelAdmin):
+class DocumentAdmin(admin.ModelAdmin):
     save_on_top = True
-admin.site.register(Uploader, UploaderAdmin)
+admin.site.register(Document, DocumentAdmin)
